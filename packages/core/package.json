@@ -1,0 +1,12 @@
+{
+  "name": "@react-ui-generator/core",
+  "version": "0.0.0",
+  "description": "Core module for react-ui-generator",
+  "main": "src/index.js",
+  "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/core",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Alexei Zaviruha <a.zaviruha@gmail.com>",
+  "license": "MIT"
+}

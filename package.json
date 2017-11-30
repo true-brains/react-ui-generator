@@ -1,0 +1,29 @@
+{
+  "name": "react-ui-generator",
+  "version": "0.0.0",
+  "description": "Library for generation UI from metadata",
+  "main": "src/index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/react-ui-generator/react-ui-generator.git"
+  },
+  "keywords": [
+    "react",
+    "UI",
+    "react-components",
+    "form-generator",
+    "UI-generator"
+  ],
+  "author": "Alexei Zaviruha <a.zaviruha@gmail.com>",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/react-ui-generator/react-ui-generator/issues"
+  },
+  "homepage": "https://github.com/react-ui-generator/react-ui-generator#readme",
+  "devDependencies": {
+    "lerna": "^2.5.1"
+  }
+}
