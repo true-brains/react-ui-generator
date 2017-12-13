@@ -1,0 +1,24 @@
+{
+	"fields": [
+    {
+      "id": "email",
+      "renderer": "text",
+      "accessor": "data.email",
+      "serializer": "auth.email"
+    },
+
+    {
+      "id": "password",
+      "renderer": "text",
+      "accessor": "data.password",
+      "serializer": "auth.password"
+    },
+
+    {
+      "id": "confirmation",
+      "renderer": "text",
+      "accessor": "data.passwordConfirmation",
+      "serializer": null
+    }
+  ]
+}

@@ -24,6 +24,7 @@
   },
   "homepage": "https://github.com/react-ui-generator/react-ui-generator#readme",
   "devDependencies": {
-    "lerna": "^2.5.1"
+    "lerna": "^2.5.1",
+    "prettier": "1.9.2"
   }
 }
