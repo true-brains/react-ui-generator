@@ -1,2 +1,2 @@
-import * as React from "react";
-export { GeneratedForm } from './components/GeneratedForm'
+export { GeneratedForm, FieldRenderer } from './components/GeneratedForm';
+export { Field } from './components/Field';

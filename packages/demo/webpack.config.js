@@ -1,12 +1,14 @@
-const path = require('path')
-const webpack = require('webpack')
-const HtmlWebpackPlugin = require('html-webpack-plugin')
+const fs = require('fs');
+const path = require('path');
+const webpack = require('webpack');
+const HtmlWebpackPlugin = require('html-webpack-plugin');
+const Visualizer = require('webpack-visualizer-plugin');
 
-const resolve = (dir) => path.join(__dirname, '..', dir)
+const resolve = dir => path.join(__dirname, dir);
 
 module.exports = {
   entry: {
-    lib: './examples/index.js'
+    app: resolve('src/index.jsx')
   },
 
   output: {
@@ -22,24 +24,21 @@ module.exports = {
         loader: 'babel-loader',
 
         options: {
-          presets: [ 'env', 'stage-3', 'react' ],
-          plugins: [ 'react-hot-loader/babel' ]
+          presets: ['env', 'stage-3', 'react']
+          // plugins: [ 'react-hot-loader/babel' ]
         }
       }
     ]
   },
 
   resolve: {
-    modules: [
-      resolve('src'),
-      'node_modules'
-    ],
+    modules: [resolve('src'), 'node_modules'],
 
-    extensions: [ '.js', '.jsx', '.json' ],
+    extensions: ['.js', '.jsx', '.json'],
 
     alias: {
       '@': resolve('src'),
-      '@n': resolve('node_modules')
+      react: path.resolve(__dirname, 'node_modules/react')
     }
   },
 
@@ -62,9 +61,13 @@ module.exports = {
     new HtmlWebpackPlugin({
       title: 'react-form-generator demo',
       inject: true,
-      template: 'examples/index.ejs'
+      template: resolve('src/index.ejs')
     }),
 
-    new webpack.HotModuleReplacementPlugin()
+    // new webpack.HotModuleReplacementPlugin(),
+
+    new Visualizer({
+      filename: './statistics.html'
+    })
   ]
-}
+};
