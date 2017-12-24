@@ -1,10 +1,9 @@
 {
-  "name": "@react-ui-generator/core",
+  "name": "@react-ui-generator/layouts",
   "version": "0.0.0",
-  "description": "Core module for react-ui-generator",
-  "main": "./out/core.js",
-  "types": "./out/index.d.ts",
-  "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/core",
+  "description": "Pre-defined layouts for react-ui-generator",
+  "main": "./out/layouts.js",
+  "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/layouts",
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
@@ -12,7 +11,9 @@
   "author": "Alexei Zaviruha <a.zaviruha@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/react": "^16.0.29"
+    "@types/react": "^16.0.29",
+    "@react-ui-generator/core": "*",
+    "@react-ui-generator/layouts": "*"
   },
   "devDependencies": {
     "awesome-typescript-loader": "^3.4.1",

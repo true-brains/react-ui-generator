@@ -5,11 +5,12 @@ const resolve = dir => path.join(__dirname, '..', dir);
 module.exports = {
   entry: resolve('src/index.tsx'),
   output: {
-    filename: 'core.js',
+    filename: 'layouts.js',
     path: resolve('out'),
     libraryTarget: 'umd'
   },
 
+  // Enable sourcemaps for debugging webpack's output.
   devtool: 'source-map',
 
   resolve: {
@@ -22,6 +23,7 @@ module.exports = {
 
   module: {
     rules: [
+      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
       {
         test: /\.tsx?$/,
         use: [
@@ -32,8 +34,7 @@ module.exports = {
             }
           },
           'awesome-typescript-loader'
-        ],
-        exclude: /node_modules/
+        ]
       },
 
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
