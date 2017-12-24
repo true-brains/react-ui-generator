@@ -40,7 +40,7 @@ module.exports = {
       '@': resolve('src'),
 
       // Required for Lerna
-      react: path.resolve(__dirname, 'node_modules/react')
+      // react: path.resolve(__dirname, 'node_modules/react')
     }
   },
 
