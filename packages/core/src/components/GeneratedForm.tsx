@@ -12,6 +12,7 @@ import { FieldsRest } from './FieldsRest';
 import * as Utils from '../utils';
 
 export interface GeneratedFormProps {
+  className: string;
   meta: FormMetaDescription;
   data: { [key: string]: any };
   errors: { [key: string]: any };
@@ -24,7 +25,17 @@ export interface GeneratedFormProps {
 export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
   render() {
     const fields: JSX.Element[] = [];
-    const { meta, data, errors, actions: formActions, renderers, children } = this.props;
+
+    const {
+      className,
+      meta,
+      data,
+      errors,
+      actions: formActions,
+      renderers,
+      children
+    } = this.props;
+
     const _meta = Utils.enhanceFormMeta(meta);
     console.log('_meta: ', _meta);
 
@@ -53,7 +64,11 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
       );
     }
 
-    return <div className="generated-form">{Utils.layout(children, fields)}</div>;
+    return (
+      <div className={`generated-form ${className || ''}`}>
+        {Utils.layout(children, fields)}
+      </div>
+    );
   }
 
   onChange(id: string, event: any): void {}

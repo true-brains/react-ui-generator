@@ -11,15 +11,11 @@ import { DivsLayout } from '@react-ui-generator/layouts';
 import * as BootstrapRenderers from '@react-ui-generator/renderers-bootstrap';
 import formMeta from '../meta/complete';
 
-class Text extends FieldRenderer {
-  render() {
-    return <div className="text-field">This is "{this.props.id}" field</div>;
-  }
-}
-
+/**
+ * You can add custon renderers here.
+ */
 const renderers = {
   ...BootstrapRenderers,
-  text: Text
 };
 
 export class GeneratedFormExample extends React.PureComponent {
@@ -31,6 +27,7 @@ export class GeneratedFormExample extends React.PureComponent {
 
     return (
       <GeneratedForm
+        className="form"
         meta={formMeta}
         data={data}
         errors={errors}
@@ -44,7 +41,7 @@ export class GeneratedFormExample extends React.PureComponent {
 
         <div>-------------------- Example of custom layout --------------------</div>
 
-        {/* One of predefined layouts for the rest of form's fields */}
+        {/* One of predefined layouts for the rest of form's fields. */}
         <DivsLayout className="rest-of-fields" fieldClassName="class-for-every-field">
           <FieldsRest />
         </DivsLayout>
