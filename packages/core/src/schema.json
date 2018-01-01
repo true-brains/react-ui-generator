@@ -32,7 +32,10 @@
 							{ "$ref": "#/definitions/validatorSimple" },
 							{ "$ref": "#/definitions/validatorComplex" }
 						]
-					}
+          },
+          "actions": {
+            "type": "object"
+          }
 				},
 				"required": [ "id" ]
 			}

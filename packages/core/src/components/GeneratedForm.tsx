@@ -1,24 +1,40 @@
 import * as React from 'react';
-import { FormMetaDescription, FieldRenderer } from '../interfaces';
+
+import {
+  FormMetaDescription,
+  RawFieldMetaDescription,
+  FieldMetaDescription,
+  FieldRenderer
+} from '../interfaces';
+
 import { Field } from './Field';
 import { FieldsRest } from './FieldsRest';
+import * as Utils from '../utils';
 
 export interface GeneratedFormProps {
   meta: FormMetaDescription;
-  renderers: { [key: string]: typeof FieldRenderer };
   data: { [key: string]: any };
   errors: { [key: string]: any };
   validator(valdiate: any, schema: any): void;
+  renderers: { [key: string]: typeof FieldRenderer };
+  actions?: { [key: string]: any };
   onChange(data: any, errors: any): void;
 }
 
-export class GeneratedForm extends React.Component<GeneratedFormProps, {}> {
+export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
   render() {
     const fields: JSX.Element[] = [];
-    const { meta, data, errors, renderers, children } = this.props;
+    const { meta, data, errors, actions: formActions, renderers, children } = this.props;
+    const _meta = Utils.enhanceFormMeta(meta);
+    console.log('_meta: ', _meta);
 
-    for (let { id, renderer } of meta.fields) {
-      const Renderer: typeof FieldRenderer = renderers[renderer];
+    for (let field of _meta.fields) {
+      const { id, renderer: { type, config }, actions: fieldActions } = field;
+      const Renderer: typeof FieldRenderer = renderers[type];
+      const actions: { [key: string]: any } = Utils.extractFieldActions(
+        formActions,
+        fieldActions
+      );
 
       fields.push(
         <Renderer
@@ -26,6 +42,8 @@ export class GeneratedForm extends React.Component<GeneratedFormProps, {}> {
           id={id}
           data={data[id]}
           errors={errors[id]}
+          config={config}
+          actions={actions}
           onChange={event => {
             this.onChange(id, event);
           }}
@@ -35,36 +53,8 @@ export class GeneratedForm extends React.Component<GeneratedFormProps, {}> {
       );
     }
 
-    return <div className="generated-form">{layout(children, fields)}</div>;
+    return <div className="generated-form">{Utils.layout(children, fields)}</div>;
   }
 
   onChange(id: string, event: any): void {}
-}
-
-interface NodeWithIdProps {
-  children: string | JSX.Element
-  id?: string
-}
-type NodeWithId = React.ReactElement<NodeWithIdProps>;
-
-function layout(children: React.ReactNode, fields: JSX.Element[]): React.ReactNode {
-  return React.Children.map(children, (child: NodeWithId, index) => {
-    if (child.type === Field) {
-      const idx = findFieldIdx(fields, child.props.id);
-      const [ field ] = fields.splice(idx, 1);
-      return field;
-    } else if (child.type === FieldsRest) {
-      return fields;
-    } else if (child.props && child.props.children) {
-      return React.cloneElement(child, {
-        children: layout(child.props.children, fields)
-      });
-    } else {
-      return child;
-    }
-  });
-}
-
-function findFieldIdx(fields: JSX.Element[], id: string) {
-  return fields.findIndex(({ props }) => props.id === id);
 }

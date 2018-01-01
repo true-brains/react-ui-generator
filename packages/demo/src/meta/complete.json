@@ -4,7 +4,9 @@
       "id": "email",
       "renderer": "text",
       "accessor": "data.email",
-      "serializer": "auth.email"
+      "serializer": "auth.email",
+      "hidden": true,
+      "disabled": true
     },
 
     {
@@ -19,6 +21,20 @@
       "renderer": "text",
       "accessor": "data.passwordConfirmation",
       "serializer": null
+    },
+
+    {
+      "id": "btnSend",
+      "renderer": {
+        "type": "button",
+        "config": {
+          "title": "Click Me!",
+          "mode": "dark"
+        }
+      },
+      "actions": {
+        "onClick": "sayHello"
+      }
     }
   ]
 }
