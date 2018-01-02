@@ -3,7 +3,7 @@ import React from 'react';
 import {
   GeneratedForm,
   Field,
-  FieldsRest,
+  Fields,
   FieldRenderer
 } from '@react-ui-generator/core';
 
@@ -43,8 +43,10 @@ export class GeneratedFormExample extends React.PureComponent {
 
         {/* One of predefined layouts for the rest of form's fields. */}
         <DivsLayout className="rest-of-fields" fieldClassName="class-for-every-field">
-          <FieldsRest />
+          <Fields until="btnSend"/>
         </DivsLayout>
+
+        <Field id="btnSend" />
       </GeneratedForm>
     );
   }

@@ -1,6 +1,6 @@
 import * as React from 'react';
 import { Field } from './components/Field';
-import { FieldsRest } from './components/FieldsRest';
+import { Fields } from './components/Fields';
 
 import {
   FormMetaDescription,
@@ -11,6 +11,7 @@ import {
 interface NodeWithIdProps {
   children: string | JSX.Element;
   id?: string;
+  until?: string;
 }
 type NodeWithId = React.ReactElement<NodeWithIdProps>;
 
@@ -18,13 +19,20 @@ export function layout(
   children: React.ReactNode,
   fields: JSX.Element[]
 ): React.ReactNode {
-  return React.Children.map(children, (child: NodeWithId, index) => {
+  return React.Children.map(children, (child: NodeWithId) => {
     if (child.type === Field) {
       const idx = findFieldIdx(fields, child.props.id);
       const [field] = fields.splice(idx, 1);
+
       return field;
-    } else if (child.type === FieldsRest) {
-      return fields;
+    } else if (child.type === Fields) {
+      const fieldId = child.props && child.props.until;
+      let idx = fields.length;
+
+      if (fieldId) {
+        idx = findFieldIdx(fields, fieldId);
+      }
+      return fields.splice(0, idx);
     } else if (child.props && child.props.children) {
       return React.cloneElement(child, {
         children: layout(child.props.children, fields)

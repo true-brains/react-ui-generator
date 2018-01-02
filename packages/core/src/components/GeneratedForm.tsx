@@ -7,8 +7,6 @@ import {
   FieldRenderer
 } from '../interfaces';
 
-import { Field } from './Field';
-import { FieldsRest } from './FieldsRest';
 import * as Utils from '../utils';
 
 export interface GeneratedFormProps {
