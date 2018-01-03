@@ -38,6 +38,11 @@ module.exports = {
 
     alias: {
       '@': resolve('src'),
+      '@components': resolve('src/components'),
+      '@containers': resolve('src/containers'),
+      '@meta': resolve('src/meta'),
+      '@validation': resolve('src/validation'),
+      '@actions': resolve('src/actions'),
 
       // Required for Lerna
       // react: path.resolve(__dirname, 'node_modules/react')

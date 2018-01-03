@@ -1,7 +1,5 @@
 import React from 'react'
 import ReactDOM from 'react-dom'
-import { Provider } from 'react-redux'
-import createHistory from 'history/createBrowserHistory'
-import { GeneratedFormExample } from './components/generated-form-example'
+import App from './app'
 
-ReactDOM.render(<GeneratedFormExample />, document.getElementById('root'))
+ReactDOM.render(<App />, document.getElementById('root'))

@@ -33,7 +33,7 @@
         }
       },
       "actions": {
-        "onClick": "sayHello"
+        "onClick": "sendForm"
       }
     }
   ]

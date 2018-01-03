@@ -1,34 +1,28 @@
 import React from 'react';
+import { connect } from 'react-redux';
 
-import {
-  GeneratedForm,
-  Field,
-  Fields,
-  FieldRenderer
-} from '@react-ui-generator/core';
-
+import { GeneratedForm, Field, Fields, FieldRenderer } from '@react-ui-generator/core';
 import { DivsLayout } from '@react-ui-generator/layouts';
 import * as BootstrapRenderers from '@react-ui-generator/renderers-bootstrap';
-import formMeta from '../meta/complete';
+
+import { sendForm } from '@actions'
 
 /**
  * You can add custon renderers here.
  */
 const renderers = {
-  ...BootstrapRenderers,
+  ...BootstrapRenderers
 };
 
-export class GeneratedFormExample extends React.PureComponent {
+class GeneratedFormExample extends React.PureComponent {
   render() {
-    const { data = {}, errors = {}, onChange = () => {} } = this.props;
-    const actions = {
-      sayHello() { alert('Hello, world!'); }
-    }
+    console.log('GeneratedFormExample props: ', this.props);
+    const { meta, data, errors, onChange, ...actions } = this.props;
 
     return (
       <GeneratedForm
         className="form"
-        meta={formMeta}
+        meta={meta}
         data={data}
         errors={errors}
         renderers={renderers}
@@ -43,7 +37,7 @@ export class GeneratedFormExample extends React.PureComponent {
 
         {/* One of predefined layouts for the rest of form's fields. */}
         <DivsLayout className="rest-of-fields" fieldClassName="class-for-every-field">
-          <Fields until="btnSend"/>
+          <Fields until="btnSend" />
         </DivsLayout>
 
         <Field id="btnSend" />
@@ -52,7 +46,9 @@ export class GeneratedFormExample extends React.PureComponent {
   }
 }
 
-// import { validator, embedded } from "react-ui-generator/validators";
-// import ajv from 'ajv';
-// import embeddedSchema from "../validation/embedded/embedded.json";
-// validator={validator(embedded, embeddedSchema)}
+export default connect(
+  state => state,
+  dispatch => ({
+    sendForm: () => dispatch(sendForm())
+  })
+)(GeneratedFormExample);
