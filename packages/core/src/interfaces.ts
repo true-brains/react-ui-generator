@@ -7,7 +7,6 @@ export interface FormMetaDescription {
 export interface RawFieldMetaDescription {
   id: string;
   renderer?: string | RendererComplex;
-  accessor?: string;
   serializer?: string;
   validator?: any;
   actions?: { [key: string]: any };
@@ -16,7 +15,6 @@ export interface RawFieldMetaDescription {
 export interface FieldMetaDescription extends RawFieldMetaDescription {
   id: string;
   renderer: RendererComplex;
-  accessor: string;
   serializer: string;
   actions: { [key: string]: any };
 }
@@ -37,3 +35,5 @@ export interface FieldRendererProps {
   config: any;
   onChange(data: any, errors: any): void;
 }
+
+export type KeyValue = { [key: string]: any }

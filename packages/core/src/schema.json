@@ -19,10 +19,6 @@
 							{ "$ref": "#/definitions/rendererConfigurable" }
 						]
 					},
-					"accessor": {
-						"type": "string",
-						"pattern": "^[^.]+(\\.[^.]+)*$"
-					},
 					"serializer": {
 						"type": "string",
 						"pattern": "^[^.]+(\\.[^.]+)*$"

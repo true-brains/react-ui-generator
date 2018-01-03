@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { ChangeEvent } from 'react';
 
 import {
   FormMetaDescription,
@@ -21,6 +22,13 @@ export interface GeneratedFormProps {
 }
 
 export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
+  handleChange(fieldId: string, newValue: any): void {
+    const newData = { ...this.props.data };
+
+    newData[fieldId] = { value: newValue, isDirty: true };
+    this.props.onChange(newData, {});
+  }
+
   render() {
     const fields: JSX.Element[] = [];
 
@@ -53,8 +61,8 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
           errors={errors[id]}
           config={config}
           actions={actions}
-          onChange={event => {
-            this.onChange(id, event);
+          onChange={newValue => {
+            this.handleChange(id, newValue);
           }}
         >
           {id}

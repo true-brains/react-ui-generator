@@ -4,22 +4,26 @@ import { ChangeEvent } from 'react';
 
 export interface ButtonProps {
   className?: string;
+  data: {
+    value: string;
+    isDirty: boolean;
+  }
   actions: { [key: string]: any };
   config: {};
-  onChange(event: Event): void;
+  onChange(value: string): void;
 }
 
 export class Text extends React.PureComponent<ButtonProps, {}> {
   handleChange(event: ChangeEvent<HTMLInputElement>): void {
-    console.log('Text.handleChange: ', event)
+    this.props.onChange(event.target.value);
   }
 
   render() {
-    const { onChange } = this.props;
+    const { data, onChange } = this.props;
     // const className = makeClass(this.props.className, `btn btn-${mode}`);
 
     return (
-      <input onChange={(event) => { this.handleChange(event)}} />
+      <input value={data.value} onChange={(event) => { this.handleChange(event)}} />
     );
   }
 }

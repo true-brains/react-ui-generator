@@ -5,7 +5,8 @@ import { Fields } from './components/Fields';
 import {
   FormMetaDescription,
   RawFieldMetaDescription,
-  FieldMetaDescription
+  FieldMetaDescription,
+  KeyValue
 } from './interfaces';
 
 interface NodeWithIdProps {
@@ -66,7 +67,6 @@ export function enhanceFieldMeta(meta: RawFieldMetaDescription): FieldMetaDescri
       type: '',
       config: {}
     },
-    accessor: meta.accessor || meta.id,
     serializer: meta.serializer || meta.id,
     actions: meta.actions || {}
   };
@@ -96,4 +96,35 @@ export function extractFieldActions(
   }
 
   return actions;
+}
+
+/**
+ * Completes `data` object with default values for known types of renderers.
+ * Default values for custom renderers can be provided with `defaults` argument.
+ */
+export function withDefaults(
+  data: KeyValue = {},
+  fieldsMeta: FieldMetaDescription[] = [],
+  defaults: KeyValue = {}
+): KeyValue {
+  const _defaults: KeyValue = {
+    text: '',
+    ...defaults
+  };
+
+  for (let fieldMeta of fieldsMeta) {
+    const { id, renderer: { type } } = enhanceFieldMeta(fieldMeta)
+    const dataValue = data[id];
+    let defaultValue;
+
+    if (dataValue === undefined) {
+      defaultValue = _defaults[type];
+
+      if (defaultValue !== undefined) {
+        data[id] = { value: defaultValue, isDirty: false };
+      }
+    }
+  }
+
+  return data;
 }
