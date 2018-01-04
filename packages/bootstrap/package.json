@@ -1,9 +1,9 @@
 {
-  "name": "@react-ui-generator/renderers-bootstrap",
+  "name": "@react-ui-generator/bootstrap",
   "version": "0.0.0",
-  "description": "Field renrderers for react-ui-generator, based on Bootstrap",
+  "description": "Renrderers and layouts for react-ui-generator, based on Twitter Bootstrap",
   "main": "./out/renderers-bootstrap.js",
-  "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/layouts",
+  "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/bootstrap",
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
     "test": "echo \"Error: no test specified\" && exit 1"

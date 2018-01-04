@@ -2,7 +2,13 @@
 	"fields": [
     {
       "id": "email",
-      "renderer": "text",
+      "renderer": {
+        "type": "text",
+        "config": {
+          "label": "E-mail",
+          "placeholder": "Enter your e-mail"
+        }
+      },
       "serializer": "auth.email",
       "hidden": true,
       "disabled": true
@@ -25,12 +31,26 @@
       "renderer": {
         "type": "button",
         "config": {
-          "title": "Click Me!",
+          "title": "Send",
           "mode": "dark"
         }
       },
       "actions": {
         "onClick": "sendForm"
+      }
+    },
+
+    {
+      "id": "btnClear",
+      "renderer": {
+        "type": "button",
+        "config": {
+          "title": "Clear",
+          "mode": "dark"
+        }
+      },
+      "actions": {
+        "onClick": "clearForm"
       }
     }
   ]

@@ -2,17 +2,18 @@ import React from 'react';
 import { connect } from 'react-redux';
 
 import { GeneratedForm, Field, Fields, FieldRenderer } from '@react-ui-generator/core';
-import { DivsLayout } from '@react-ui-generator/layouts';
-import * as BootstrapRenderers from '@react-ui-generator/renderers-bootstrap';
+import { Renderers, Layouts } from '@react-ui-generator/bootstrap';
 
-import { sendForm, updateForm } from '@actions'
+import { sendForm, updateForm, clearForm } from '@actions'
 
 /**
  * You can add custon renderers here.
  */
 const renderers = {
-  ...BootstrapRenderers
+  ...Renderers
 };
+
+const { FormGroup } = Layouts
 
 class GeneratedFormExample extends React.PureComponent {
   render() {
@@ -29,18 +30,19 @@ class GeneratedFormExample extends React.PureComponent {
         actions={actions}
         onChange={(nextData, nextErrors) => updateForm({ nextData, nextErrors })}
       >
-        <div className="my-custom-layout-for-email-field">
+        {/* <div className="my-custom-layout-for-email-field">
           <Field id="email" />
-        </div>
+        </div> */}
 
         {/* One of predefined layouts for the rest of form's fields. */}
-        <DivsLayout className="rest-of-fields" fieldClassName="class-for-every-field">
+        <FormGroup className="rest-of-fields" fieldClassName="class-for-every-field">
           <Fields until="btnSend" />
-        </DivsLayout>
+        </FormGroup>
 
         <hr className="example-of-custom-layout"/>
 
         <Field id="btnSend" />
+        <Field id="btnClear" />
       </GeneratedForm>
     );
   }
@@ -50,6 +52,7 @@ export default connect(
   state => state,
   dispatch => ({
     sendForm: () => dispatch(sendForm()),
-    updateForm: payload => dispatch(updateForm(payload))
+    updateForm: payload => dispatch(updateForm(payload)),
+    clearForm: () => dispatch(clearForm())
   })
 )(GeneratedFormExample);

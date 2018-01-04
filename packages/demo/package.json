@@ -26,6 +26,7 @@
     "webpack-visualizer-plugin": "^0.1.11"
   },
   "dependencies": {
+    "@react-ui-generator/bootstrap": "*",
     "@react-ui-generator/core": "*",
     "@react-ui-generator/layouts": "*",
     "ajv": "^5.5.1",
