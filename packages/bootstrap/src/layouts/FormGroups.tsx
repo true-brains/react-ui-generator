@@ -2,7 +2,7 @@ import * as React from 'react';
 import makeClass from 'classnames';
 import { FieldRendererProps } from '@react-ui-generator/core';
 
-export interface FormGroupProps {
+export interface FormGroupsProps {
   className?: string;
 }
 
@@ -11,7 +11,7 @@ interface ChildNodeProps extends FieldRendererProps {
 }
 type ChildNode = React.ReactElement<ChildNodeProps>;
 
-export class FormGroup extends React.PureComponent<FormGroupProps, {}> {
+export class FormGroups extends React.PureComponent<FormGroupsProps, {}> {
   render() {
     const { children } = this.props;
 
@@ -32,4 +32,4 @@ export class FormGroup extends React.PureComponent<FormGroupProps, {}> {
   }
 }
 
-export default FormGroup;
+export default FormGroups;

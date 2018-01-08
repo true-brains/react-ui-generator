@@ -3,6 +3,11 @@
 Set of libraries and tools for generation React-based UI from metadata.
 Bloody enterprise is not so scaring when you have CRUD-hummer!
 
+<blockquote>
+<p>Let amazingResult be the result of doing some amazing things. </p>
+<i>"DOM Living Standard"</i>
+</blockquote>
+
 
 ## Features
 

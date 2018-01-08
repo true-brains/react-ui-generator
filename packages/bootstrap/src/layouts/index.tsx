@@ -1,5 +1,5 @@
-import FormGroup from './FormGroup';
+import FormGroups from './FormGroups';
 
 export default {
-  FormGroup
+  FormGroups
 }

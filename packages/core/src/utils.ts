@@ -68,7 +68,9 @@ export function enhanceFieldMeta(meta: RawFieldMetaDescription): FieldMetaDescri
       config: {}
     },
     serializer: meta.serializer || meta.id,
-    actions: meta.actions || {}
+    actions: meta.actions || {},
+    hidden: meta.hidden || false,
+    disabled: meta.disabled || false,
   };
 
   if (typeof meta.renderer === 'string') {

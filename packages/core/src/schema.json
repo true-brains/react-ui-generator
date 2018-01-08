@@ -20,7 +20,7 @@
 						]
 					},
 					"serializer": {
-						"type": "string",
+						"type": [ "string", "null" ],
 						"pattern": "^[^.]+(\\.[^.]+)*$"
 					},
 					"validator": {

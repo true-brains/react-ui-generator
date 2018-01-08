@@ -5,7 +5,8 @@
   "description": "Library for generation UI from metadata",
   "main": "src/index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "schema:check": " ajv -s node_modules/@react-ui-generator/core/src/schema.json -d node_modules/@react-ui-generator/demo/src/meta/complete.json"
   },
   "repository": {
     "type": "git",
@@ -25,6 +26,7 @@
   },
   "homepage": "https://github.com/react-ui-generator/react-ui-generator#readme",
   "devDependencies": {
+    "ajv-cli": "^2.1.0",
     "lerna": "^2.5.1",
     "prettier": "1.9.2"
   },

@@ -43,10 +43,24 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
     } = this.props;
 
     const _meta = Utils.enhanceFormMeta(meta);
-    console.log('_meta: ', _meta);
 
     for (let field of _meta.fields) {
-      const { id, renderer: { type, config }, actions: fieldActions } = field;
+      const {
+        id,
+        renderer: { type, config },
+        actions: fieldActions,
+        hidden,
+        disabled
+      } = field;
+
+      /**
+       * Skip rendering of hidden fields.
+       * It does not influence field's state, only presentation.
+       */
+      if (hidden) {
+        continue;
+      }
+
       const Renderer: typeof FieldRenderer = renderers[type];
       const actions: { [key: string]: any } = Utils.extractFieldActions(
         formActions,
@@ -64,6 +78,7 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
           onChange={newValue => {
             this.handleChange(id, newValue);
           }}
+          disabled={disabled}
         >
           {id}
         </Renderer>

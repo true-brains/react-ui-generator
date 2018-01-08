@@ -10,6 +10,8 @@ export interface RawFieldMetaDescription {
   serializer?: string;
   validator?: any;
   actions?: { [key: string]: any };
+  hidden?: boolean;
+  disabled?: boolean;
 }
 
 export interface FieldMetaDescription extends RawFieldMetaDescription {
@@ -17,6 +19,8 @@ export interface FieldMetaDescription extends RawFieldMetaDescription {
   renderer: RendererComplex;
   serializer: string;
   actions: { [key: string]: any };
+  hidden: boolean;
+  disabled: boolean;
 }
 
 export interface RendererComplex {
@@ -34,6 +38,7 @@ export interface FieldRendererProps {
   actions: any;
   config: any;
   onChange(data: any, errors: any): void;
+  disabled: boolean;
 }
 
 export type KeyValue = { [key: string]: any }

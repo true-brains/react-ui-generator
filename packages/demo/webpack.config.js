@@ -50,16 +50,16 @@ module.exports = {
   },
 
   devServer: {
-    contentBase: resolve('examples'),
+    contentBase: resolve('out'),
     compress: true,
     host: '0.0.0.0',
     port: 9001,
     historyApiFallback: true,
-    hot: true,
+    hot: false,
     inline: true,
     https: false,
     noInfo: true,
-    open: true
+    open: false
   },
 
   devtool: 'inline-source-map',

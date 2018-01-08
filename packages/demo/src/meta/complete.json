@@ -10,7 +10,7 @@
         }
       },
       "serializer": "auth.email",
-      "hidden": true,
+      "hidden": false,
       "disabled": true
     },
 
@@ -46,7 +46,7 @@
         "type": "button",
         "config": {
           "title": "Clear",
-          "mode": "dark"
+          "mode": "light"
         }
       },
       "actions": {

@@ -13,11 +13,10 @@ const renderers = {
   ...Renderers
 };
 
-const { FormGroup } = Layouts
+const { FormGroups } = Layouts
 
 class GeneratedFormExample extends React.PureComponent {
   render() {
-    console.log('GeneratedFormExample props: ', this.props);
     const { meta, data, errors, updateForm, ...actions } = this.props;
 
     return (
@@ -30,14 +29,9 @@ class GeneratedFormExample extends React.PureComponent {
         actions={actions}
         onChange={(nextData, nextErrors) => updateForm({ nextData, nextErrors })}
       >
-        {/* <div className="my-custom-layout-for-email-field">
-          <Field id="email" />
-        </div> */}
-
-        {/* One of predefined layouts for the rest of form's fields. */}
-        <FormGroup className="rest-of-fields" fieldClassName="class-for-every-field">
+        <FormGroups>
           <Fields until="btnSend" />
-        </FormGroup>
+        </FormGroups>
 
         <hr className="example-of-custom-layout"/>
 

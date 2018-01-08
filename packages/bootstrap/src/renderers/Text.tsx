@@ -22,7 +22,6 @@ export class Text extends React.PureComponent<TextProps, {}> {
 
   render() {
     const { id, data, className, onChange, config } = this.props;
-    // const className = makeClass(this.props.className, `btn btn-${mode}`);
 
     return (
       <input
