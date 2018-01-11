@@ -3,11 +3,11 @@ import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
 import { FieldProps } from '../interfaces';
 
-export interface TextProps extends FieldProps {
+export interface TextAreaProps extends FieldProps {
 }
 
-export class Text extends React.PureComponent<TextProps, {}> {
-  handleChange(event: ChangeEvent<HTMLInputElement>): void {
+export class TextArea extends React.PureComponent<TextAreaProps, {}> {
+  handleChange(event: ChangeEvent<HTMLTextAreaElement>): void {
     this.props.onChange(event.target.value);
   }
 
@@ -15,11 +15,12 @@ export class Text extends React.PureComponent<TextProps, {}> {
     const { id, data, className, onChange, config } = this.props;
 
     return (
-      <input
+      <textarea
         id={id}
         className={className || ''}
         value={data.value}
         placeholder={config.placeholder || ''}
+        rows={config.rows}
         onChange={event => {
           this.handleChange(event);
         }}

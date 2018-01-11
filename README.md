@@ -1,5 +1,7 @@
 # react-ui-generator a.k.a "CRUD-hummer"
 
+**WARNING: THIS PROJECT IS UNDER ACTIVE DEVELOPMENT**
+
 Set of libraries and tools for generation React-based UI from metadata.
 Bloody enterprise is not so scaring when you have CRUD-hummer!
 
@@ -17,6 +19,11 @@ Bloody enterprise is not so scaring when you have CRUD-hummer!
 - easy to add a custom layouts;
 - pure! (no state, just props). Easy to integrate with frameworks (Redux, etc);
 - nested forms (in progress). Easy to implement dynamic forms (add field at runtime, etc).
+
+## TODO
+
+- complete this README.md
+- ...
 
 ## Lerna management
 

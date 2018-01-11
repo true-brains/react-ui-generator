@@ -111,6 +111,7 @@ export function withDefaults(
 ): KeyValue {
   const _defaults: KeyValue = {
     text: '',
+    textarea: '',
     ...defaults
   };
 

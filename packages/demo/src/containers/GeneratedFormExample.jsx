@@ -29,9 +29,19 @@ class GeneratedFormExample extends React.PureComponent {
         actions={actions}
         onChange={(nextData, nextErrors) => updateForm({ nextData, nextErrors })}
       >
-        <FormGroups>
-          <Fields until="btnSend" />
-        </FormGroups>
+        <div className="card border-dark mb-3">
+          <div className="card-body">
+            <FormGroups>
+              <Fields until="aboutMe" />
+            </FormGroups>
+
+            <hr className="example-of-custom-layout"/>
+
+            <FormGroups>
+              <Fields until="btnSend" />
+            </FormGroups>
+          </div>
+        </div>
 
         <hr className="example-of-custom-layout"/>
 

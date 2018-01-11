@@ -27,6 +27,19 @@
     },
 
     {
+      "id": "aboutMe",
+      "renderer": {
+        "type": "textarea",
+        "config": {
+          "label": "Short bio",
+          "placeholder": "Tell us about you...",
+          "rows": 5
+        }
+      },
+      "hidden": false
+    },
+
+    {
       "id": "btnSend",
       "renderer": {
         "type": "button",
