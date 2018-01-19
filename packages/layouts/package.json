@@ -1,7 +1,7 @@
 {
   "name": "@react-ui-generator/layouts",
   "version": "0.0.0",
-  "description": "Pre-defined layouts for react-ui-generator",
+  "description": "Predefined layouts for react-ui-generator",
   "main": "./out/layouts.js",
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/layouts",
   "scripts": {
