@@ -3,8 +3,7 @@ import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
 import { FieldProps } from '../interfaces';
 
-export interface TextProps extends FieldProps {
-}
+export interface TextProps extends FieldProps {}
 
 export class Text extends React.PureComponent<TextProps, {}> {
   handleChange(event: ChangeEvent<HTMLInputElement>): void {
@@ -12,7 +11,7 @@ export class Text extends React.PureComponent<TextProps, {}> {
   }
 
   render() {
-    const { id, data, className, onChange, config } = this.props;
+    const { id, data, className, onChange, config, disabled } = this.props;
 
     return (
       <input
@@ -23,6 +22,7 @@ export class Text extends React.PureComponent<TextProps, {}> {
         onChange={event => {
           this.handleChange(event);
         }}
+        disabled={disabled}
       />
     );
   }

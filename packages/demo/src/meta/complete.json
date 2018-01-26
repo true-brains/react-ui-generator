@@ -1,5 +1,5 @@
 {
-	"fields": [
+  "fields": [
     {
       "id": "email",
       "renderer": {
@@ -10,8 +10,7 @@
         }
       },
       "serializer": "auth.email",
-      "hidden": false,
-      "disabled": true
+      "hidden": false
     },
 
     {
@@ -59,7 +58,7 @@
         "type": "button",
         "config": {
           "title": "Clear",
-          "mode": "light"
+          "mode": "outline-dark"
         }
       },
       "actions": {

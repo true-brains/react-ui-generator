@@ -13,7 +13,7 @@ Bloody enterprise is not so scaring when you have CRUD-hummer!
 
 ## Features
 
-- easy to generate form from the simple metadata description;
+- easy to generate entire form from the simple metadata description;
 - set up custom layout on JSX (not on metadata, because markup-on-json is pain);
 - easy to add a custom types of fields (renderers);
 - easy to add custom layouts;

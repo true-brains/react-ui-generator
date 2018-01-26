@@ -14,7 +14,7 @@ function reducer(state = initialState, { type: actionType, payload }) {
     case UPDATE_FORM:
       return { ...state, data: payload.nextData, errors: payload.nextErrors };
     case CLEAR_FORM:
-      return { ...state, data: withDefaults({}, state.meta.fields), errors: {} };
+      return { ...initialState };
     default:
       return state;
   }

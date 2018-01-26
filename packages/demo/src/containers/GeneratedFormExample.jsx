@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 import { GeneratedForm, Field, Fields, FieldRenderer } from '@react-ui-generator/core';
 import { Renderers, Layouts } from '@react-ui-generator/bootstrap';
 
-import { sendForm, updateForm, clearForm } from '@actions'
+import { sendForm, updateForm, clearForm } from '@actions';
 
 /**
  * You can add custon renderers here.
@@ -13,7 +13,7 @@ const renderers = {
   ...Renderers
 };
 
-const { FormGroups } = Layouts
+const { FormGroups } = Layouts;
 
 class GeneratedFormExample extends React.PureComponent {
   render() {
@@ -35,7 +35,7 @@ class GeneratedFormExample extends React.PureComponent {
               <Fields until="aboutMe" />
             </FormGroups>
 
-            <hr className="example-of-custom-layout"/>
+            <hr className="example-of-custom-layout" />
 
             <FormGroups>
               <Fields until="btnSend" />
@@ -43,10 +43,11 @@ class GeneratedFormExample extends React.PureComponent {
           </div>
         </div>
 
-        <hr className="example-of-custom-layout"/>
+        <hr className="example-of-custom-layout" />
 
-        <Field id="btnSend" />
-        <Field id="btnClear" />
+        <div style={{ position: 'relative' }}>
+          <Field id="btnSend" /> <Field id="btnClear" />
+        </div>
       </GeneratedForm>
     );
   }

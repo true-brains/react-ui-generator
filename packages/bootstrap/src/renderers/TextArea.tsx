@@ -3,8 +3,7 @@ import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
 import { FieldProps } from '../interfaces';
 
-export interface TextAreaProps extends FieldProps {
-}
+export interface TextAreaProps extends FieldProps {}
 
 export class TextArea extends React.PureComponent<TextAreaProps, {}> {
   handleChange(event: ChangeEvent<HTMLTextAreaElement>): void {
@@ -12,7 +11,7 @@ export class TextArea extends React.PureComponent<TextAreaProps, {}> {
   }
 
   render() {
-    const { id, data, className, onChange, config } = this.props;
+    const { id, data, className, onChange, config, disabled } = this.props;
 
     return (
       <textarea
@@ -24,6 +23,7 @@ export class TextArea extends React.PureComponent<TextAreaProps, {}> {
         onChange={event => {
           this.handleChange(event);
         }}
+        disabled={disabled}
       />
     );
   }

@@ -9,5 +9,6 @@ export interface FieldProps {
   };
   actions: KeyValue;
   config: KeyValue;
+  disabled: boolean;
   onChange(value: string): void;
 }

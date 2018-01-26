@@ -8,15 +8,21 @@ export interface ButtonProps {
     title: string;
     mode?: string;
   };
+  disabled: boolean;
 }
 
 export class Button extends React.PureComponent<ButtonProps, {}> {
   render() {
-    const { actions: { onClick }, config: { title, mode = 'primary' } } = this.props;
+    const {
+      actions: { onClick },
+      config: { title, mode = 'primary' },
+      disabled
+    } = this.props;
+
     const className = makeClass(this.props.className, `btn btn-${mode}`);
 
     return (
-      <button type="button" className={className} onClick={onClick}>
+      <button type="button" className={className} onClick={onClick} disabled={disabled}>
         {title}
       </button>
     );
