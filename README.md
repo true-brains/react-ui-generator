@@ -1,9 +1,9 @@
-# react-ui-generator a.k.a "CRUD-hummer"
+# react-ui-generator a.k.a "CRUD-hammer"
 
 **WARNING: THIS PROJECT IS UNDER ACTIVE DEVELOPMENT**
 
 Set of libraries and tools for generation React-based UI from metadata.
-Bloody enterprise is not so scaring when you have CRUD-hummer!
+Bloody enterprise is not so scaring when you have CRUD-hammer!
 
 <blockquote>
 <p>Let amazingResult be the result of doing some amazing things. </p>
