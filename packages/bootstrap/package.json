@@ -12,11 +12,13 @@
   "license": "MIT",
   "dependencies": {
     "@react-ui-generator/core": "*",
-    "classnames": "^2.2.5"
+    "classnames": "^2.2.5",
+    "reactstrap": "next"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
     "@types/react": "^16.0.29",
+    "@types/reactstrap": "^5.0.12",
     "awesome-typescript-loader": "^3.4.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",

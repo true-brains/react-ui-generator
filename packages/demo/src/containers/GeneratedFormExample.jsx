@@ -4,7 +4,12 @@ import { connect } from 'react-redux';
 import { GeneratedForm, Field, Fields, FieldRenderer } from '@react-ui-generator/core';
 import { Renderers, Layouts } from '@react-ui-generator/bootstrap';
 
-import { sendForm, updateForm, clearForm } from '@actions';
+import {
+  toggleSex,
+  updateForm,
+  sendForm,
+  clearForm
+} from '@actions';
 
 /**
  * You can add custon renderers here.
@@ -56,8 +61,9 @@ class GeneratedFormExample extends React.PureComponent {
 export default connect(
   state => state,
   dispatch => ({
-    sendForm: () => dispatch(sendForm()),
     updateForm: payload => dispatch(updateForm(payload)),
+    toggleSex: fieldId => dispatch(toggleSex(fieldId)),
+    sendForm: () => dispatch(sendForm()),
     clearForm: () => dispatch(clearForm())
   })
 )(GeneratedFormExample);

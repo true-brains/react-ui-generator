@@ -1,4 +1,5 @@
 import * as React from 'react';
+import { Button as RButton } from 'reactstrap';
 import makeClass from 'classnames';
 
 export interface ButtonProps {
@@ -6,7 +7,10 @@ export interface ButtonProps {
   actions: { [key: string]: any };
   config: {
     title: string;
-    mode?: string;
+    active?: boolean;
+    outline?: boolean;
+    color?: string;
+    size?: string;
   };
   disabled: boolean;
 }
@@ -15,16 +19,16 @@ export class Button extends React.PureComponent<ButtonProps, {}> {
   render() {
     const {
       actions: { onClick },
-      config: { title, mode = 'primary' },
-      disabled
+      config: {
+        title,
+        ...rest
+      },
+      disabled,
+      className
     } = this.props;
 
-    const className = makeClass(this.props.className, `btn btn-${mode}`);
-
     return (
-      <button type="button" className={className} onClick={onClick} disabled={disabled}>
-        {title}
-      </button>
+      <RButton onClick={onClick} {...rest}>{title}</RButton>
     );
   }
 }

@@ -29,6 +29,7 @@
     "@react-ui-generator/core": "*",
     "@react-ui-generator/layouts": "*",
     "ajv": "^6.0.0",
+    "deepmerge": "^2.0.1",
     "history": "^4.7.2",
     "react": "^16.2.0",
     "react-dom": "^16.2.0",

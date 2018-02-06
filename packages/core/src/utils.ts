@@ -110,6 +110,7 @@ export function withDefaults(
   defaults: KeyValue = {}
 ): KeyValue {
   const _defaults: KeyValue = {
+    dropdown: '',
     text: '',
     textarea: '',
     ...defaults

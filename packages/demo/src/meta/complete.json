@@ -26,6 +26,25 @@
     },
 
     {
+      "id": "sex",
+      "renderer": {
+        "type": "select",
+        "config": {
+          "label": "Sex",
+          "title": "Choose your sex",
+          "options": [
+            { "id": 0, "title": "Female" },
+            { "id": 1, "title": "Male" },
+            { "id": 2, "title": "Other" }
+          ]
+        }
+      },
+      "actions": {
+        "onToggle": "toggleSex"
+      }
+    },
+
+    {
       "id": "aboutMe",
       "renderer": {
         "type": "textarea",
@@ -44,7 +63,7 @@
         "type": "button",
         "config": {
           "title": "Send",
-          "mode": "dark"
+          "color": "dark"
         }
       },
       "actions": {
@@ -58,7 +77,8 @@
         "type": "button",
         "config": {
           "title": "Clear",
-          "mode": "outline-dark"
+          "color": "dark",
+          "outline": true
         }
       },
       "actions": {
