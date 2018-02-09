@@ -29,16 +29,17 @@ export interface RendererComplex {
 }
 
 
-export class FieldRenderer extends React.Component<FieldRendererProps, {}> {}
-
 export interface FieldRendererProps {
   id: string;
   data: any;
   errors: any;
   actions: any;
   config: any;
+  type?: any;
   onChange(data: any, errors: any): void;
   disabled: boolean;
 }
+
+export class FieldRenderer extends React.Component<FieldRendererProps, {}> {}
 
 export type KeyValue = { [key: string]: any }

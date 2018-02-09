@@ -1,6 +1,8 @@
 import * as React from 'react';
 import makeClass from 'classnames';
-import { FieldRendererProps } from '@react-ui-generator/core';
+import { FormGroup, Label } from 'reactstrap';
+import { FieldRendererProps, FieldRenderer } from '@react-ui-generator/core';
+import Renderers from '../renderers';
 
 export interface FormGroupsProps {
   className?: string;
@@ -17,16 +19,21 @@ export class FormGroups extends React.PureComponent<FormGroupsProps, {}> {
 
     return React.Children.map(children, (child: ChildNode, idx) => {
       const { id, config } = child.props;
+      const isChecked = child.type.toString() === Renderers.checkbox.toString();
+
       const label =
         config.label || (id.length ? id.charAt(0).toUpperCase() + id.slice(1) : '');
 
       return (
-        <div className="form-group" key={`form-group-${idx}`}>
-          <label htmlFor={id}>{label}</label>
-          {React.cloneElement(child, {
-            className: 'form-control'
-          })}
-        </div>
+        <FormGroup key={`form-group-${idx}`} check={isChecked}>
+          <Label htmlFor={isChecked ? undefined : id} check={isChecked}>
+            {isChecked && child} {label}
+          </Label>
+
+          {!isChecked && (
+            React.cloneElement(child, { className: 'form-control' })
+          )}
+        </FormGroup>
       );
     });
   }

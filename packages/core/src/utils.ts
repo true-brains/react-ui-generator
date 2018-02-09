@@ -28,11 +28,8 @@ export function layout(
       return field;
     } else if (child.type === Fields) {
       const fieldId = child.props && child.props.until;
-      let idx = fields.length;
+      const idx = fieldId ? findFieldIdx(fields, fieldId) : fields.length;
 
-      if (fieldId) {
-        idx = findFieldIdx(fields, fieldId);
-      }
       return fields.splice(0, idx);
     } else if (child.props && child.props.children) {
       return React.cloneElement(child, {
@@ -110,7 +107,8 @@ export function withDefaults(
   defaults: KeyValue = {}
 ): KeyValue {
   const _defaults: KeyValue = {
-    dropdown: '',
+    checkbox: false,
+    select: '',
     text: '',
     textarea: '',
     ...defaults

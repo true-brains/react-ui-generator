@@ -45,6 +45,17 @@
     },
 
     {
+      "id": "isMarried",
+      "renderer": {
+        "type": "checkbox",
+        "config": {
+          "label": "Married",
+          "title": "Are you married?"
+        }
+      }
+    },
+
+    {
       "id": "aboutMe",
       "renderer": {
         "type": "textarea",

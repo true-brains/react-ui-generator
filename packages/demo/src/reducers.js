@@ -18,11 +18,9 @@ const initialState = {
 function reducer(state = initialState, { type: actionType, payload }) {
   switch (actionType) {
     case UPDATE_FORM:
-      console.log(UPDATE_FORM, payload)
       return merge(state, { data: payload.nextData, errors: payload.nextErrors });
 
     case TOGGLE_SEX: {
-      console.log(TOGGLE_SEX, payload)
       const fieldsMeta = state.meta.fields;
 
       for (let item of fieldsMeta) {

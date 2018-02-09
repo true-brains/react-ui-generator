@@ -25,18 +25,21 @@ export class Select extends React.PureComponent<SelectProps, {}> {
       id,
       actions: { onToggle },
       config: { title, options },
+      data,
       disabled,
       className,
       onChange
     } = this.props;
 
+    const value: string = String(data.value)
+
     return (
       <Input
         type="select"
         onChange={(event) => this.handleChange(event)}
-        defaultValue=""
+        value={value}
       >
-        <option value="" disabled>{title}</option>>
+        <option value={''} disabled>{title}</option>>
         {options.map((item: SelectItemProps) => {
           const { id, title } = item;
           return (<option key={id} value={id}>{title}</option>);
