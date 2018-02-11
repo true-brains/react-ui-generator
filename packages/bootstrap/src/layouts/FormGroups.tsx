@@ -19,20 +19,27 @@ export class FormGroups extends React.PureComponent<FormGroupsProps, {}> {
 
     return React.Children.map(children, (child: ChildNode, idx) => {
       const { id, config } = child.props;
-      const isChecked = child.type.toString() === Renderers.checkbox.toString();
+      const isCheckbox = child.type.toString() === Renderers.checkbox.toString();
+      const isRadiogroup = child.type.toString() === Renderers.radiogroup.toString();
 
       const label =
         config.label || (id.length ? id.charAt(0).toUpperCase() + id.slice(1) : '');
 
       return (
-        <FormGroup key={`form-group-${idx}`} check={isChecked}>
-          <Label htmlFor={isChecked ? undefined : id} check={isChecked}>
-            {isChecked && child} {label}
-          </Label>
-
-          {!isChecked && (
+        <FormGroup
+          key={`form-group-${idx}`}
+          check={isCheckbox}
+          tag={isRadiogroup ? 'fieldset' : undefined}
+        >
+          {isCheckbox ? (
+            <Label check>{child} {label}</Label>
+          ) : (
+          isRadiogroup ? [
+            <label key={`legend-for-${id}`}>{label}</label>,
+            child
+          ] : (
             React.cloneElement(child, { className: 'form-control' })
-          )}
+          ))}
         </FormGroup>
       );
     });

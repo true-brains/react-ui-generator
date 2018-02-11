@@ -53,7 +53,7 @@ module.exports = {
     contentBase: resolve('out'),
     compress: true,
     host: '0.0.0.0',
-    port: 9001,
+    port: 9007,
     historyApiFallback: true,
     hot: false,
     inline: true,

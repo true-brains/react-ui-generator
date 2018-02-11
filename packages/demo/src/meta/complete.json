@@ -69,6 +69,20 @@
     },
 
     {
+      "id": "answer",
+      "renderer": {
+        "type": "radiogroup",
+        "config": {
+          "label": "What is the only correct answer from this list?",
+          "options": [
+            { "id": 42, "title": "42" },
+            { "id": 43, "title": "43" }
+          ]
+        }
+      }
+    },
+
+    {
       "id": "btnSend",
       "renderer": {
         "type": "button",

@@ -4,6 +4,7 @@ import { TextArea } from './TextArea';
 import { Dropdown } from './Dropdown';
 import { Select } from './Select';
 import { Checkbox } from './Checkbox';
+import { Radiogroup } from './Radiogroup';
 
 export default {
   button: Button,
@@ -11,5 +12,6 @@ export default {
   textarea: TextArea,
   dropdown: Dropdown,
   select: Select,
-  checkbox: Checkbox
+  checkbox: Checkbox,
+  radiogroup: Radiogroup
 }
