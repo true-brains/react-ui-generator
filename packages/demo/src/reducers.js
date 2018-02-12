@@ -4,8 +4,8 @@ import { withDefaults } from '@react-ui-generator/core';
 
 import {
   UPDATE_FORM,
-  TOGGLE_SEX,
-  CLEAR_FORM
+  CLEAR_FORM,
+  ADD_RELATIVE
 } from '@actions';
 
 const meta = require('@meta/complete');
@@ -20,21 +20,13 @@ function reducer(state = initialState, { type: actionType, payload }) {
     case UPDATE_FORM:
       return merge(state, { data: payload.nextData, errors: payload.nextErrors });
 
-    case TOGGLE_SEX: {
-      const fieldsMeta = state.meta.fields;
-
-      for (let item of fieldsMeta) {
-        if (item.id === 'sex') {
-          item.renderer.config.isOpen = !item.renderer.config.isOpen
-          break;
-        }
-      }
-
-      return merge(state, { meta: { fields: fieldsMeta } });
-    }
-
-    case CLEAR_FORM:
+    case CLEAR_FORM: {
       return { ...initialState };
+    }
+    
+    case ADD_RELATIVE: {
+      return state;
+    }
 
     default:
       return state;

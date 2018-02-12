@@ -8,7 +8,8 @@ import {
   toggleSex,
   updateForm,
   sendForm,
-  clearForm
+  clearForm,
+  addRelative
 } from '@actions';
 
 /**
@@ -42,7 +43,13 @@ class GeneratedFormExample extends React.PureComponent {
 
             <hr className="example-of-custom-layout" />
 
-            <Field id="relatives" />
+            <Field id="relatives">
+              <div className="form-inline">
+                <FormGroups className="mb-2 mr-sm-2 mb-sm-0">
+                  <Fields />
+                </FormGroups>
+              </div>
+            </Field>
 
             <hr className="example-of-custom-layout" />
 
@@ -68,6 +75,7 @@ export default connect(
     updateForm: payload => dispatch(updateForm(payload)),
     toggleSex: fieldId => dispatch(toggleSex(fieldId)),
     sendForm: () => dispatch(sendForm()),
-    clearForm: () => dispatch(clearForm())
+    clearForm: () => dispatch(clearForm()),
+    addRelative: () => dispatch(addRelative())
   })
 )(GeneratedFormExample);

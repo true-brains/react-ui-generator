@@ -21,12 +21,16 @@ export function layout(
   fields: JSX.Element[]
 ): React.ReactNode {
   return React.Children.map(children, (child: NodeWithId) => {
+    if (!child || !child.type) return child;
+
     if (child.type === Field) {
       const idx = findFieldIdx(fields, child.props.id);
       const [field] = fields.splice(idx, 1);
 
-      return field;
-    } else if (child.type === Fields) {
+      return field.props.config.fields ? React.cloneElement(field, {
+        children: child.props.children
+      }) : field
+    } else if ((child.type === Fields) || child.type.toString() === Fields.toString()) {
       const fieldId = child.props && child.props.until;
       const idx = fieldId ? findFieldIdx(fields, fieldId) : fields.length;
 

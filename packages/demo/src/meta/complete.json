@@ -38,9 +38,6 @@
             { "id": 2, "title": "Other" }
           ]
         }
-      },
-      "actions": {
-        "onToggle": "toggleSex"
       }
     },
 
@@ -88,7 +85,7 @@
       "renderer": {
         "type": "form",
         "config": {
-          "title": "Add short info about your relatives",
+          "label": "Add short info about your relatives",
           "fields": [
             {
               "id": "firstName",

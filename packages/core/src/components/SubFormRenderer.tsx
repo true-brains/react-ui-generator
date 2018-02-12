@@ -62,7 +62,7 @@ export class SubForm extends React.PureComponent<SubFormProps, {}> {
         actions={actions}
         onChange={onChange}
       >
-        <Fields />
+        {this.props.children}
       </GeneratedForm>
     );
   }

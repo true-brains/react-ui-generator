@@ -15,7 +15,7 @@ type ChildNode = React.ReactElement<ChildNodeProps>;
 
 export class FormGroups extends React.PureComponent<FormGroupsProps, {}> {
   render() {
-    const { children } = this.props;
+    const { children, className } = this.props;
 
     return React.Children.map(children, (child: ChildNode, idx) => {
       const { id, config } = child.props;
@@ -30,6 +30,7 @@ export class FormGroups extends React.PureComponent<FormGroupsProps, {}> {
           key={`form-group-${idx}`}
           check={isCheckbox}
           tag={isRadiogroup ? 'fieldset' : undefined}
+          className={className || ''}
         >
           {isCheckbox ? (
             <Label check>{child} {label}</Label>
