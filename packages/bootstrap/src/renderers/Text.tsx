@@ -2,7 +2,7 @@ import * as React from 'react';
 import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
 import { Input } from 'reactstrap';
-import { FieldProps } from '../interfaces';
+import { FieldProps } from '@react-ui-generator/core';
 
 export interface TextProps extends FieldProps {}
 

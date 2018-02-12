@@ -42,6 +42,10 @@ class GeneratedFormExample extends React.PureComponent {
 
             <hr className="example-of-custom-layout" />
 
+            <Field id="relatives" />
+
+            <hr className="example-of-custom-layout" />
+
             <FormGroups>
               <Fields until="btnSend" />
             </FormGroups>

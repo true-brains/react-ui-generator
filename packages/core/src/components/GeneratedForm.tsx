@@ -9,6 +9,7 @@ import {
 } from '../interfaces';
 
 import * as Utils from '../utils';
+import { SubForm } from '../components/SubFormRenderer';
 
 export interface GeneratedFormProps {
   className: string;
@@ -50,7 +51,8 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
         renderer: { type, config },
         actions: fieldActions,
         hidden,
-        disabled
+        disabled,
+        serializer
       } = field;
 
       /**
@@ -61,11 +63,22 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
         continue;
       }
 
-      const Renderer: typeof FieldRenderer = renderers[type];
+      const Renderer = type === 'form'
+        ? SubForm
+        : renderers[type];
+
       const actions: { [key: string]: any } = Utils.extractFieldActions(
         formActions,
         fieldActions
       );
+
+      const subFormAdditionalProps = type === 'form' ? {
+        serializer,
+        renderers,
+        formData: data[id],
+        actions: formActions,
+        errors: errors[id] || {}
+      } : {};
 
       fields.push(
         <Renderer
@@ -75,10 +88,11 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
           errors={errors[id]}
           config={config}
           actions={actions}
-          onChange={newValue => {
+          onChange={(newValue: any) => {
             this.handleChange(id, newValue);
           }}
           disabled={disabled}
+          { ...subFormAdditionalProps }
         >
           {id}
         </Renderer>

@@ -108,6 +108,7 @@ export function withDefaults(
 ): KeyValue {
   const _defaults: KeyValue = {
     checkbox: false,
+    form: {},
     radiogroup: '',
     select: '',
     text: '',

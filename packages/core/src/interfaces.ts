@@ -43,3 +43,17 @@ export interface FieldRendererProps {
 export class FieldRenderer extends React.Component<FieldRendererProps, {}> {}
 
 export type KeyValue = { [key: string]: any }
+
+export interface FieldProps {
+  id: string;
+  className?: string;
+  data: {
+    value: string | boolean;
+    isDirty: boolean;
+  };
+  errors?: string[];
+  actions: KeyValue;
+  config: KeyValue;
+  disabled: boolean;
+  onChange(value: string | boolean): void;
+}
