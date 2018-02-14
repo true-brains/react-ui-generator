@@ -1,6 +1,9 @@
 import { combineReducers } from 'redux';
 import deepmerge from 'deepmerge';
-import { withDefaults } from '@react-ui-generator/core';
+import {
+  withDefaults,
+  getMetaById
+} from '@react-ui-generator/core';
 
 import {
   UPDATE_FORM,
@@ -25,7 +28,22 @@ function reducer(state = initialState, { type: actionType, payload }) {
     }
     
     case ADD_RELATIVE: {
-      return state;
+      const subFormMeta = getMetaById('relatives', state.meta.fields);
+
+      const newState = merge(state, {
+        data: {
+          relatives: {
+            // isDirty: state.data.relatives.isDirty,
+            value: [
+              ...state.data.relatives.value,
+              withDefaults({}, subFormMeta.renderer.config.fields)
+            ]
+          }
+        }
+      });
+
+      console.log('newState: ', newState)
+      return newState;
     }
 
     default:

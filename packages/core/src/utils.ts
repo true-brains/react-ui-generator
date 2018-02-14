@@ -111,8 +111,10 @@ export function withDefaults(
   defaults: KeyValue = {}
 ): KeyValue {
   const _defaults: KeyValue = {
-    checkbox: false,
     form: {},
+    list: [],
+
+    checkbox: false,
     radiogroup: '',
     select: '',
     text: '',
@@ -129,10 +131,21 @@ export function withDefaults(
       defaultValue = _defaults[type];
 
       if (defaultValue !== undefined) {
-        data[id] = { value: defaultValue, isDirty: false };
+        const value = (type === 'list') 
+          ? [ withDefaults({}, fieldMeta.renderer.config.fields) ]
+          : defaultValue;
+
+        data[id] = { value, isDirty: false };
       }
     }
   }
 
   return data;
+}
+
+export function getMetaById(
+  fieldId: string,
+  fieldsMeta: FieldMetaDescription[] = [],
+): FieldMetaDescription {
+  return fieldsMeta.find((meta) => meta.id === fieldId);
 }

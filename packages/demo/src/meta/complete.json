@@ -83,6 +83,55 @@
       "id": "relatives",
       "serializer": "auth.relatives",
       "renderer": {
+        "type": "list",
+        "config": {
+          "label": "Add information about your relatives",
+          "fields": [
+            {
+              "id": "firstName",
+              "renderer": {
+                "type": "text",
+                "config": {
+                  "label": "First name",
+                  "placeholder": "First name"
+                }
+              }
+            },
+            
+            {
+              "id": "lastName",
+              "renderer": {
+                "type": "text",
+                "config": {
+                  "label": "Last name",
+                  "placeholder": "Last name"
+                }
+              }
+            }
+          ]
+        }
+      }
+    },
+
+    {
+      "id": "btnAddRelative",
+      "renderer": {
+        "type": "button",
+        "config": {
+          "title": "Add",
+          "color": "dark",
+          "outline": true
+        }
+      },
+      "actions": {
+        "onClick": "addRelative"
+      }
+    },
+
+    {
+      "id": "relatives1",
+      "serializer": "auth.relatives1",
+      "renderer": {
         "type": "form",
         "config": {
           "label": "Add short info about your relatives",
@@ -106,21 +155,6 @@
                   "label": "Last name",
                   "placeholder": "Last name"
                 }
-              }
-            },
-
-            {
-              "id": "btnAddRelative",
-              "renderer": {
-                "type": "button",
-                "config": {
-                  "title": "Add",
-                  "color": "dark",
-                  "outline": true
-                }
-              },
-              "actions": {
-                "onClick": "addRelative"
               }
             }
           ]

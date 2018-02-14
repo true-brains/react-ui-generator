@@ -24,6 +24,9 @@ const { FormGroups } = Layouts;
 class GeneratedFormExample extends React.PureComponent {
   render() {
     const { meta, data, errors, updateForm, ...actions } = this.props;
+    console.log('==========================================')
+    console.log('meta: ', meta);
+    console.log('data: ', data);
 
     return (
       <GeneratedForm
@@ -43,13 +46,19 @@ class GeneratedFormExample extends React.PureComponent {
 
             <hr className="example-of-custom-layout" />
 
-            <Field id="relatives">
-              <div className="form-inline">
-                <FormGroups className="mb-2 mr-sm-2 mb-sm-0">
-                  <Fields />
-                </FormGroups>
-              </div>
-            </Field>
+            <div className="form-group">
+              <Field id="relatives">
+                <div className="form-inline">
+                  <FormGroups className="mb-2 mr-sm-2 mb-sm-0">
+                    <Fields />
+                  </FormGroups>
+                </div>
+              </Field>
+            </div>
+
+            <FormGroups>
+              <Field id="btnAddRelative" />
+            </FormGroups>
 
             <hr className="example-of-custom-layout" />
 

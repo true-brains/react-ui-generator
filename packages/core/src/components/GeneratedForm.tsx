@@ -9,7 +9,8 @@ import {
 } from '../interfaces';
 
 import * as Utils from '../utils';
-import { SubForm } from '../components/SubFormRenderer';
+import { SubForm } from '../components/renderers/SubForm';
+import { ListForm } from '../components/renderers/ListForm';
 
 export interface GeneratedFormProps {
   className: string;
@@ -65,14 +66,14 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
 
       const Renderer = type === 'form'
         ? SubForm
-        : renderers[type];
+        : type === 'list' ? ListForm : renderers[type];
 
       const actions: { [key: string]: any } = Utils.extractFieldActions(
         formActions,
         fieldActions
       );
 
-      const subFormAdditionalProps = type === 'form' ? {
+      const subFormAdditionalProps = (type === 'form' || type === 'list') ? {
         serializer,
         renderers,
         formData: data[id],

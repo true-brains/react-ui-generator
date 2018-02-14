@@ -22,6 +22,7 @@ class App extends React.Component {
                 <a className="navbar-brand" href="#">
                   React UI Generator Demo
                 </a>
+
                 <button
                   className="navbar-toggler"
                   type="button"
@@ -36,6 +37,7 @@ class App extends React.Component {
               </nav>
             </div>
           </div>
+
           <div className="row">
             <div className="col col-12">
               <GeneratedFormExample />
