@@ -10,12 +10,18 @@ Bloody enterprise is not so scaring when you have CRUD-hammer!
 <i>"DOM Living Standard"</i>
 </blockquote>
 
+## Example
+
+![demo-screenshot](./doc/img/demo-screen.png)
+
+This is screenshot of the form, generated with bootstrap renderers. Metadata for this form is [here](./packages/demo/src/meta/complete.json).
+
 
 ## Features
 
 - easy to generate entire form from the simple metadata description;
-- set up custom layout on JSX (not on metadata, because markup-on-json is pain);
-- easy to add a custom types of fields (renderers);
+- set up custom layout in JSX (not in metadata, because markup-on-json is pain);
+- easy to add custom types of fields (renderers);
 - easy to add custom layouts;
 - pure! (no state, just props). Easy to integrate with frameworks (Redux, etc);
 - nested forms (in progress). Easy to implement dynamic forms (add/remove fields at runtime, etc).
