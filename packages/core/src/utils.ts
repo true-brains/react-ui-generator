@@ -13,6 +13,7 @@ interface NodeWithIdProps {
   children: string | JSX.Element;
   id?: string;
   until?: string;
+  className: string;
 }
 type NodeWithId = React.ReactElement<NodeWithIdProps>;
 
@@ -23,12 +24,13 @@ export function layout(
   return React.Children.map(children, (child: NodeWithId) => {
     if (!child || !child.type) return child;
 
-    if (child.type === Field) {
+    if (child.type === Field || child.type.toString() === Field.toString()) {
       const idx = findFieldIdx(fields, child.props.id);
       const [field] = fields.splice(idx, 1);
 
       return field.props.config.fields ? React.cloneElement(field, {
-        children: child.props.children
+        children: child.props.children,
+        className: child.props.className || ''
       }) : field
     } else if ((child.type === Fields) || child.type.toString() === Fields.toString()) {
       const fieldId = child.props && child.props.until;
@@ -37,7 +39,8 @@ export function layout(
       return fields.splice(0, idx);
     } else if (child.props && child.props.children) {
       return React.cloneElement(child, {
-        children: layout(child.props.children, fields)
+        children: layout(child.props.children, fields),
+        className: child.props.className || ''
       });
     } else {
       return child;

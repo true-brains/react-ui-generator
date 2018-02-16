@@ -28,7 +28,6 @@ export interface RendererComplex {
   config: any;
 }
 
-
 export interface FieldRendererProps {
   id: string;
   data: any;
@@ -55,5 +54,5 @@ export interface FieldProps {
   actions: KeyValue;
   config: KeyValue;
   disabled: boolean;
-  onChange(value: string | boolean): void;
+  onChange(value: any): void;
 }

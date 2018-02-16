@@ -3,6 +3,7 @@ export const TOGGLE_SEX = 'TOGGLE_SEX'
 export const SEND_FORM = 'SEND_FORM'
 export const CLEAR_FORM = 'CLEAR_FORM'
 export const ADD_RELATIVE = 'ADD_RELATIVE'
+export const REMOVE_RELATIVE = 'REMOVE_RELATIVE'
 
 export const toggleSex = payload => ({ type: TOGGLE_SEX, payload });
 export const updateForm = payload => ({ type: UPDATE_FORM, payload });
@@ -14,3 +15,4 @@ export const sendForm = () => dispatch => {
 }
 
 export const addRelative = () => ({ type: ADD_RELATIVE })
+export const removeRelative = idx => ({ type: REMOVE_RELATIVE, payload: idx })

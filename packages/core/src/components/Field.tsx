@@ -5,7 +5,7 @@ export interface IFieldProps {
 }
 
 export class Field extends React.Component<IFieldProps, {}> {
-  render() {
-    return <div>Field</div>;
+  render(): JSX.Element {
+    return null;
   }
 }

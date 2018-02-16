@@ -8,7 +8,8 @@ import {
 import {
   UPDATE_FORM,
   CLEAR_FORM,
-  ADD_RELATIVE
+  ADD_RELATIVE,
+  REMOVE_RELATIVE
 } from '@actions';
 
 const meta = require('@meta/complete');
@@ -33,7 +34,6 @@ function reducer(state = initialState, { type: actionType, payload }) {
       const newState = merge(state, {
         data: {
           relatives: {
-            // isDirty: state.data.relatives.isDirty,
             value: [
               ...state.data.relatives.value,
               withDefaults({}, subFormMeta.renderer.config.fields)
@@ -42,7 +42,22 @@ function reducer(state = initialState, { type: actionType, payload }) {
         }
       });
 
-      console.log('newState: ', newState)
+      return newState;
+    }
+
+    case REMOVE_RELATIVE: {
+      const idx = payload;
+      const subFormMeta = getMetaById('relatives', state.meta.fields);
+      const newValue = [ ...state.data.relatives.value ];
+
+      newValue.splice(idx, 1);
+
+      const newState = merge(state, {
+        data: {
+          relatives: { value: newValue }
+        }
+      });
+
       return newState;
     }
 
