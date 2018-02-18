@@ -43,7 +43,7 @@
         "type": "select",
         "config": {
           "label": "Sex",
-          "title": "Choose your sex",
+          "title": "Choose your gender",
           "options": [
             { "id": 0, "title": "Female" },
             { "id": 1, "title": "Male" },

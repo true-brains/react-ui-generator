@@ -30,11 +30,3 @@ This is screenshot of the form, generated with bootstrap renderers. Metadata for
 
 - complete this README.md
 - ...
-
-## Lerna management
-
-### Add dependency to choosen package
-
-```sh
-lerna add ajv --scope=@react-ui-generator/demo
-```

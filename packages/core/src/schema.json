@@ -49,8 +49,7 @@
 			}
 		},
 		"validatorSimple": {
-				"type": "string",
-				"pattern": "^[^.]+(\\.[^.]+)*$"
+				"type": "string"
 		},
 		"validatorComplex": {
 			"type": "object",
