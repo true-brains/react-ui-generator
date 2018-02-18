@@ -3,6 +3,7 @@ import { ChangeEvent } from 'react';
 import makeClass from 'classnames';
 import { Input } from 'reactstrap';
 import { FieldProps } from '@react-ui-generator/core';
+import { ValidatableField } from './ValidatableField';
 
 export interface SelectProps extends FieldProps {
   title: string;
@@ -28,23 +29,28 @@ export class Select extends React.PureComponent<SelectProps, {}> {
       data,
       disabled,
       className,
-      onChange
+      onChange,
+      errors
     } = this.props;
 
-    const value: string = String(data.value)
+    const value: string = String(data.value);
 
     return (
-      <Input
-        type="select"
-        onChange={(event) => this.handleChange(event)}
-        value={value}
-      >
-        <option value={''} disabled>{title}</option>>
-        {options.map((item: SelectItemProps) => {
-          const { id, title } = item;
-          return (<option key={id} value={id}>{title}</option>);
-        })}
-      </Input>
+      <ValidatableField errors={errors} isDirty={data.isDirty}>
+        <Input type="select" onChange={event => this.handleChange(event)} value={value}>
+          <option value={''} disabled>
+            {title}
+          </option>>
+          {options.map((item: SelectItemProps) => {
+            const { id, title } = item;
+            return (
+              <option key={id} value={id}>
+                {title}
+              </option>
+            );
+          })}
+        </Input>
+      </ValidatableField>
     );
   }
 }
