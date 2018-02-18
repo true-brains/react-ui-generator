@@ -1,7 +1,15 @@
 import React from 'react';
 import { connect } from 'react-redux';
+import Ajv from 'ajv';
 
-import { GeneratedForm, Field, Fields, FieldRenderer } from '@react-ui-generator/core';
+import {
+  GeneratedForm,
+  Field,
+  Fields,
+  FieldRenderer,
+  buildAjvValidator
+} from '@react-ui-generator/core';
+
 import { Renderers, Layouts } from '@react-ui-generator/bootstrap';
 
 import {
@@ -14,6 +22,7 @@ import {
 } from '@actions';
 
 import CloseButton from '../components/CloseButton';
+import validationSchema from '../validation/jsonSchema.json';
 
 /**
  * You can add custon renderers here.
@@ -38,6 +47,7 @@ class GeneratedFormExample extends React.PureComponent {
         renderers={renderers}
         actions={actions}
         onChange={(nextData, nextErrors) => updateForm({ nextData, nextErrors })}
+        validator={buildAjvValidator(Ajv, validationSchema)}
       >
         <div className="card border-dark mb-3">
           <div className="card-body">

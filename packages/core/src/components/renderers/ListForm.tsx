@@ -1,74 +1,70 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
+import { GeneratedForm } from '../GeneratedForm';
 import {
-  GeneratedForm,
-  Fields,
   FieldRenderer,
-  FieldMetaDescription,
   FieldProps,
-    KeyValue
-  } from '@react-ui-generator/core';
+  KeyValue,
+  FieldMetaDescription
+} from '../../interfaces';
+import { withDefaults, extractFieldActions } from '../../utils';
 
-  import { withDefaults, extractFieldActions } from '@react-ui-generator/core';
+export interface ItemData {
+  value: object;
+  isDirty: boolean;
+}
 
-  export interface ItemData {
-    value: object;
+export interface ListFormProps extends FieldProps {
+  formData: {
+    value: ItemData[];
     isDirty: boolean;
+  };
+
+  serializer?: string;
+  renderers: { [key: string]: typeof FieldRenderer };
+  validator(formData: KeyValue): KeyValue;
+}
+
+export class ListForm extends React.PureComponent<ListFormProps, {}> {
+  handleOnChange(idx: number, itemData: any) {
+    const newValue = [...this.props.formData.value];
+
+    newValue[idx] = itemData;
+    this.props.onChange(newValue);
   }
 
-  export interface ListFormProps extends FieldProps {
-    formData: {
-      value: ItemData[];
-      isDirty: boolean;
-    };
+  render() {
+    const {
+      id,
+      className,
+      onChange,
+      disabled,
+      config,
+      formData,
+      errors,
+      renderers,
+      validator,
+      serializer,
+      actions
+    } = this.props;
 
-    serializer?: string;
-    renderers: { [key: string]: typeof FieldRenderer };
-    validator(valdiate: any, schema: any): void;
-  }
+    const enhancedFieldsMeta = config.fields.map((meta: FieldMetaDescription) => {
+      const renderer =
+        typeof meta.renderer === 'object'
+          ? meta.renderer
+          : { type: meta.renderer, config: {} };
 
-  export class ListForm extends React.PureComponent<ListFormProps, {}> {
-    handleOnChange(idx: number, itemData: any) {
-      const newValue = [...this.props.formData.value];
+      renderer.config.disabled = disabled;
+      meta.serializer = `${serializer || id}.${meta.serializer || meta.id}`;
 
-      newValue[idx] = itemData;
-      this.props.onChange(newValue);
-    }
+      return meta;
+    });
 
-    render() {
-      const {
-        id,
-        className,
-        onChange,
-        disabled,
-        config,
-        formData,
-        errors,
-        renderers,
-        validator,
-        serializer,
-        actions
-      } = this.props;
-
-      const enhancedFieldsMeta = config.fields.map((meta: FieldMetaDescription) => {
-        const renderer =
-          typeof meta.renderer === 'object'
-            ? meta.renderer
-            : { type: meta.renderer, config: {} };
-
-        renderer.config.disabled = disabled;
-        meta.serializer = `${serializer || id}.${meta.serializer || meta.id}`;
-
-        return meta;
-      });
-
-      return formData.value.map((itemData: ItemData, idx: number) => {
-        const wrappedActions = Object
-          .keys(actions)
-          .reduce((acc: KeyValue, key: string) => {
-            acc[key] = (...args: any[]) => actions[key](idx, ...args);
-            return acc;
-          }, {});
+    return formData.value.map((itemData: ItemData, idx: number) => {
+      const wrappedActions = Object.keys(actions).reduce((acc: KeyValue, key: string) => {
+        acc[key] = (...args: any[]) => actions[key](idx, ...args);
+        return acc;
+      }, {});
 
       return (
         <GeneratedForm

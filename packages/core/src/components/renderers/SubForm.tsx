@@ -1,14 +1,13 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
+import { GeneratedForm } from '../GeneratedForm';
 import {
-  GeneratedForm,
-  Fields,
   FieldRenderer,
-  FieldMetaDescription,
   FieldProps,
-} from '@react-ui-generator/core';
-
-import { withDefaults } from '@react-ui-generator/core';
+  KeyValue,
+  FieldMetaDescription
+} from '../../interfaces';
+import { withDefaults, extractFieldActions } from '../../utils';
 
 export interface SubFormProps extends FieldProps {
   formData: {
@@ -17,7 +16,7 @@ export interface SubFormProps extends FieldProps {
   };
 
   serializer?: string;
-  validator(valdiate: any, schema: any): void;
+  validator(formData: KeyValue): KeyValue;
   renderers: { [key: string]: typeof FieldRenderer };
 }
 

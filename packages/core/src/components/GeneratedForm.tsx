@@ -5,7 +5,8 @@ import {
   FormMetaDescription,
   RawFieldMetaDescription,
   FieldMetaDescription,
-  FieldRenderer
+  FieldRenderer,
+  KeyValue
 } from '../interfaces';
 
 import * as Utils from '../utils';
@@ -15,20 +16,25 @@ import { ListForm } from '../components/renderers/ListForm';
 export interface GeneratedFormProps {
   className: string;
   meta: FormMetaDescription;
-  data: { [key: string]: any };
-  errors: { [key: string]: any };
-  validator(valdiate: any, schema: any): void;
+  data: KeyValue,
+  errors: KeyValue;
+  validator(formData: KeyValue): KeyValue;
   renderers: { [key: string]: typeof FieldRenderer };
-  actions?: { [key: string]: any };
+  actions?: KeyValue;
   onChange(data: any, errors: any): void;
 }
 
 export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
-  handleChange(fieldId: string, newValue: any): void {
-    const newData = { ...this.props.data };
+  constructor(props: GeneratedFormProps) {
+    super(props);
+  }
 
-    newData[fieldId] = { value: newValue, isDirty: true };
-    this.props.onChange(newData, {});
+  handleChange(fieldId: string, newValue: any): void {
+    const nextData = { ...this.props.data };
+    nextData[fieldId] = { value: newValue, isDirty: true };
+    const nextErrors = this.props.validator(nextData);
+
+    this.props.onChange(nextData, nextErrors.errors);
   }
 
   render() {
@@ -41,6 +47,7 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
       errors,
       actions: formActions,
       renderers,
+      validator,
       children
     } = this.props;
 
@@ -78,7 +85,8 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
         renderers,
         formData: data[id],
         actions: formActions,
-        errors: errors[id] || {}
+        errors: errors[id] || {},
+        validator,
       } : {};
 
       fields.push(

@@ -1,0 +1,51 @@
+{
+	"$schema": "http://json-schema.org/schema#",
+	"description": "Validation schema for the Registration form",
+	"type": "object",
+	"properties": {
+    "email": {
+      "type": "string",
+      "format": "email"
+    },
+    "password": {
+      "type": "string"
+    },
+    "confirmation": {
+      "const": { "$data": "1/password" }
+    },
+    "sex": {
+      "enum": [0, 1, 2]
+    },
+    "isMarried": {
+      "type": "boolean"
+    },
+    "aboutMe": {
+      "type": "string",
+      "minLength": 20
+    },
+    "relatives": {
+      "type": "array",
+			"items": {
+				"title": "Relative",
+				"description": "Relative definition",
+				"type": "object",
+				"properties": {
+          "firstName": {
+            "type": "string",
+            "pattern": "^[A-Z]+([A-Za-z]*[ -]+)*"
+          },
+          "lastName": {
+            "type": "string",
+            "pattern": "^[A-Z]+([A-Za-z]*[ -]+)*"
+          }
+        },
+        "required": ["firstName", "lastName"]
+      }
+    },
+    "answer": {
+      "enum": [42, 43]
+    }
+  },
+  "required": ["email", "password", "sex", "answer"],
+	"additionalProperties": false
+}
