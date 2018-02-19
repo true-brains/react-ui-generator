@@ -140,7 +140,7 @@
       "renderer": {
         "type": "button",
         "config": {
-          "title": "Add",
+          "title": "Add relatives",
           "color": "dark",
           "outline": true
         }
