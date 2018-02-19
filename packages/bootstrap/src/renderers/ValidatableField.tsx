@@ -5,11 +5,12 @@ export interface ValidatableFieldProps {
   errors: string[];
   isDirty: boolean;
   children: JSX.Element | JSX.Element[];
+  labelOnly?: boolean;
 }
 
 export class ValidatableField extends React.PureComponent<ValidatableFieldProps, {}> {
   render() {
-    const { errors = [], isDirty, children } = this.props;
+    const { errors = [], isDirty, children, labelOnly } = this.props;
     const isValid = !errors.length;
 
     const validatedChildren = React.Children.map(children, (child: JSX.Element, idx: number) => {
@@ -22,6 +23,6 @@ export class ValidatableField extends React.PureComponent<ValidatableFieldProps,
       <FormFeedback key={`${error}-${idx}`}>{error}</FormFeedback>
     ));
 
-    return [validatedChildren, ...errorMessages];
+    return [validatedChildren, ...(labelOnly ? [] : errorMessages)];
   }
 }

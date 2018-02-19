@@ -22,26 +22,29 @@ export class Radiogroup extends React.PureComponent<RadiogroupProps, {}> {
     const value: string = String(data.value);
 
     return (
-      <ValidatableField errors={errors} isDirty={data.isDirty}>
-        {config.options.map((item: RadiogroupItem, idx: number) => (
-            <FormGroup check key={`${id}-${idx}`}>
-              <Label check>
-                <Input
-                  id={id}
-                  name={id}
-                  type="radio"
-                  className={className || ''}
-                  onChange={event => {
-                    this.handleChange(item.id);
-                  }}
-                  disabled={disabled}
-                  checked={value === item.id.toString()}
-                />{' '}
-                {item.title}
-              </Label>
-            </FormGroup>
-        ))}
-      </ValidatableField>
+      config.options.map((item: RadiogroupItem, idx: number) => (
+        <FormGroup check key={`${id}-${idx}`}>
+          <ValidatableField
+            errors={errors}
+            isDirty={data.isDirty}
+            labelOnly={idx !== (config.options.length - 1)}
+          >
+            <Input
+              id={`${id}-${idx}`}
+              name={id}
+              type="radio"
+              className={className || ''}
+              onChange={event => {
+                this.handleChange(item.id);
+              }}
+              disabled={disabled}
+              checked={value === item.id.toString()}
+            />
+
+            <Label htmlFor={`${id}-${idx}`} check>{item.title}</Label>
+          </ValidatableField>
+        </FormGroup>
+      ))
     );
   }
 }

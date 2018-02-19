@@ -8,7 +8,7 @@ Roadmap:
   ✔ Fix implicit type convertion for Select options @done(18-02-19)
   ✔ Implement validation for nested forms @done(18-02-19)
   ✔ Implement password option for Bootstrap Text renderer @done(18-02-19 21:39)
-  ☐ Fix validation rendering for Bootstrap RadioGroup renderer.
+  ✔ Fix validation rendering for Bootstrap RadioGroup renderer. @done(18-02-19 21:58)
   ☐ Implement basic serializer
   ☐ Implement serializer for nested forms
   ☐ Implement AntD renderers
