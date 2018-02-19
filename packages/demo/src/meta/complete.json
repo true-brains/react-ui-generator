@@ -95,7 +95,7 @@
 
     {
       "id": "relatives",
-      "serializer": "auth.relatives",
+      "serializer": "additional.relatives",
       "renderer": {
         "type": "list",
         "config": {

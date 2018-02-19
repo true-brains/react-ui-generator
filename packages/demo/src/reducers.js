@@ -1,13 +1,17 @@
 import { combineReducers } from 'redux';
 import deepmerge from 'deepmerge';
+
 import {
   withDefaults,
-  getMetaById
+  getMetaById,
+  buildJSONSerializer
 } from '@react-ui-generator/core';
 
 import {
   UPDATE_FORM,
   CLEAR_FORM,
+  FORM_SENDING_START,
+  FORM_SENDING_FINISH,
   ADD_RELATIVE,
   REMOVE_RELATIVE
 } from '@actions';
@@ -28,6 +32,14 @@ function reducer(state = initialState, { type: actionType, payload }) {
 
     case CLEAR_FORM: {
       return { ...initialState };
+    }
+
+    case FORM_SENDING_START: {
+      return { ...state, isFetching: true };
+    }
+
+    case FORM_SENDING_FINISH: {
+      return { ...state, isFetching: false };
     }
     
     case ADD_RELATIVE: {

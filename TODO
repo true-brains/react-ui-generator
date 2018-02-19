@@ -9,8 +9,8 @@ Roadmap:
   ✔ Implement validation for nested forms @done(18-02-19)
   ✔ Implement password option for Bootstrap Text renderer @done(18-02-19 21:39)
   ✔ Fix validation rendering for Bootstrap RadioGroup renderer. @done(18-02-19 21:58)
-  ☐ Implement basic serializer
-  ☐ Implement serializer for nested forms
+  ✔ Implement basic serializer @done(18-02-19 22:39)
+  ✔ Implement serializer for nested forms @done(18-02-19 22:39)
   ☐ Implement AntD renderers
   ☐ Implement AndD validator
   ☐ Implement LIVR validator

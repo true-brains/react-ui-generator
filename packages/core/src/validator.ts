@@ -1,6 +1,5 @@
 import { get, set } from 'lodash';
 import { FormMetaDescription, KeyValue } from './interfaces';
-import { Key } from 'react';
 
 export type Validator = (formValue: KeyValue) => KeyValue;
 
