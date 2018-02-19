@@ -19,12 +19,16 @@ This is screenshot of the form, generated with bootstrap renderers. Metadata for
 
 ## Features
 
-- easy to generate entire form from the simple metadata description;
-- set up custom layout in JSX (not in metadata, because markup-on-json is pain);
-- easy to add custom types of fields (renderers);
-- easy to add custom layouts;
-- pure! (no state, just props). Easy to integrate with frameworks (Redux, etc);
-- nested forms (in progress). Easy to implement dynamic forms (add/remove fields at runtime, etc).
+- Easy to generate entire form from the simple metadata description.
+- Set up custom layout in JSX (not in metadata, because markup-on-json is pain).
+- Easy to add custom types of fields (renderers).
+- Easy to add custom layouts.
+- Pure! (no state, just props). Easy to integrate with frameworks (Redux, etc).
+- Nested forms. Easy to implement dynamic forms (add/remove fields at runtime, etc).
+
+## Architecture
+
+![demo-screenshot](./doc/img/generator-architecture.png)
 
 ## TODO
 

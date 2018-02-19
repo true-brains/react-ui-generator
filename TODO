@@ -7,7 +7,8 @@ Roadmap:
   ✔ Implement JSON Schema validator (Ajv) @done(17-02-19)
   ✔ Fix implicit type convertion for Select options @done(18-02-19)
   ✔ Implement validation for nested forms @done(18-02-19)
-  ☐ Fix validation rendering for RadioGroup.
+  ✔ Implement password option for Bootstrap Text renderer @done(18-02-19 21:39)
+  ☐ Fix validation rendering for Bootstrap RadioGroup renderer.
   ☐ Implement basic serializer
   ☐ Implement serializer for nested forms
   ☐ Implement AntD renderers

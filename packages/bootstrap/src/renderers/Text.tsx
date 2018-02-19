@@ -20,6 +20,7 @@ export class Text extends React.PureComponent<TextProps, {}> {
       <ValidatableField errors={errors} isDirty={data.isDirty}>
         <Input
           id={id}
+          type={config.isPassword ? 'password' : 'text'}
           className={className || ''}
           value={value}
           placeholder={config.placeholder || ''}
