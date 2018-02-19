@@ -2,7 +2,7 @@ import * as React from 'react';
 import { ChangeEvent } from 'react';
 import makeClass from 'classnames';
 import { Input } from 'reactstrap';
-import { FieldProps } from '@react-ui-generator/core';
+import { FieldProps, KeyValue } from '@react-ui-generator/core';
 import { ValidatableField } from './ValidatableField';
 
 export interface SelectProps extends FieldProps {
@@ -11,14 +11,47 @@ export interface SelectProps extends FieldProps {
   isOpen?: boolean;
 }
 
+export interface SelectState {
+  valueTypes: KeyValue
+}
+
 interface SelectItemProps {
-  id: string;
+  id: any;
   title: string;
 }
 
-export class Select extends React.PureComponent<SelectProps, {}> {
+const Types: KeyValue = {
+  'number': Number,
+  'boolean': Boolean
+}
+
+export class Select extends React.PureComponent<SelectProps, SelectState> {
+  constructor(props: SelectProps) {
+    super(props);
+    this.state = { valueTypes: this.getValueTypes(props) };
+  }
+
+  componentWillReceiveProps(nextProps: SelectProps) {
+    this.setState({ valueTypes: this.getValueTypes(nextProps) });
+  }
+
+  getValueTypes(props: SelectProps): KeyValue {
+    return props.config.options.reduce(
+      (acc: KeyValue, option: SelectItemProps) => ({
+        ...acc,
+        [option.id]: typeof option.id
+      }),
+      {}
+    );
+  }
+
   handleChange(event: ChangeEvent<HTMLInputElement>): void {
-    this.props.onChange(event.target.value);
+    const rawValue = event.target.value;
+    const valueType = this.state.valueTypes[rawValue];
+    const Type = Types[valueType] || String;
+    const value = Type(rawValue);
+
+    this.props.onChange(value);
   }
 
   render() {
