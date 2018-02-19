@@ -22,8 +22,7 @@ export class FormGroups extends React.PureComponent<FormGroupsProps, {}> {
       const isCheckbox = child.type.toString() === Renderers.checkbox.toString();
       const isRadiogroup = child.type.toString() === Renderers.radiogroup.toString();
 
-      const label =
-        config.label || (id.length ? id.charAt(0).toUpperCase() + id.slice(1) : '');
+      const label = config.label;
 
       return (
         <FormGroup
@@ -33,14 +32,15 @@ export class FormGroups extends React.PureComponent<FormGroupsProps, {}> {
           className={className || ''}
         >
           {isCheckbox ? (
-            <Label check>{child} {label}</Label>
+            child
           ) : (
           isRadiogroup ? [
             <label key={`legend-for-${id}`}>{label}</label>,
             child
-          ] : (
+          ] : [
+            <label key={`label-for-${id}`}>{label}</label>,
             React.cloneElement(child, { className: 'form-control' })
-          ))}
+          ])}
         </FormGroup>
       );
     });

@@ -1,7 +1,7 @@
 import * as React from 'react';
 import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
-import { Input } from 'reactstrap';
+import { Input, Label } from 'reactstrap';
 import { FieldProps } from '@react-ui-generator/core';
 import { ValidatableField } from './ValidatableField';
 
@@ -15,6 +15,8 @@ export class Checkbox extends React.PureComponent<CheckboxProps, {}> {
   render() {
     const { id, data, className, onChange, config, disabled, errors } = this.props;
     const value: boolean = (typeof data.value === "string") ? data.value !== '' : data.value;
+    const label =
+      config.label || (id.length ? id.charAt(0).toUpperCase() + id.slice(1) : '');
 
     return (
       <ValidatableField errors={errors} isDirty={data.isDirty}>
@@ -28,6 +30,8 @@ export class Checkbox extends React.PureComponent<CheckboxProps, {}> {
           disabled={disabled}
           checked={value}
         />
+
+        <Label key={`label-for-${id}`} htmlFor={id} check>{label}</Label>
       </ValidatableField>
     );
   }

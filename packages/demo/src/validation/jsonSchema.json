@@ -8,13 +8,16 @@
       "format": "email"
     },
     "password": {
-      "type": "string"
+      "type": "string",
+      "pattern": "^[A-Za-z0-9#$.,_-]*$",
+      "minLength": 5,
+      "maxLength": 15
     },
     "confirmation": {
       "const": { "$data": "1/password" }
     },
     "sex": {
-      "enum": [0, 1, 2]
+      "enum": ["male", "female"]
     },
     "isMarried": {
       "type": "boolean"
@@ -43,7 +46,7 @@
       }
     },
     "answer": {
-      "enum": [42, 43]
+      "const": 42
     }
   },
   "required": ["email", "password", "sex", "answer"],

@@ -52,7 +52,13 @@ class GeneratedFormExample extends React.PureComponent {
         <div className="card border-dark mb-3">
           <div className="card-body">
             <FormGroups>
-              <Fields until="answer" />
+              <Fields until="aboutMe" />
+            </FormGroups>
+
+            <hr className="example-of-custom-layout" />
+
+            <FormGroups>
+              <Field id="aboutMe" />
             </FormGroups>
 
             <hr className="example-of-custom-layout" />

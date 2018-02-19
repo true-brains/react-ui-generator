@@ -31,7 +31,7 @@
         "type": "text",
         "config": {
           "label": "Confirmation",
-          "placeholder": "Enter your password one more"
+          "placeholder": "Enter your password again"
         }
       },
       "serializer": null
@@ -45,9 +45,9 @@
           "label": "Sex",
           "title": "Choose your gender",
           "options": [
-            { "id": 0, "title": "Female" },
-            { "id": 1, "title": "Male" },
-            { "id": 2, "title": "Other" }
+            { "id": "male", "title": "Female" },
+            { "id": "female", "title": "Male" },
+            { "id": "dontknow", "title": "I don't know" }
           ]
         }
       }
@@ -71,7 +71,7 @@
         "config": {
           "label": "Short bio",
           "placeholder": "Write your short biography here...",
-          "rows": 5
+          "rows": 2
         }
       },
       "hidden": false
@@ -104,7 +104,6 @@
               "renderer": {
                 "type": "text",
                 "config": {
-                  "label": "First name",
                   "placeholder": "First name"
                 }
               }
@@ -115,7 +114,6 @@
               "renderer": {
                 "type": "text",
                 "config": {
-                  "label": "Last name",
                   "placeholder": "Last name"
                 }
               }

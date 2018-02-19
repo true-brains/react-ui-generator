@@ -1,33 +1,26 @@
 import * as React from 'react';
+import { FormFeedback } from 'reactstrap';
 
 export interface ValidatableFieldProps {
   errors: string[];
   isDirty: boolean;
-  children: JSX.Element;
+  children: JSX.Element | JSX.Element[];
 }
 
 export class ValidatableField extends React.PureComponent<ValidatableFieldProps, {}> {
   render() {
     const { errors = [], isDirty, children } = this.props;
-    const isValid = isDirty && !Boolean(errors.length);
-    const isInvalid = isDirty && Boolean(errors.length);
+    const isValid = !errors.length;
 
-    const validatedChildren = React.Children.map(children, (child: JSX.Element) => {
-      const invalidClass = isInvalid ? " is-invalid" : "";
-      const validClass = isValid ? " is-valid" : "";
-      const className = `${child.props.className}${invalidClass}${validClass}`;
-
-      return React.cloneElement(child, { className })
+    const validatedChildren = React.Children.map(children, (child: JSX.Element, idx: number) => {
+      return (idx === 0)
+        ? React.cloneElement(child, { valid: isDirty ? isValid: undefined, })
+        : child;
     });
 
-    const errorMessages = isDirty ? errors.map(error => {
-      const invalidClass = isInvalid ? " invalid-feedback" : "";
-      const validClass = isValid ? " valid-feedback" : "";
-
-      return (
-        <div key={error} className={`${invalidClass}${validClass}`}>{error}</div>
-      );
-    }) : [];
+    const errorMessages = errors.map((error, idx) => (
+      <FormFeedback key={`${error}-${idx}`}>{error}</FormFeedback>
+    ));
 
     return [validatedChildren, ...errorMessages];
   }
