@@ -20,14 +20,14 @@ const meta = require('@meta/complete');
 const initialState = {
   meta,
   data: withDefaults({}, meta.fields),
-  errors: {}
+  errors: {},
+  isValid: false,
 };
 
 function reducer(state = initialState, { type: actionType, payload }) {
   switch (actionType) {
     case UPDATE_FORM: {
-      // console.log(UPDATE_FORM, payload.nextData, payload.nextErrors);
-      return merge(state, { data: payload.nextData, errors: payload.nextErrors });
+      return merge(state, payload);
     }
 
     case CLEAR_FORM: {

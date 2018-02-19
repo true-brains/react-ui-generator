@@ -16,13 +16,15 @@ export const sendForm = () => (dispatch, getState) => {
   dispatch({ type: FORM_SENDING_START });
 
   const serialize = buildJSONSerializer();
-  const { data } = getState();
+  const { data, isValid } = getState();
   const serializedForm = serialize(data);
 
-  setTimeout(() => {
-    console.log('Serialized data was successfully sent: ', serializedForm);
-    dispatch({ type: FORM_SENDING_FINISH });
-  }, 2000);
+  if (isValid) {
+    setTimeout(() => {
+      console.log('Serialized data was successfully sent: ', serializedForm);
+      dispatch({ type: FORM_SENDING_FINISH });
+    }, 2000);
+  }
 };
 
 export const addRelative = () => ({ type: ADD_RELATIVE });

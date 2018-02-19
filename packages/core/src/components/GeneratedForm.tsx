@@ -21,7 +21,7 @@ export interface GeneratedFormProps {
   validator(formData: KeyValue): KeyValue;
   renderers: { [key: string]: typeof FieldRenderer };
   actions?: KeyValue;
-  onChange(data: any, errors: any): void;
+  onChange(data: any, errors: any, isValid: boolean): void;
   isSubForm?: boolean;
 }
 
@@ -35,7 +35,7 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
     nextData[fieldId] = { value: newValue, isDirty: true };
     const nextErrors = this.props.isSubForm ? {} : this.props.validator(nextData);
 
-    this.props.onChange(nextData, nextErrors.errors);
+    this.props.onChange(nextData, nextErrors.errors, nextErrors.isValid);
   }
 
   render() {

@@ -46,7 +46,7 @@ class GeneratedFormExample extends React.PureComponent {
         errors={errors}
         renderers={renderers}
         actions={actions}
-        onChange={(nextData, nextErrors) => updateForm({ nextData, nextErrors })}
+        onChange={(data, errors, isValid) => updateForm({ data, errors, isValid })}
         validator={buildAjvValidator(Ajv, validationSchema)}
       >
         <div className="card border-dark mb-3">
