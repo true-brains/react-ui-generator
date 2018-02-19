@@ -1,0 +1,16 @@
+
+Roadmap:
+  ✔ Implement basic form generation
+  ✔ Implement bootstrap renderers
+  ✔ Implement nested forms (SubForm and List)
+  ✔ Implement basic validation @done(17-02-19)
+  ✔ Implement JSON Schema validator (Ajv) @done(17-02-19)
+  ✔ Fix implicit type convertion for Select options @done(18-02-19)
+  ✔ Implement validation for nested forms @done(18-02-19)
+  ☐ Fix validation rendering for RadioGroup.
+  ☐ Implement basic serializer
+  ☐ Implement serializer for nested forms
+  ☐ Implement AntD renderers
+  ☐ Implement AndD validator
+  ☐ Implement LIVR validator
+  ☐ Implement async, non-blocking validation

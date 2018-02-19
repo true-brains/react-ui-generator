@@ -42,7 +42,7 @@
       "renderer": {
         "type": "select",
         "config": {
-          "label": "Sex",
+          "label": "Gender",
           "title": "Choose your gender",
           "options": [
             { "id": "male", "title": "Female" },
@@ -104,6 +104,7 @@
               "renderer": {
                 "type": "text",
                 "config": {
+                  "label": "First name",
                   "placeholder": "First name"
                 }
               }
@@ -114,6 +115,7 @@
               "renderer": {
                 "type": "text",
                 "config": {
+                  "label": "Last name",
                   "placeholder": "Last name"
                 }
               }

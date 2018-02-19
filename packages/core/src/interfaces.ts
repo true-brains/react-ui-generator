@@ -50,7 +50,7 @@ export interface FieldProps {
     value: string | boolean;
     isDirty: boolean;
   };
-  errors?: string[];
+  errors?: any[];
   actions: KeyValue;
   config: KeyValue;
   disabled: boolean;

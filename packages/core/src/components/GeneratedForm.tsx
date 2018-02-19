@@ -16,12 +16,13 @@ import { ListForm } from '../components/renderers/ListForm';
 export interface GeneratedFormProps {
   className: string;
   meta: FormMetaDescription;
-  data: KeyValue,
+  data: KeyValue;
   errors: KeyValue;
   validator(formData: KeyValue): KeyValue;
   renderers: { [key: string]: typeof FieldRenderer };
   actions?: KeyValue;
   onChange(data: any, errors: any): void;
+  isSubForm?: boolean;
 }
 
 export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
@@ -32,7 +33,7 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
   handleChange(fieldId: string, newValue: any): void {
     const nextData = { ...this.props.data };
     nextData[fieldId] = { value: newValue, isDirty: true };
-    const nextErrors = this.props.validator(nextData);
+    const nextErrors = this.props.isSubForm ? {} : this.props.validator(nextData);
 
     this.props.onChange(nextData, nextErrors.errors);
   }
@@ -71,23 +72,26 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
         continue;
       }
 
-      const Renderer = type === 'form'
-        ? SubForm
-        : type === 'list' ? ListForm : renderers[type];
+      const Renderer =
+        type === 'form' ? SubForm : type === 'list' ? ListForm : renderers[type];
 
       const actions: { [key: string]: any } = Utils.extractFieldActions(
         formActions,
         fieldActions
       );
 
-      const subFormAdditionalProps = (type === 'form' || type === 'list') ? {
-        serializer,
-        renderers,
-        formData: data[id],
-        actions: formActions,
-        errors: errors[id] || {},
-        validator,
-      } : {};
+      const subFormAdditionalProps =
+        type === 'form' || type === 'list'
+          ? {
+              isSubForm: true,
+              formData: data[id],
+              actions: formActions,
+              errors: errors[id] || (type === 'list' ? [] : {}),
+              serializer,
+              renderers,
+              validator
+            }
+          : {};
 
       fields.push(
         <Renderer
@@ -101,7 +105,7 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
             this.handleChange(id, newValue);
           }}
           disabled={disabled}
-          { ...subFormAdditionalProps }
+          {...subFormAdditionalProps}
         >
           {id}
         </Renderer>

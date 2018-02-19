@@ -40,7 +40,7 @@ class GeneratedFormExample extends React.PureComponent {
 
     return (
       <GeneratedForm
-        className="form"
+        className="form-demo"
         meta={meta}
         data={data}
         errors={errors}
@@ -65,10 +65,12 @@ class GeneratedFormExample extends React.PureComponent {
 
             <div className="form-group">
               <Field id="relatives" className="card--spaced">
-                <div className="form-inline">
-                  <FormGroups className="mb-2 mr-sm-2 mb-sm-0">
-                    <Fields />
+                <div className="form-inline1 row">
+                  <FormGroups className="col-md-4">
+                    <Fields until="btnRemoveRelative" />
                   </FormGroups>
+
+                  <Field id="btnRemoveRelative" />
                 </div>
               </Field>
             </div>

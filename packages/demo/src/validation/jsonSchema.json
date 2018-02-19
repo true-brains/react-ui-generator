@@ -35,11 +35,11 @@
 				"properties": {
           "firstName": {
             "type": "string",
-            "pattern": "^[A-Z]+([A-Za-z]*[ -]+)*"
+            "pattern": "^[A-Z]+([A-Za-z]+[ -]?)+$"
           },
           "lastName": {
             "type": "string",
-            "pattern": "^[A-Z]+([A-Za-z]*[ -]+)*"
+            "pattern": "^[A-Z]+([A-Za-z]+[ -]?)+$"
           }
         },
         "required": ["firstName", "lastName"]

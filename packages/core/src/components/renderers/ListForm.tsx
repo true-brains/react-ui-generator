@@ -72,11 +72,12 @@ export class ListForm extends React.PureComponent<ListFormProps, {}> {
           className={className || ''}
           meta={{ fields: enhancedFieldsMeta }}
           data={itemData}
-          errors={errors}
+          errors={errors[idx] || {}}
           validator={validator}
           renderers={renderers}
           actions={wrappedActions}
           onChange={data => this.handleOnChange(idx, data)}
+          isSubForm
         >
           {this.props.children}
         </GeneratedForm>

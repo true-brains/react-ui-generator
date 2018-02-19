@@ -17,7 +17,10 @@ module.exports = {
     modules: [resolve('src'), 'node_modules'],
     plugins: [
       new TsConfigPathsPlugin({})
-    ]
+    ],
+    // alias: {
+    //   'lodash-set': resolve('node_modules/lodash.set'),
+    // }
   },
 
   module: {

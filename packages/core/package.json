@@ -12,18 +12,18 @@
   "author": "Alexei Zaviruha <a.zaviruha@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@types/react": "^16.0.29"
+    "lodash": "^4.17.5"
   },
   "devDependencies": {
     "@types/ajv": "^1.0.0",
-    "@types/lodash.get": "^4.4.3",
+    "@types/lodash": "^4.14.104",
+    "@types/react": "^16.0.29",
     "awesome-typescript-loader": "^3.4.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
     "babel-preset-env": "^1.6.1",
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
-    "lodash.get": "^4.4.2",
     "source-map-loader": "^0.2.3",
     "typescript": "^2.6.2",
     "webpack": "^3.10.0"
