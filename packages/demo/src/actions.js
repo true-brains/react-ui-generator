@@ -1,4 +1,4 @@
-import { buildJSONSerializer } from '@react-ui-generator/core';
+import { buildJSONSerializer } from '@react-ui-generator/serializers';
 
 export const UPDATE_FORM = 'UPDATE_FORM';
 export const TOGGLE_SEX = 'TOGGLE_SEX';

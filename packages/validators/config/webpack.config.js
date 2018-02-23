@@ -3,9 +3,9 @@ const path = require('path');
 const resolve = dir => path.join(__dirname, '..', dir);
 
 module.exports = {
-  entry: resolve('src/index.tsx'),
+  entry: resolve('src/index.ts'),
   output: {
-    filename: 'layouts.js',
+    filename: 'validators.js',
     path: resolve('out'),
     libraryTarget: 'umd'
   },
@@ -14,7 +14,7 @@ module.exports = {
   devtool: 'source-map',
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
+    extensions: ['.ts', '.js', '.json'],
     modules: [resolve('src'), 'node_modules'],
     plugins: [
       new TsConfigPathsPlugin({})
@@ -23,14 +23,14 @@ module.exports = {
 
   module: {
     rules: [
-      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
+      // All files with a '.ts' extension will be handled by 'awesome-typescript-loader'.
       {
         test: /\.tsx?$/,
         use: [
           {
             loader: 'babel-loader',
             options: {
-              presets: ['env', 'stage-3', 'react']
+              presets: ['env', 'stage-3']
             }
           },
           'awesome-typescript-loader'

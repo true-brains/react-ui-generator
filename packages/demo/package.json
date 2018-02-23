@@ -25,9 +25,11 @@
     "webpack-visualizer-plugin": "^0.1.11"
   },
   "dependencies": {
-    "@react-ui-generator/bootstrap": "*",
     "@react-ui-generator/core": "*",
-    "@react-ui-generator/layouts": "*",
+    "@react-ui-generator/bootstrap": "*",
+    "@react-ui-generator/validators": "*",
+    "@react-ui-generator/serializers": "*",
+    "@react-ui-generator/common-layouts": "*",
     "ajv": "^6.0.0",
     "deepmerge": "^2.0.1",
     "history": "^4.7.2",

@@ -5,7 +5,7 @@ const resolve = dir => path.join(__dirname, '..', dir);
 module.exports = {
   entry: resolve('src/index.tsx'),
   output: {
-    filename: 'bootstrap.js',
+    filename: 'common-layouts.js',
     path: resolve('out'),
     libraryTarget: 'umd'
   },
