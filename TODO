@@ -13,6 +13,7 @@ Roadmap:
   ✔ Implement serializer for nested forms @done(18-02-19 22:39)
   ✔ Implement isValid argument for form's onChange callback @done(18-02-19 22:46)
   ✔ Split core to few more packages (validators, serializers) @done(18-02-23 09:38)
+  ☐ Consider and maybe move `errors` into `data`.
   ☐ Implement dirtify helper
   ☐ Add basic russian documentation
   ☐ Add basic english documentation

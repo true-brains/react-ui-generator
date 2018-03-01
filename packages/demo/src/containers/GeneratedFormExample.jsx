@@ -6,7 +6,6 @@ import {
   GeneratedForm,
   Field,
   Fields,
-  FieldRenderer,
 } from '@react-ui-generator/core';
 
 import { buildAjvValidator } from '@react-ui-generator/validators';

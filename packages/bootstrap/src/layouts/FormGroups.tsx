@@ -1,7 +1,7 @@
 import * as React from 'react';
 import makeClass from 'classnames';
 import { FormGroup, Label } from 'reactstrap';
-import { FieldRendererProps, FieldRenderer } from '@react-ui-generator/core';
+import { FieldRendererProps } from '@react-ui-generator/core';
 import Renderers from '../renderers';
 
 export interface FormGroupsProps {
