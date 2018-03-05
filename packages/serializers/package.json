@@ -1,6 +1,6 @@
 {
   "name": "@react-ui-generator/serializers",
-  "version": "0.0.0",
+  "version": "0.1.0",
   "description": "Collection of bindings for popular serializations libraries to react-ui-generator",
   "main": "./out/serializers.js",
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/serializers",
@@ -11,7 +11,7 @@
   "author": "Alexei Zaviruha <a.zaviruha@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@react-ui-generator/core": "*",
+    "@react-ui-generator/core": "^0.1.0",
     "lodash": "^4.17.5"
   },
   "devDependencies": {
