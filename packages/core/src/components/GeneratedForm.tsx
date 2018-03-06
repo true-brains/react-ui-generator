@@ -1,5 +1,6 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
+import { get } from 'lodash';
 
 import {
   FormMetaDescription,
@@ -33,7 +34,10 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
   handleChange(fieldId: string, newValue: any): void {
     const nextData = { ...this.props.data };
     nextData[fieldId] = { value: newValue, isDirty: true };
-    const nextErrors = this.props.isSubForm ? {} : this.props.validator(nextData);
+
+    const { validator, isSubForm } = this.props;
+    const isValidated = validator && !isSubForm; // subforms are self-validated
+    const nextErrors = isValidated ? validator(nextData) : { isValid: true, errors: {} };
 
     this.props.onChange(nextData, nextErrors.errors, nextErrors.isValid);
   }
@@ -86,7 +90,7 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
               isSubForm: true,
               formData: data[id],
               actions: formActions,
-              errors: errors[id] || (type === 'list' ? [] : {}),
+              errors: get(errors, id, (type === 'list' ? [] : {})),
               serializer,
               renderers,
               validator
@@ -98,7 +102,7 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
           key={id}
           id={id}
           data={data[id]}
-          errors={errors[id]}
+          errors={get(errors, id, null)}
           config={config}
           actions={actions}
           onChange={(newValue: any) => {
