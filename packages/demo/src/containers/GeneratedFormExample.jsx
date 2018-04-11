@@ -10,6 +10,7 @@ import {
 
 import { buildAjvValidator } from '@react-ui-generator/validators';
 import { Renderers, Layouts } from '@react-ui-generator/bootstrap';
+import { Renderers as AntRenderers } from '@react-ui-generator/antd';
 
 import {
   toggleSex,
@@ -28,7 +29,8 @@ import validationSchema from '../validation/jsonSchema.json';
  */
 const renderers = {
   ...Renderers,
-  closeButton: CloseButton
+  closeButton: CloseButton,
+  button: AntRenderers.button,
 };
 
 const { FormGroups } = Layouts;

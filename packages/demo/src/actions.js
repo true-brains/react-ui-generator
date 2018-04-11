@@ -24,6 +24,9 @@ export const sendForm = () => (dispatch, getState) => {
       console.log('Serialized data was successfully sent: ', serializedForm);
       dispatch({ type: FORM_SENDING_FINISH });
     }, 2000);
+  } else {
+    // TODO: add form dirtyfying
+    console.error('Form is invalid');
   }
 };
 
