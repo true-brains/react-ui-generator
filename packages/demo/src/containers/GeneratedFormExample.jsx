@@ -30,6 +30,8 @@ import validationSchema from '../validation/jsonSchema.json';
 const renderers = {
   ...Renderers,
   closeButton: CloseButton,
+
+  text: AntRenderers.text,
   button: AntRenderers.button,
 };
 
