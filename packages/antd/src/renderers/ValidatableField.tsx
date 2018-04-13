@@ -16,27 +16,11 @@ export class ValidatableField extends React.PureComponent<ValidatableFieldProps,
     const isValidated = Boolean(errors) && isDirty;
     const isValid = !isValidated || !errors.length;
 
-    // const validatedChildren = React.Children.map(
-    //   children,
-    //   (child: JSX.Element, idx: number) => {
-    //     // bootstrap components can be followed by a label,
-    //     // so we explicitly process only the first child
-    //     return idx === 0
-    //       ? React.cloneElement(child, {
-    //           valid: isValidated ? isValid : undefined
-    //         })
-    //       : child;
-    //   }
-    // );
-
-    // if (!isValidated) {
-    //   return [children];
-    // }
+    const errorComponents = (errors || []).map((err, idx) => (<div key={idx}>{err}</div>))
 
     return(
       <FormItem
-        // key={`${error}-${idx}`}
-        help={(errors || []).length ? errors[0] : ''}
+        help={(isValidated && (errors || []).length) ? errorComponents : ''}
         validateStatus={isValidated ? (isValid ? 'success' : 'error') : null}
         hasFeedback={isValidated}
       >
