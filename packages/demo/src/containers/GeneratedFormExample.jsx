@@ -32,6 +32,7 @@ const renderers = {
   closeButton: CloseButton,
 
   text: AntRenderers.text,
+  checkbox: AntRenderers.checkbox,
   button: AntRenderers.button,
 };
 
@@ -54,39 +55,39 @@ class GeneratedFormExample extends React.PureComponent {
       >
         <div className="card border-dark mb-3">
           <div className="card-body">
-            <FormGroups>
+            {/* <FormGroups> */}
               <Fields until="aboutMe" />
-            </FormGroups>
+            {/* </FormGroups> */}
 
             <hr className="example-of-custom-layout" />
 
-            <FormGroups>
+            {/* <FormGroups> */}
               <Field id="aboutMe" />
-            </FormGroups>
+            {/* </FormGroups> */}
 
             <hr className="example-of-custom-layout" />
 
             <div className="form-group">
               <Field id="relatives" className="card--spaced">
                 <div className="form-inline1 row">
-                  <FormGroups className="col-md-4">
+                  {/* <FormGroups className="col-md-4"> */}
                     <Fields until="btnRemoveRelative" />
-                  </FormGroups>
+                  {/* </FormGroups> */}
 
                   <Field id="btnRemoveRelative" />
                 </div>
               </Field>
             </div>
 
-            <FormGroups>
+            {/* <FormGroups> */}
               <Field id="btnAddRelative" />
-            </FormGroups>
+            {/* </FormGroups> */}
 
             <hr className="example-of-custom-layout" />
 
-            <FormGroups>
+            {/* <FormGroups> */}
               <Fields until="btnSend" />
-            </FormGroups>
+            {/* </FormGroups> */}
           </div>
         </div>
 

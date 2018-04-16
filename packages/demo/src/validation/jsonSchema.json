@@ -20,7 +20,8 @@
       "enum": ["male", "female"]
     },
     "isMarried": {
-      "type": "boolean"
+      "_type": "boolean",
+      "const": true
     },
     "aboutMe": {
       "type": "string",

@@ -8,11 +8,12 @@ export interface ValidatableFieldProps {
   isDirty: boolean;
   children: JSX.Element | JSX.Element[];
   labelOnly?: boolean;
+  hasFeedback?: boolean;
 }
 
 export class ValidatableField extends React.PureComponent<ValidatableFieldProps, {}> {
   render() {
-    const { errors, isDirty, children, labelOnly } = this.props;
+    const { errors, isDirty, children, labelOnly, hasFeedback } = this.props;
     const isValidated = Boolean(errors) && isDirty;
     const isValid = !isValidated || !errors.length;
 
@@ -22,7 +23,7 @@ export class ValidatableField extends React.PureComponent<ValidatableFieldProps,
       <FormItem
         help={(isValidated && (errors || []).length) ? errorComponents : ''}
         validateStatus={isValidated ? (isValid ? 'success' : 'error') : null}
-        hasFeedback={isValidated}
+        hasFeedback={(hasFeedback !== undefined) ? hasFeedback : isValidated}
       >
         {children}
       </FormItem>

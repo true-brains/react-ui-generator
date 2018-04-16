@@ -3,7 +3,7 @@ import { Text } from './Text';
 // import { TextArea } from './TextArea';
 // import { Dropdown } from './Dropdown';
 // import { Select } from './Select';
-// import { Checkbox } from './Checkbox';
+import { _Checkbox } from './Checkbox';
 // import { Radiogroup } from './Radiogroup';
 
 export default {
@@ -12,6 +12,6 @@ export default {
   // textarea: TextArea,
   // dropdown: Dropdown,
   // select: Select,
-  // checkbox: Checkbox,
+  checkbox: _Checkbox,
   // radiogroup: Radiogroup
 }
