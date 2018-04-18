@@ -33,6 +33,7 @@ const renderers = {
 
   text: AntRenderers.text,
   checkbox: AntRenderers.checkbox,
+  radiogroup: AntRenderers.radiogroup,
   button: AntRenderers.button,
 };
 

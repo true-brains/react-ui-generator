@@ -4,7 +4,7 @@ import { Text } from './Text';
 // import { Dropdown } from './Dropdown';
 // import { Select } from './Select';
 import { _Checkbox } from './Checkbox';
-// import { Radiogroup } from './Radiogroup';
+import { _RadioGroup } from './Radiogroup';
 
 export default {
   button: _Button,
@@ -13,5 +13,5 @@ export default {
   // dropdown: Dropdown,
   // select: Select,
   checkbox: _Checkbox,
-  // radiogroup: Radiogroup
+  radiogroup: _RadioGroup
 }
