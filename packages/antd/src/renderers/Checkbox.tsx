@@ -19,7 +19,11 @@ export class _Checkbox extends React.PureComponent<CheckboxProps, {}> {
       config.label || (id.length ? id.charAt(0).toUpperCase() + id.slice(1) : '');
 
     return (
-      <ValidatableField errors={errors} isDirty={data.isDirty} hasFeedback={false}>
+      <ValidatableField
+        errors={errors}
+        isDirty={data.isDirty}
+        hasFeedback={false}
+      >
         <Checkbox
           className={className || ''}
           disabled={disabled}

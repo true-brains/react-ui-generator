@@ -1,6 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Ajv from 'ajv';
+import { Form } from 'antd';
 
 import {
   GeneratedForm,
@@ -34,6 +35,7 @@ const renderers = {
   text: AntRenderers.text,
   checkbox: AntRenderers.checkbox,
   radiogroup: AntRenderers.radiogroup,
+  select: AntRenderers.select,
   button: AntRenderers.button,
 };
 
@@ -56,19 +58,15 @@ class GeneratedFormExample extends React.PureComponent {
       >
         <div className="card border-dark mb-3">
           <div className="card-body">
-            {/* <FormGroups> */}
+          <Form>
               <Fields until="aboutMe" />
-            {/* </FormGroups> */}
 
-            <hr className="example-of-custom-layout" />
+              <hr className="example-of-custom-layout" />
 
-            {/* <FormGroups> */}
               <Field id="aboutMe" />
-            {/* </FormGroups> */}
 
-            <hr className="example-of-custom-layout" />
+              <hr className="example-of-custom-layout" />
 
-            <div className="form-group">
               <Field id="relatives" className="card--spaced">
                 <div className="form-inline1 row">
                   {/* <FormGroups className="col-md-4"> */}
@@ -78,17 +76,13 @@ class GeneratedFormExample extends React.PureComponent {
                   <Field id="btnRemoveRelative" />
                 </div>
               </Field>
-            </div>
 
-            {/* <FormGroups> */}
               <Field id="btnAddRelative" />
-            {/* </FormGroups> */}
 
-            <hr className="example-of-custom-layout" />
+              <hr className="example-of-custom-layout" />
 
-            {/* <FormGroups> */}
               <Fields until="btnSend" />
-            {/* </FormGroups> */}
+          </Form>
           </div>
         </div>
 

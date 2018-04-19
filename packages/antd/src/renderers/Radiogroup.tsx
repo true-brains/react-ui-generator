@@ -21,7 +21,6 @@ export class _RadioGroup extends React.PureComponent<RadiogroupProps, {}> {
 
   render() {
     const { id, data, className, onChange, config, disabled, errors } = this.props;
-    console.log('radiogroup items: ', config.options);
 
     return (
       <ValidatableField
