@@ -10,8 +10,7 @@ import {
 } from '@react-ui-generator/core';
 
 import { buildAjvValidator } from '@react-ui-generator/validators';
-import { Renderers, Layouts } from '@react-ui-generator/bootstrap';
-import { Renderers as AntRenderers } from '@react-ui-generator/antd';
+import { Renderers } from '@react-ui-generator/antd';
 
 import {
   toggleSex,
@@ -31,15 +30,7 @@ import validationSchema from '../validation/jsonSchema.json';
 const renderers = {
   ...Renderers,
   closeButton: CloseButton,
-
-  text: AntRenderers.text,
-  checkbox: AntRenderers.checkbox,
-  radiogroup: AntRenderers.radiogroup,
-  select: AntRenderers.select,
-  button: AntRenderers.button,
 };
-
-const { FormGroups } = Layouts;
 
 class GeneratedFormExample extends React.PureComponent {
   render() {
@@ -68,11 +59,8 @@ class GeneratedFormExample extends React.PureComponent {
               <hr className="example-of-custom-layout" />
 
               <Field id="relatives" className="card--spaced">
-                <div className="form-inline1 row">
-                  {/* <FormGroups className="col-md-4"> */}
-                    <Fields until="btnRemoveRelative" />
-                  {/* </FormGroups> */}
-
+                <div className="form-inline row">
+                  <Fields until="btnRemoveRelative" />
                   <Field id="btnRemoveRelative" />
                 </div>
               </Field>

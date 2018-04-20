@@ -40,6 +40,18 @@
     },
 
     {
+      "id": "birthdate",
+      "renderer": {
+        "type": "date",
+        "config": {
+          "label": "Birthday",
+          "placeholder": "Enter your birthday",
+          "format": "DD.MM.YYYY"
+        }
+      }
+    },
+
+    {
       "id": "sex",
       "renderer": {
         "type": "select",
@@ -141,7 +153,7 @@
         "type": "button",
         "config": {
           "title": "Add relatives",
-          "color": "dark",
+          "color": "primary",
           "outline": true
         }
       },

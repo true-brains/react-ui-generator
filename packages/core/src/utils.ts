@@ -122,6 +122,7 @@ export function withDefaults(
     select: '',
     text: '',
     textarea: '',
+    date: null,
     ...defaults
   };
 
