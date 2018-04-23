@@ -24,7 +24,7 @@ function prepareValidatedData(formValue: KeyValue): KeyValue {
       
       if (Array.isArray(value)) {
         value = value.map(prepareValidatedData);
-      } else if (typeof value === 'object') {
+      } else if (value && (typeof value === 'object')) {
         value = prepareValidatedData(value);
       }
 

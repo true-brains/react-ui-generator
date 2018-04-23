@@ -111,7 +111,8 @@
         "type": "upload",
         "config": {
           "label": "Upload your CV",
-          "url": "//jsonplaceholder.typicode.com/posts/"
+          "url": "//jsonplaceholder.typicode.com/posts/",
+          "responsePath": "id"
         }
       }
     },
