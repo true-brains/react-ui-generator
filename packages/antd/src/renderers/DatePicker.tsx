@@ -13,8 +13,6 @@ export interface DatePickerProps extends FieldProps {
 
 export class _DatePicker extends React.PureComponent<DatePickerProps, {}> {
   handleChange = (date: Moment, dateString: String): void => {
-    console.log('date:', date);
-    console.log('dateString:', dateString);
     this.props.onChange(dateString);
   }
 
@@ -23,8 +21,6 @@ export class _DatePicker extends React.PureComponent<DatePickerProps, {}> {
     const format = config.format || 'YYYY-MM-DD';
     const { value } = data;
     const momentValue: Moment = value ? moment(String(value), format) : undefined;
-    console.log('data: ', data);
-    console.log('momentValue: ', momentValue);
 
     return (
       <ValidatableField errors={errors} isDirty={data.isDirty}>

@@ -123,6 +123,8 @@ export function withDefaults(
     text: '',
     textarea: '',
     date: null,
+    upload: null,
+
     ...defaults
   };
 

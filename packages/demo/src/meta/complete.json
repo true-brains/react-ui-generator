@@ -106,6 +106,17 @@
     },
 
     {
+      "id": "cv",
+      "renderer": {
+        "type": "upload",
+        "config": {
+          "label": "Upload your CV",
+          "url": "//jsonplaceholder.typicode.com/posts/"
+        }
+      }
+    },
+
+    {
       "id": "relatives",
       "serializer": "additional.relatives",
       "renderer": {

@@ -5,6 +5,7 @@ import { _Select } from './Select';
 import { _Checkbox } from './CheckBox';
 import { _RadioGroup } from './RadioGroup';
 import { _DatePicker } from './DatePicker';
+import { _Upload } from './Upload';
 
 export default {
   button: _Button,
@@ -14,4 +15,5 @@ export default {
   checkbox: _Checkbox,
   radiogroup: _RadioGroup,
   date: _DatePicker,
+  upload: _Upload,
 }
