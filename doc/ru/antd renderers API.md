@@ -1,4 +1,4 @@
-# API для отрисовщиков на базе библиотеки Ant Design
+# API отрисовщиков на базе библиотеки Ant Design
 
 ## Тип отрисовщика "text"
 
@@ -66,7 +66,7 @@
 
 ```js
 {
-  "type": "radiogroup",
+  "type": "select",
   "config": {
     "label": "...",
     "title": "...",
