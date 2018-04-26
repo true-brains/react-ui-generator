@@ -3,26 +3,39 @@ import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
 import Checkbox, { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import { FieldProps } from '@react-ui-generator/core';
-import { ValidatableField } from './ValidatableField';
+import { FieldWrapper } from './FieldWrapper';
 
 export interface CheckboxProps extends FieldProps {}
 
 export class _Checkbox extends React.PureComponent<CheckboxProps, {}> {
   handleChange = (event: CheckboxChangeEvent): void => {
     this.props.onChange(event.target.checked);
-  }
+  };
 
   render() {
-    const { id, data, className, onChange, config, disabled, errors } = this.props;
-    const value: boolean = (typeof data.value === "string") ? data.value !== '' : data.value;
-    const label =
-      config.label || (id.length ? id.charAt(0).toUpperCase() + id.slice(1) : '');
+    const {
+      id,
+      data,
+      className,
+      onChange,
+      config: { label, title },
+      disabled,
+      errors,
+      ...rest
+    } = this.props;
+
+    const value: boolean =
+      typeof data.value === 'string' ? data.value !== '' : data.value;
+
+    const _label = label || (id.length ? id.charAt(0).toUpperCase() + id.slice(1) : '');
 
     return (
-      <ValidatableField
+      <FieldWrapper
         errors={errors}
         isDirty={data.isDirty}
         hasFeedback={false}
+        label={_label}
+        {...rest}
       >
         <Checkbox
           className={className || ''}
@@ -30,9 +43,9 @@ export class _Checkbox extends React.PureComponent<CheckboxProps, {}> {
           checked={value}
           onChange={this.handleChange}
         >
-          {label}
+          {title}
         </Checkbox>
-      </ValidatableField>
+      </FieldWrapper>
     );
   }
 }

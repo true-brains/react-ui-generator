@@ -3,7 +3,7 @@ import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
 import Radio from 'antd/lib/radio';
 import { FieldProps } from '@react-ui-generator/core';
-import { ValidatableField } from './ValidatableField';
+import { FieldWrapper } from './FieldWrapper';
 
 const RadioGroup = Radio.Group;
 
@@ -20,13 +20,24 @@ export class _RadioGroup extends React.PureComponent<RadiogroupProps, {}> {
   }
 
   render() {
-    const { id, data, className, onChange, config, disabled, errors } = this.props;
+    const {
+      id,
+      data,
+      className,
+      onChange,
+      config,
+      disabled,
+      errors,
+      ...rest
+    } = this.props;
 
     return (
-      <ValidatableField
+      <FieldWrapper
         errors={errors}
         isDirty={data.isDirty}
         hasFeedback={false}
+        label={config.label}
+        {...rest}
       >
         <RadioGroup
           value={data.value}
@@ -36,16 +47,12 @@ export class _RadioGroup extends React.PureComponent<RadiogroupProps, {}> {
           }}
         >
           {config.options.map((item: RadiogroupItem, idx: number) => (
-              <Radio
-                key={`${item.id}-${idx}`}
-                value={item.id}
-                className={className || ''}
-              >
-                {item.title}
-              </Radio>
+            <Radio key={`${item.id}-${idx}`} value={item.id} className={className || ''}>
+              {item.title}
+            </Radio>
           ))}
         </RadioGroup>
-      </ValidatableField>
+      </FieldWrapper>
     );
   }
 }

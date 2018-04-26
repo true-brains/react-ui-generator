@@ -3,7 +3,7 @@ import { ChangeEvent } from 'react';
 import makeClass from 'classnames';
 import Select, { SelectValue } from 'antd/lib/select';
 import { FieldProps, KeyValue } from '@react-ui-generator/core';
-import { ValidatableField } from './ValidatableField';
+import { FieldWrapper } from './FieldWrapper';
 
 const { Option } = Select;
 
@@ -14,7 +14,7 @@ export interface SelectProps extends FieldProps {
 }
 
 export interface SelectState {
-  valueTypes: KeyValue
+  valueTypes: KeyValue;
 }
 
 interface SelectItemProps {
@@ -44,36 +44,39 @@ export class _Select extends React.PureComponent<SelectProps, SelectState> {
 
   handleChange = (value: SelectValue): void => {
     this.props.onChange(value || '');
-  }
+  };
 
   render() {
     const {
       id,
       actions: { onToggle },
-      config: { title, options },
+      config: { title, options, label },
       data,
       disabled,
       className,
       onChange,
-      errors
+      errors,
+      ...rest
     } = this.props;
 
     const value: string = String(data.value);
 
     return (
-      <ValidatableField errors={errors} isDirty={data.isDirty}>
-        <Select
-          onChange={this.handleChange}
-          value={value}
-          allowClear
-        >
-          <Option value={''} disabled>{title}</Option>
+      <FieldWrapper errors={errors} isDirty={data.isDirty} label={label} {...rest}>
+        <Select onChange={this.handleChange} value={value} allowClear>
+          <Option value={''} disabled>
+            {title}
+          </Option>
           {options.map((item: SelectItemProps) => {
             const { id, title } = item;
-            return (<Option key={id} value={id}>{title}</Option>);
+            return (
+              <Option key={id} value={id}>
+                {title}
+              </Option>
+            );
           })}
         </Select>
-      </ValidatableField>
+      </FieldWrapper>
     );
   }
 }

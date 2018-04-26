@@ -3,8 +3,7 @@ import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
 import Input from 'antd/lib/input';
 import { FieldProps } from '@react-ui-generator/core';
-import { ValidatableField } from './ValidatableField';
-
+import { FieldWrapper } from './FieldWrapper';
 
 export interface TextProps extends FieldProps {}
 
@@ -14,11 +13,11 @@ export class Text extends React.PureComponent<TextProps, {}> {
   }
 
   render() {
-    const { id, data, className, onChange, config, disabled, errors } = this.props;
+    const { id, data, className, onChange, config, disabled, errors, ...rest } = this.props;
     const value: string = String(data.value);
 
     return (
-      <ValidatableField errors={errors} isDirty={data.isDirty}>
+      <FieldWrapper errors={errors} isDirty={data.isDirty} label={config.label} {...rest}>
         <Input
           id={id}
           type={config.isPassword ? 'password' : 'text'}
@@ -30,7 +29,7 @@ export class Text extends React.PureComponent<TextProps, {}> {
           }}
           disabled={disabled}
         />
-      </ValidatableField>
+      </FieldWrapper>
     );
   }
 }

@@ -49,28 +49,28 @@ class GeneratedFormExample extends React.PureComponent {
       >
         <div className="card border-dark mb-3">
           <div className="card-body">
-          <Form>
-              <Fields until="aboutMe" />
+            <Form layout="vertical">
+                <Fields until="aboutMe" />
 
-              <hr className="example-of-custom-layout" />
+                <hr className="example-of-custom-layout" />
 
-              <Field id="aboutMe" />
+                <Field id="aboutMe" />
 
-              <hr className="example-of-custom-layout" />
+                <hr className="example-of-custom-layout" />
 
-              <Field id="relatives" className="card--spaced">
-                <div className="form-inline row">
-                  <Fields until="btnRemoveRelative" />
-                  <Field id="btnRemoveRelative" />
-                </div>
-              </Field>
+                <Field id="relatives" className="card--spaced">
+                  <div className="form-inline row">
+                    <Fields until="btnRemoveRelative" />
+                    <Field id="btnRemoveRelative" />
+                  </div>
+                </Field>
 
-              <Field id="btnAddRelative" />
+                <Field id="btnAddRelative" />
 
-              <hr className="example-of-custom-layout" />
+                <hr className="example-of-custom-layout" />
 
-              <Fields until="btnSend" />
-          </Form>
+                <Fields until="btnSend" />
+            </Form>
           </div>
         </div>
 

@@ -72,8 +72,8 @@
       "renderer": {
         "type": "checkbox",
         "config": {
-          "label": "Married",
-          "title": "Are you married?"
+          "label": "Are you married?",
+          "title": "Married"
         }
       }
     },
