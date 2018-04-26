@@ -1,6 +1,6 @@
 {
   "name": "@react-ui-generator/bootstrap",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "description": "Renderers and layouts for react-ui-generator, based on Twitter Bootstrap",
   "main": "./out/bootstrap.js",
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/bootstrap",
@@ -11,7 +11,7 @@
   "author": "Alexei Zaviruha <a.zaviruha@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@react-ui-generator/core": "^0.1.1",
+    "@react-ui-generator/core": "^0.2.0",
     "classnames": "^2.2.5",
     "reactstrap": "next"
   },
