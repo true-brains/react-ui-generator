@@ -1,0 +1,183 @@
+{
+  "fields": [
+    {
+      "id": "email",
+      "renderer": {
+        "type": "text",
+        "config": {
+          "label": "E-mail",
+          "placeholder": "Enter your e-mail"
+        }
+      },
+      "serializer": "auth.email",
+      "hidden": false
+    },
+
+    {
+      "id": "password",
+      "renderer": {
+        "type": "text",
+        "config": {
+          "label": "Password",
+          "placeholder": "Enter your password",
+          "isPassword": true
+        }
+      },
+      "serializer": "auth.password"
+    },
+
+    {
+      "id": "confirmation",
+      "renderer": {
+        "type": "text",
+        "config": {
+          "label": "Confirmation",
+          "placeholder": "Enter your password again",
+          "isPassword": true
+        }
+      },
+      "serializer": null
+    },
+
+
+    {
+      "id": "sex",
+      "renderer": {
+        "type": "select",
+        "config": {
+          "label": "Gender",
+          "title": "Choose your gender",
+          "options": [
+            { "id": "male", "title": "Female" },
+            { "id": "female", "title": "Male" },
+            { "id": "dontknow", "title": "I don't know" }
+          ]
+        }
+      }
+    },
+
+    {
+      "id": "isMarried",
+      "renderer": {
+        "type": "checkbox",
+        "config": {
+          "label": "Are you married?",
+          "title": "Married"
+        }
+      }
+    },
+
+    {
+      "id": "aboutMe",
+      "renderer": {
+        "type": "textarea",
+        "config": {
+          "label": "Short bio",
+          "placeholder": "Write your short biography here...",
+          "rows": 2
+        }
+      },
+      "hidden": false
+    },
+
+    {
+      "id": "answer",
+      "renderer": {
+        "type": "radiogroup",
+        "config": {
+          "label": "What is the only correct answer from this list?",
+          "options": [
+            { "id": 42, "title": "42" },
+            { "id": 43, "title": "43" }
+          ]
+        }
+      }
+    },
+
+    {
+      "id": "relatives",
+      "serializer": "additional.relatives",
+      "renderer": {
+        "type": "list",
+        "config": {
+          "label": "Add information about your relatives",
+          "fields": [
+            {
+              "id": "firstName",
+              "renderer": {
+                "type": "text",
+                "config": {
+                  "label": "First name",
+                  "placeholder": "First name"
+                }
+              }
+            },
+            
+            {
+              "id": "lastName",
+              "renderer": {
+                "type": "text",
+                "config": {
+                  "label": "Last name",
+                  "placeholder": "Last name"
+                }
+              }
+            },
+
+            {
+              "id": "btnRemoveRelative",
+              "renderer": "closeButton",
+              "actions": {
+                "onClick": "removeRelative"
+              }
+            }
+          ]
+        }
+      }
+    },
+
+    {
+      "id": "btnAddRelative",
+      "renderer": {
+        "type": "button",
+        "config": {
+          "title": "Add relatives",
+          "color": "primary",
+          "outline": true
+        }
+      },
+      "actions": {
+        "onClick": "addRelative"
+      }
+    },
+
+    {
+      "id": "btnSend",
+      "renderer": {
+        "type": "button",
+        "config": {
+          "title": "Send",
+          "color": "primary"
+        }
+      },
+      "actions": {
+        "onClick": "sendForm"
+      }
+    },
+
+    {
+      "id": "btnClear",
+      "renderer": {
+        "type": "button",
+        "config": {
+          "title": "Clear",
+          "color": "primary",
+          "outline": true
+        }
+      },
+      "actions": {
+        "onClick": "clearForm"
+      }
+    }
+  ]
+}

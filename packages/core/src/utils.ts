@@ -24,7 +24,7 @@ export function layout(
   return React.Children.map(children, (child: NodeWithId) => {
     if (!child || !child.type) return child;
 
-    if (child.type === Field || child.type.toString() === Field.toString()) {
+    if (child.type === Field) {
       const idx = findFieldIdx(fields, child.props.id);
       const [field] = fields.splice(idx, 1);
 
@@ -32,7 +32,7 @@ export function layout(
         children: child.props.children,
         className: child.props.className || ''
       }) : field
-    } else if ((child.type === Fields) || child.type.toString() === Fields.toString()) {
+    } else if ((child.type === Fields)) {
       const fieldId = child.props && child.props.until;
       const idx = fieldId ? findFieldIdx(fields, fieldId) : fields.length;
 
