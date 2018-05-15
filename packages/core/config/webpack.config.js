@@ -1,4 +1,5 @@
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
+// const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
 const path = require('path');
 const resolve = dir => path.join(__dirname, '..', dir);
 
@@ -18,9 +19,6 @@ module.exports = {
     plugins: [
       new TsConfigPathsPlugin({})
     ],
-    // alias: {
-    //   'lodash-set': resolve('node_modules/lodash.set'),
-    // }
   },
 
   module: {
@@ -59,5 +57,9 @@ module.exports = {
         commonjs: 'react',
         amd: 'react'
     }
-  }
+  },
+
+  plugins: [
+    // new WebpackCleanupPlugin(),
+  ]
 };

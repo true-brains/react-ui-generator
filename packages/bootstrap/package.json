@@ -13,7 +13,8 @@
   "dependencies": {
     "@react-ui-generator/core": "^0.2.0",
     "classnames": "^2.2.5",
-    "reactstrap": "next"
+    "reactstrap": "next",
+    "webpack-merge": "^4.1.2"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
@@ -27,7 +28,8 @@
     "babel-preset-stage-3": "^6.24.1",
     "source-map-loader": "^0.2.3",
     "typescript": "^2.6.2",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "webpack-cleanup-plugin": "^0.5.1"
   },
   "peerDependencies": {
     "react": "^16.2.0"

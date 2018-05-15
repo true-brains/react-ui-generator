@@ -1,6 +1,6 @@
-import * as React from 'react';
-import makeClass from 'classnames';
+import React from 'react';
 import { ChangeEvent } from 'react';
+import makeClass from 'classnames';
 import Checkbox, { CheckboxChangeEvent } from 'antd/lib/checkbox';
 import { FieldProps } from '@react-ui-generator/core';
 import { FieldWrapper } from './FieldWrapper';

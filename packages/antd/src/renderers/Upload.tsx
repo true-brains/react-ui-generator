@@ -1,7 +1,7 @@
 import * as React from 'react';
 import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
-import { get } from 'lodash';
+import get from 'lodash.get';
 import Upload, { UploadChangeParam } from 'antd/lib/upload';
 import Button from 'antd/lib/button';
 import Icon  from 'antd/lib/icon';

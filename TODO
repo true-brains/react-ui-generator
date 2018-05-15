@@ -15,6 +15,7 @@ Roadmap:
   ✔ Split core to few more packages (validators, serializers). @done(18-02-23 09:38)
   ✔ Consider moving `errors` into `data`. @done(18-03-01 09:15)  -- rejected. Simple props are easy to undestand and manipulate.
   ✔ Make `errors` and `validator` optional. @done(18-03-06 09:27)
+  ✔ Minimize bundle size @done(18-05-15 15:01)
   ☐ Implement dirtify helper.
   ☐ Add basic russian documentation.
   ☐ Add basic english documentation.

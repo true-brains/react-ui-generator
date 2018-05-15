@@ -12,11 +12,13 @@
   "author": "Alexei Zaviruha <a.zaviruha@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "lodash": "^4.17.5"
+    "lodash.get": "^4.4.2",
+    "lodash.set": "^4.3.2",
+    "webpack-merge": "^4.1.2"
   },
   "devDependencies": {
-    "@types/ajv": "^1.0.0",
-    "@types/lodash": "^4.14.104",
+    "@types/lodash.get": "^4.4.3",
+    "@types/lodash.set": "^4.3.3",
     "@types/react": "^16.0.29",
     "awesome-typescript-loader": "^3.4.1",
     "babel-core": "^6.26.0",
@@ -26,7 +28,8 @@
     "babel-preset-stage-3": "^6.24.1",
     "source-map-loader": "^0.2.3",
     "typescript": "^2.6.2",
-    "webpack": "^3.10.0"
+    "webpack": "^3.10.0",
+    "webpack-cleanup-plugin": "^0.5.1"
   },
   "peerDependencies": {
     "react": "^16.2.0"

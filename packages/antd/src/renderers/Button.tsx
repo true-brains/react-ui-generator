@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import Button, { ButtonType, ButtonSize } from 'antd/lib/button';
 import makeClass from 'classnames';
 

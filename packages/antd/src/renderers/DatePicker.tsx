@@ -1,6 +1,6 @@
-import * as React from 'react';
-import makeClass from 'classnames';
+import React from 'react';
 import { ChangeEvent } from 'react';
+import makeClass from 'classnames';
 import DatePicker from 'antd/lib/date-picker';
 import { FieldProps } from '@react-ui-generator/core';
 import { FieldWrapper } from './FieldWrapper';

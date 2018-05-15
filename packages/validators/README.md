@@ -1,3 +1,7 @@
 # react-ui-generator/validators
 
- ## How to write your own binding for Y (example).
+## Getting started
+
+`npm i @react-ui-generator/validators ajv --save`
+
+## How to write your own binding for Y (example).

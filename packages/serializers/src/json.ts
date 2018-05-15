@@ -1,4 +1,5 @@
-import { get, set } from 'lodash';
+import get from 'lodash.get';
+import set from 'lodash.set';
 import { KeyValue, serializeToObject } from '@react-ui-generator/core';
 
 export function buildJSONSerializer() {

@@ -1,4 +1,6 @@
-import { get, set } from 'lodash';
+// import * as React from 'react';
+import get from 'lodash.get';
+import set from 'lodash.set';
 import { FormMetaDescription, KeyValue } from './interfaces';
 
 export function serializeToObject(formData: KeyValue): KeyValue {

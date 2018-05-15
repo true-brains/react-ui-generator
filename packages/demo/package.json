@@ -6,9 +6,9 @@
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/demo",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
-    "build": "webpack --config webpack.config.js",
-    "start": "yarn run webpack-dev-server --config webpack.config.js --mode production",
-    "start:dev": "yarn run webpack-dev-server --config webpack.config.js --mode development"
+    "build": "yarn run webpack-cli --config ./config/webpack.common.js --mode development",
+    "build:prod": "yarn run webpack-cli --config ./config/webpack.prod.js --mode production",
+    "start": "yarn run webpack-dev-server --config ./config/webpack.dev.js --mode development"
   },
   "author": "Alexei Zaviruha <a.zaviruha@gmail.com>",
   "license": "MIT",
@@ -20,10 +20,14 @@
     "babel-preset-react": "^6.24.1",
     "babel-preset-stage-3": "^6.24.1",
     "html-webpack-plugin": "^3.2.0",
+    "progress-bar-webpack-plugin": "^1.11.0",
     "react-hot-loader": "^3.1.3",
     "source-map-explorer": "^1.5.0",
     "source-map-loader": "^0.2.3",
+    "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.8.1",
+    "webpack-bundle-analyzer": "^2.11.3",
+    "webpack-cleanup-plugin": "^0.5.1",
     "webpack-cli": "^2.1.3",
     "webpack-dev-server": "^3.1.4",
     "webpack-visualizer-plugin": "^0.1.11"
@@ -41,6 +45,7 @@
     "react-dom": "^16.2.0",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
-    "redux-thunk": "^2.2.0"
+    "redux-thunk": "^2.2.0",
+    "webpack-merge": "^4.1.2"
   }
 }

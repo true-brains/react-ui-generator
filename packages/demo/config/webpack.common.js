@@ -2,9 +2,10 @@ const fs = require('fs');
 const path = require('path');
 const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const Visualizer = require('webpack-visualizer-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
+const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
-const resolve = dir => path.join(__dirname, dir);
+const resolve = dir => path.join(__dirname, '../', dir);
 
 module.exports = {
   entry: {
@@ -13,7 +14,8 @@ module.exports = {
 
   output: {
     path: resolve('out'),
-    filename: '[name].js'
+    filename: '[name].js',
+    sourceMapFilename: '[file].map',
   },
 
   module: {
@@ -25,7 +27,6 @@ module.exports = {
 
         options: {
           presets: ['env', 'stage-3', 'react']
-          // plugins: [ 'react-hot-loader/babel' ]
         }
       }
     ]
@@ -43,38 +44,16 @@ module.exports = {
       '@meta': resolve('src/meta'),
       '@validation': resolve('src/validation'),
       '@actions': resolve('src/actions'),
-
-      // Required for Lerna
-      // react: path.resolve(__dirname, 'node_modules/react')
     }
   },
 
-  devServer: {
-    contentBase: resolve('out'),
-    compress: true,
-    host: '0.0.0.0',
-    port: 9007,
-    historyApiFallback: true,
-    hot: false,
-    inline: true,
-    https: false,
-    noInfo: true,
-    open: false
-  },
-
-  devtool: 'inline-source-map',
-
   plugins: [
+    new ProgressBarPlugin(),
+
     new HtmlWebpackPlugin({
       title: 'react-form-generator demo',
       inject: true,
       template: resolve('src/index.ejs')
     }),
-
-    // new webpack.HotModuleReplacementPlugin(),
-
-    new Visualizer({
-      filename: './statistics.html'
-    })
   ]
 };
