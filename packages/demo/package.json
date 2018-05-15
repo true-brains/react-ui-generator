@@ -1,6 +1,6 @@
 {
   "name": "@react-ui-generator/demo",
-  "version": "0.2.0",
+  "version": "0.2.1",
   "description": "Interactive examples for react-ui-generator",
   "main": "out/index.js",
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/demo",
@@ -33,11 +33,11 @@
     "webpack-visualizer-plugin": "^0.1.11"
   },
   "dependencies": {
-    "@react-ui-generator/antd": "^0.2.0",
-    "@react-ui-generator/bootstrap": "^0.2.0",
-    "@react-ui-generator/core": "^0.2.0",
-    "@react-ui-generator/serializers": "^0.2.0",
-    "@react-ui-generator/validators": "^0.2.0",
+    "@react-ui-generator/antd": "^0.2.1",
+    "@react-ui-generator/bootstrap": "^0.2.1",
+    "@react-ui-generator/core": "^0.2.1",
+    "@react-ui-generator/serializers": "^0.2.1",
+    "@react-ui-generator/validators": "^0.2.1",
     "ajv": "^6.0.0",
     "deepmerge": "^2.0.1",
     "history": "^4.7.2",
