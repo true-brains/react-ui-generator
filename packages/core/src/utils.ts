@@ -1,4 +1,4 @@
-import * as React from 'react';
+import React from 'react';
 import { Field } from './components/Field';
 import { Fields } from './components/Fields';
 
@@ -10,7 +10,7 @@ import {
 } from './interfaces';
 
 interface NodeWithIdProps {
-  children: string | JSX.Element;
+  children: React.ReactNode;
   id?: string;
   until?: string;
   className: string;

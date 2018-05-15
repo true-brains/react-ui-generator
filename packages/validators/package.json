@@ -13,11 +13,9 @@
   "dependencies": {
     "@react-ui-generator/core": "^0.2.1",
     "lodash.get": "^4.4.2",
-    "lodash.set": "^4.3.2",
-    "webpack-merge": "^4.1.2"
+    "lodash.set": "^4.3.2"
   },
   "devDependencies": {
-    "@types/ajv": "^1.0.0",
     "@types/lodash.get": "^4.4.3",
     "@types/lodash.set": "^4.3.3",
     "awesome-typescript-loader": "^3.4.1",
@@ -28,6 +26,7 @@
     "source-map-loader": "^0.2.3",
     "typescript": "^2.6.2",
     "webpack": "^3.10.0",
-    "webpack-cleanup-plugin": "^0.5.1"
+    "webpack-cleanup-plugin": "^0.5.1",
+    "webpack-merge": "^4.1.2"
   }
 }

@@ -1,6 +1,6 @@
-import * as React from 'react';
+import React from 'react';
 import { ChangeEvent } from 'react';
-import { get } from 'lodash';
+import get from 'lodash.get';
 
 import {
   FormMetaDescription,

@@ -15,7 +15,6 @@ module.exports = {
   output: {
     path: resolve('out'),
     filename: '[name].js',
-    sourceMapFilename: '[file].map',
   },
 
   module: {

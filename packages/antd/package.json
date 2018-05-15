@@ -12,10 +12,8 @@
   "license": "MIT",
   "dependencies": {
     "@react-ui-generator/core": "^0.2.1",
-    "antd": "^3.4.1",
     "classnames": "^2.2.5",
-    "lodash.get": "^4.4.2",
-    "webpack-merge": "^4.1.2"
+    "lodash.get": "^4.4.2"
   },
   "devDependencies": {
     "@types/classnames": "^2.2.3",
@@ -30,9 +28,12 @@
     "source-map-loader": "^0.2.3",
     "typescript": "^2.6.2",
     "webpack": "^3.10.0",
+    "webpack-merge": "^4.1.2",
     "webpack-cleanup-plugin": "^0.5.1"
   },
   "peerDependencies": {
-    "react": "^16.2.0"
+    "react": "^16.2.0",
+    "antd": "^3.4.1",
+    "moment": "^2.22.1"
   }
 }
