@@ -1,6 +1,6 @@
 {
   "name": "@react-ui-generator/core",
-  "version": "0.2.2",
+  "version": "0.2.3",
   "description": "Core module for react-ui-generator",
   "main": "./out/core.js",
   "types": "./out/index.d.ts",
