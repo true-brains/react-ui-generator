@@ -32,6 +32,6 @@
     "webpack-merge": "^4.1.2"
   },
   "peerDependencies": {
-    "react": "^16.2.0"
+    "react": "^16.3.0"
   }
 }

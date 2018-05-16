@@ -34,6 +34,6 @@
   "peerDependencies": {
     "antd": "^3.4.1",
     "moment": "^2.22.1",
-    "react": "^16.2.0"
+    "react": "^16.3.0"
   }
 }

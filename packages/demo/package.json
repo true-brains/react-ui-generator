@@ -1,5 +1,6 @@
 {
   "name": "@react-ui-generator/demo",
+  "private": true,
   "version": "0.2.2",
   "description": "Interactive examples for react-ui-generator",
   "main": "out/index.js",
@@ -44,8 +45,8 @@
     "deepmerge": "^2.0.1",
     "history": "^4.7.2",
     "moment": "^2.22.1",
-    "react": "^16.2.0",
-    "react-dom": "^16.2.0",
+    "react": "^16.3.2",
+    "react-dom": "^16.3.2",
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
