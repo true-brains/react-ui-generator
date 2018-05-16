@@ -17,50 +17,6 @@ interface NodeWithIdProps {
 }
 type NodeWithId = React.ReactElement<NodeWithIdProps>;
 
-/**
- * Function `layout` processes two lists:
- *  - list of <GeneratedForm /> children
- *  - list of fields from metadada, mapped to renderers (React elements).
- * 
- * To render layouted generated form function processes each child 
- * from `children` list and map it in one of four possible values:
- *  - field (renderer instance)
- *  - [fields] (list of renderers, for <Fields />)
- *  - original child (for elements, other than insances of `<Field />` and `<Fields />`)
- *  - original child with layouted children (same as above, but for elements with nested sub-elements)
- */
-// export function layout(
-//   children: React.ReactNode,
-//   fields: JSX.Element[]
-// ): React.ReactNode {
-//   return React.Children.map(children, (child: NodeWithId) => {
-//     if (!child || !child.type) return child;
-
-//     if (child.type === Field) {
-//       const idx = findFieldIdx(fields, child.props.id);
-//       const [field] = fields.splice(idx, 1);
-
-//       // Field could be a "primitive" or nested sub-form.
-//       return field.props.config.fields ? React.cloneElement(field, {
-//         children: child.props.children,
-//         className: child.props.className || ''
-//       }) : field
-//     } else if ((child.type === Fields)) {
-//       const fieldId = child.props && child.props.until;
-//       const idx = fieldId ? findFieldIdx(fields, fieldId) : fields.length;
-
-//       return fields.splice(0, idx);
-//     } else if (child.props && child.props.children) {
-//       return React.cloneElement(child, {
-//         children: layout(child.props.children, fields),
-//         className: child.props.className || ''
-//       });
-//     } else {
-//       return child;
-//     }
-//   });
-// }
-
 export function findFieldIdx(fields: JSX.Element[], id: string) {
   return fields.findIndex(({ props }) => props.id === id);
 }
