@@ -1,3 +1,4 @@
+export { FieldWrapper } from './FieldWrapper';
 import { _Button } from './Button';
 import { Text } from './Text';
 import { _TextArea } from './TextArea';
