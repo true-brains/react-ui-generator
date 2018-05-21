@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { ReactNode, ReactInstance, ReactElement } from 'react';
 import { Field } from './components/Field';
 import { Fields } from './components/Fields';
 
@@ -43,7 +43,7 @@ export function enhanceFieldMeta(meta: RawFieldMetaDescription): FieldMetaDescri
     serializer: meta.serializer || meta.id,
     actions: meta.actions || {},
     hidden: meta.hidden || false,
-    disabled: meta.disabled || false,
+    disabled: meta.disabled || false
   };
 
   if (typeof meta.renderer === 'string') {
@@ -98,7 +98,7 @@ export function withDefaults(
   };
 
   for (let fieldMeta of fieldsMeta) {
-    const { id, renderer: { type } } = enhanceFieldMeta(fieldMeta)
+    const { id, renderer: { type } } = enhanceFieldMeta(fieldMeta);
     const dataValue = data[id];
     let defaultValue;
 
@@ -106,9 +106,10 @@ export function withDefaults(
       defaultValue = _defaults[type];
 
       if (defaultValue !== undefined) {
-        const value = (type === 'list') 
-          ? [ withDefaults({}, fieldMeta.renderer.config.fields) ]
-          : defaultValue;
+        const value =
+          type === 'list'
+            ? [withDefaults({}, fieldMeta.renderer.config.fields)]
+            : defaultValue;
 
         data[id] = { value, isDirty: false };
       }
@@ -120,7 +121,7 @@ export function withDefaults(
 
 export function getMetaById(
   fieldId: string,
-  fieldsMeta: FieldMetaDescription[] = [],
+  fieldsMeta: FieldMetaDescription[] = []
 ): FieldMetaDescription {
-  return fieldsMeta.find((meta) => meta.id === fieldId);
+  return fieldsMeta.find(meta => meta.id === fieldId);
 }
