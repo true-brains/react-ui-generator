@@ -6,7 +6,7 @@ import Upload, { UploadChangeParam } from 'antd/lib/upload';
 import Button from 'antd/lib/button';
 import Icon  from 'antd/lib/icon';
 import { FieldProps } from '@react-ui-generator/core';
-// import { ValidatableField } from './ValidatableField';
+import { FieldWrapper } from './FieldWrapper';
 
 export interface TextProps extends FieldProps {}
 
@@ -22,11 +22,11 @@ export class _Upload extends React.PureComponent<TextProps, {}> {
   }
 
   render() {
-    const { id, data, className, onChange, config, disabled, errors } = this.props;
+    const { id, data, className, onChange, config, disabled, errors, ...rest } = this.props;
     const value: string = String(data.value);
 
     return (
-      // <ValidatableField errors={errors} isDirty={data.isDirty}>
+      <FieldWrapper errors={errors} isDirty={data.isDirty} label={config.label} {...rest}>
         <Upload
           action={config.url}
           className={className || ''}
@@ -37,7 +37,7 @@ export class _Upload extends React.PureComponent<TextProps, {}> {
             <Icon type='upload' />{config.label}
           </Button>
         </Upload>
-      // </ValidatableField>
+      </FieldWrapper>
     );
   }
 }

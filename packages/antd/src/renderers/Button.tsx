@@ -1,6 +1,7 @@
 import React from 'react';
 import Button, { ButtonType, ButtonSize } from 'antd/lib/button';
 import makeClass from 'classnames';
+import { FieldWrapper } from './FieldWrapper';
 
 export interface ButtonProps {
   className?: string;
@@ -21,7 +22,8 @@ export class _Button extends React.PureComponent<ButtonProps, {}> {
       actions: { onClick },
       config: { title, outline, color, size },
       disabled,
-      className
+      className,
+      ...rest
     } = this.props;
 
     const props = {
@@ -31,9 +33,11 @@ export class _Button extends React.PureComponent<ButtonProps, {}> {
     };
 
     return (
-      <Button onClick={onClick} {...props}>
-        {title}
-      </Button>
+      <FieldWrapper errors={[]} isDirty={false} {...rest}>
+        <Button onClick={onClick} {...props}>
+          {title}
+        </Button>
+      </FieldWrapper>
     );
   }
 }
