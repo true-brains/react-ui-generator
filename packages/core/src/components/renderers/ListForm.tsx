@@ -1,3 +1,11 @@
+/**
+ * Renderer "ListForm" allows to render list of nested subforms.
+ * It is useful, when you need to build form with list of repated
+ * sections, where each section consists of more than one fields
+ * (e.g. section "Linked accounts" in user profile form, with
+ * "user name", "avatar", "unlink button" fields,).
+ */
+
 import * as React from 'react';
 import { ChangeEvent } from 'react';
 import { GeneratedForm } from '../GeneratedForm';

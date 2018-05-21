@@ -14,6 +14,7 @@ import * as Utils from '../utils';
 import { Layout } from '../components/Layout';
 import { SubForm } from '../components/renderers/SubForm';
 import { ListForm } from '../components/renderers/ListForm';
+import { Fields } from '../components/Fields';
 
 export interface GeneratedFormProps {
   className: string;
@@ -120,7 +121,7 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
     return (
       <div className={`generated-form ${className || ''}`}>
         {/* {Utils.layout(children, fields)} */}
-        <Layout fields={fields}>{children}</Layout>
+        <Layout fields={fields}>{children || <Fields />}</Layout>
       </div>
     );
   }
