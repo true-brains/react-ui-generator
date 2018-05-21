@@ -19,7 +19,6 @@ export class FieldWrapper extends React.PureComponent<FieldWrapperProps, {}> {
     const { errors, isDirty, children, labelOnly, hasFeedback, ...rest } = this.props;
     const isValidated = Boolean(errors) && isDirty;
     const isValid = !isValidated || !errors.length;
-
     const errorComponents = (errors || []).map((err, idx) => (<div key={idx}>{err}</div>))
 
     return(
