@@ -4,16 +4,16 @@ import { withFields } from './Layout';
 import { FormMetaDescription } from '../interfaces';
 import { findFieldIdx } from '../utils';
 
-export interface IFieldProps {
+export interface FieldProps {
   id: string;
   fields: JSX.Element[];
   updateFields: any;
   className?: string;
 }
 
-class _Field extends React.Component<IFieldProps, {}> {
+class _Field extends React.Component<FieldProps, {}> {
   render(): JSX.Element {
-    const { id, fields, className, children } = this.props;
+    const { id, fields, children, ...rest } = this.props;
     const fieldIdx = findFieldIdx(fields, id);
 
     // TODO: check if this is safe to modify context reference
@@ -21,10 +21,9 @@ class _Field extends React.Component<IFieldProps, {}> {
 
     const isSubForm = get(field, 'props.config.fields', false);
 
-    return isSubForm ? React.cloneElement(field, {
-      children,
-      className: className || ''
-    }) : field
+    return isSubForm
+      ? React.cloneElement(field, { children, ...rest })
+      : React.cloneElement(field, { ...rest });
   }
 }
 

@@ -13,11 +13,13 @@ export interface FieldsProps {
 
 class _Fields extends React.Component<FieldsProps, {}> {
   render(): JSX.Element[] {
-    const { until, fields, className, children } = this.props;
+    const { until, fields, ...rest } = this.props;
     const fieldId = until || null;
     const idx = fieldId ? findFieldIdx(fields, fieldId) : fields.length;
 
-    return fields.splice(0, idx);
+    return fields
+      .splice(0, idx)
+      .map(field => React.cloneElement(field, { ...rest }));
   }
 }
 
