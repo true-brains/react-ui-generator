@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import Ajv from 'ajv';
-import { Form } from 'antd';
+import { Form,  Row, Col } from 'antd';
 
 import {
   GeneratedForm,
@@ -10,7 +10,7 @@ import {
 } from '@react-ui-generator/core';
 
 import { buildAjvValidator } from '@react-ui-generator/validators';
-import { Renderers } from '@react-ui-generator/antd';
+import { Renderers, Layouts } from '@react-ui-generator/antd';
 
 import {
   toggleSex,
@@ -32,6 +32,8 @@ const renderers = {
   closeButton: CloseButton,
 };
 
+const { FormLayout, FieldLayout } = Layouts;
+
 class GeneratedFormExample extends React.PureComponent {
   render() {
     const { meta, data, errors, updateForm, ...actions } = this.props;
@@ -49,28 +51,36 @@ class GeneratedFormExample extends React.PureComponent {
       >
         <div className="card border-dark mb-3">
           <div className="card-body">
-            <Form layout="vertical">
+            <FormLayout mode="horizontal">
+              <FieldLayout labelCol={{ span: 8 }} wrapperCol={{ span: 12 }}>
                 <Fields until="aboutMe" />
+              </FieldLayout>
 
-                <hr className="example-of-custom-layout" />
+              <hr className="example-of-custom-layout" />
 
+              <FieldLayout labelCol={{ span: 8 }} wrapperCol={{ span: 12 }}>
                 <Field id="aboutMe" />
+              </FieldLayout>
 
-                <hr className="example-of-custom-layout" />
+              <hr className="example-of-custom-layout" />
 
-                <Field id="relatives" className="card--spaced">
-                  <div className="form-inline row">
+              <Field id="relatives">
+                <Row>
+                  <Col offset={8} span={12}>
                     <Fields until="btnRemoveRelative" />
                     <Field id="btnRemoveRelative" />
-                  </div>
-                </Field>
+                  </Col>
+                </Row>
+              </Field>
 
+              <FieldLayout wrapperCol={{ offset: 8, span: 12 }}>
                 <Field id="btnAddRelative" />
+              </FieldLayout>
 
-                <hr className="example-of-custom-layout" />
-
+              <FieldLayout labelCol={{ span: 8 }} wrapperCol={{ span: 12 }}>
                 <Fields until="btnSend" />
-            </Form>
+              </FieldLayout>
+            </FormLayout>
           </div>
         </div>
 
