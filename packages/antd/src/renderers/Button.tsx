@@ -34,7 +34,7 @@ export class _Button extends React.PureComponent<ButtonProps, {}> {
 
     return (
       <FieldWrapper errors={[]} isDirty={false} {...rest}>
-        <Button onClick={onClick} {...props}>
+        <Button onClick={onClick} {...props} disabled={disabled}>
           {title}
         </Button>
       </FieldWrapper>
