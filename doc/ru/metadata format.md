@@ -121,7 +121,14 @@
 При этом, к компоненту `<GeneratedForm>` должна быть подключена коллекция функций, содержащая функцию с именем "sendForm":
 
 ```js
-  <GeneratedForm ... actions={{ sendForm: (event) => { ... } }} />
+  const actions = {
+    sendForm: (event) => { ... },
+    ...
+  };
+
+  ...
+
+  <GeneratedForm ... actions={actions} />
 ```
 
 ### Полный пример
