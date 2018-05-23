@@ -86,9 +86,15 @@ class GeneratedFormExample extends React.PureComponent {
 
         <hr className="example-of-custom-layout" />
 
-        <div style={{ position: 'relative' }}>
-          <Field id="btnSend" /> <Field id="btnClear" />
-        </div>
+        <Row>
+          <Col span={2}>
+            <Field id="btnSend" />
+          </Col>
+
+          <Col span={2}>
+            <Field id="btnClear" />
+          </Col>
+        </Row>
       </GeneratedForm>
     );
   }
