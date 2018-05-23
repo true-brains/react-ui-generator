@@ -120,7 +120,6 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
 
     return (
       <div className={`generated-form ${className || ''}`}>
-        {/* {Utils.layout(children, fields)} */}
         <Layout fields={fields}>{children || <Fields />}</Layout>
       </div>
     );

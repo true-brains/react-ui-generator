@@ -13,17 +13,18 @@ export interface FieldProps {
 
 class _Field extends React.Component<FieldProps, {}> {
   render(): JSX.Element {
-    const { id, fields, children, ...rest } = this.props;
+    const { id, fields, ...rest } = this.props;
     const fieldIdx = findFieldIdx(fields, id);
+
+    if (fieldIdx === -1) {
+      console.warn(`Property "id" of "<Field />" contains unknown id "${id}". Check metadata, please.`);
+      return null;
+    }
 
     // TODO: check if this is safe to modify context reference
     const [field] = fields.splice(fieldIdx, 1);
 
-    const isSubForm = get(field, 'props.config.fields', false);
-
-    return isSubForm
-      ? React.cloneElement(field, { children, ...rest })
-      : React.cloneElement(field, { ...rest });
+    return React.cloneElement(field, { ...rest });
   }
 }
 
