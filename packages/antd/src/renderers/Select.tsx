@@ -63,7 +63,7 @@ export class _Select extends React.PureComponent<SelectProps, SelectState> {
 
     return (
       <FieldWrapper errors={errors} isDirty={data.isDirty} label={label} {...rest}>
-        <Select onChange={this.handleChange} value={value} allowClear>
+        <Select onChange={this.handleChange} value={value} allowClear disabled={disabled}>
           <Option value={''} disabled>
             {title}
           </Option>
