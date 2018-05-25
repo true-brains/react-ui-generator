@@ -1,6 +1,5 @@
-import get from 'lodash.get';
-import set from 'lodash.set';
-import { FormMetaDescription, KeyValue } from '@react-ui-generator/core';
+import { FormMetaDescription, KeyValue } from './interfaces';
+import { get, set} from './utils';
 
 export type Validator = (formValue: KeyValue) => KeyValue;
 
@@ -22,7 +21,7 @@ function prepareValidatedData(formValue: KeyValue): KeyValue {
 
     for (let fieldId of Object.keys(formValue)) {
       let value = formValue[fieldId].value;
-      
+
       if (Array.isArray(value)) {
         value = value.map(prepareValidatedData);
       } else if (value && (typeof value === 'object')) {

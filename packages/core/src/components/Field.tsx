@@ -1,8 +1,7 @@
 import * as React from 'react';
-import get from 'lodash.get';
 import { withFields } from './Layout';
 import { FormMetaDescription } from '../interfaces';
-import { findFieldIdx } from '../utils';
+import { findFieldIdx, get } from '../utils';
 
 export interface FieldProps {
   id: string;
