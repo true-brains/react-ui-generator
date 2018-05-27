@@ -11,11 +11,11 @@
   "author": "Alexei Zaviruha <a.zaviruha@gmail.com>",
   "license": "MIT",
   "dependencies": {
-    "@react-ui-generator/core": "^0.4.0",
     "classnames": "^2.2.5",
     "reactstrap": "^6.0.1"
   },
   "devDependencies": {
+    "@react-ui-generator/core": "^0.4.0",
     "@types/classnames": "^2.2.3",
     "@types/react": "^16.0.29",
     "@types/reactstrap": "^5.0.12",
@@ -32,6 +32,7 @@
     "webpack-merge": "^4.1.2"
   },
   "peerDependencies": {
-    "react": "^16.3.0"
+    "react": "^16.3.0",
+    "@react-ui-generator/core": "^0.4.0"
   }
 }

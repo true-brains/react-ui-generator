@@ -19,8 +19,8 @@ Roadmap:
   ☐ Implement dirtify helper.
   ☐ Add basic russian documentation.
   ☐ Add basic english documentation.
-  ☐ Implement AntD renderers.
-  ☐ Implement AndD validator.
+  ✔ Implement AntD renderers. @done(18-05-27 17:44)
+  ☐ Implement AntD validator.
   ☐ Implement LIVR validator.
   ☐ Implement async, non-blocking validation.
   ☐ Add complete russian documentation.
