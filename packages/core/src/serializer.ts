@@ -1,5 +1,4 @@
-import get from 'lodash.get';
-import set from 'lodash.set';
+import { get, set } from './utils';
 import { FormMetaDescription, KeyValue } from './interfaces';
 
 export function serializeToObject(formData: KeyValue): KeyValue {

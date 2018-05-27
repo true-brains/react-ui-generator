@@ -1,6 +1,4 @@
-import get from 'lodash.get';
-import set from 'lodash.set';
-import { KeyValue, Validator, buildValidator } from '@react-ui-generator/core';
+import { KeyValue, Validator, buildValidator, get, set } from '@react-ui-generator/core';
 
 export class Ajv {
   constructor(options: KeyValue) {}

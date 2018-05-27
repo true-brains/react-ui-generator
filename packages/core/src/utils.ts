@@ -1,4 +1,12 @@
 import React, { ReactNode, ReactInstance, ReactElement } from 'react';
+import get from 'lodash.get';
+import set from 'lodash.get';
+
+export {
+  get,
+  set
+};
+
 import { Field } from './components/Field';
 import { Fields } from './components/Fields';
 
@@ -125,3 +133,4 @@ export function getMetaById(
 ): FieldMetaDescription {
   return fieldsMeta.find(meta => meta.id === fieldId);
 }
+

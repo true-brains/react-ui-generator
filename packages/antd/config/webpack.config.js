@@ -61,7 +61,7 @@ module.exports = {
 
       moment: 'moment',
     },
-
+    '@react-ui-generator/core',
     /^antd\/.+$/,
   ]
 };
