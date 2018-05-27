@@ -1,7 +1,7 @@
 {
   "name": "@react-ui-generator/demo",
   "private": true,
-  "version": "0.4.1",
+  "version": "0.5.0",
   "description": "Interactive examples for react-ui-generator",
   "main": "out/index.js",
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/demo",
@@ -36,10 +36,10 @@
   },
   "dependencies": {
     "@react-ui-generator/antd": "^0.4.1",
-    "@react-ui-generator/bootstrap": "^0.4.0",
-    "@react-ui-generator/core": "^0.4.0",
-    "@react-ui-generator/serializers": "^0.4.0",
-    "@react-ui-generator/validators": "^0.4.0",
+    "@react-ui-generator/bootstrap": "^0.5.0",
+    "@react-ui-generator/core": "^0.5.0",
+    "@react-ui-generator/serializers": "^0.5.0",
+    "@react-ui-generator/validators": "^0.5.0",
     "ajv": "^6.0.0",
     "antd": "^3.5.2",
     "deepmerge": "^2.0.1",
