@@ -20,7 +20,16 @@ export interface SubFormProps extends FieldProps {
   renderers: { [key: string]: typeof FieldRenderer };
 }
 
+const value: any = {};
+
 export class SubForm extends React.PureComponent<SubFormProps, {}> {
+  static defaultProps = {
+    formData: {
+      value,
+      isDirty: false,
+    }
+  };
+
   render() {
     const {
       id,

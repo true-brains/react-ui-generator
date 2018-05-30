@@ -1,28 +1,59 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
-import makeClass from 'classnames';
 import Select, { SelectValue } from 'antd/lib/select';
-import { FieldProps, KeyValue } from '@react-ui-generator/core';
+
+import {
+  FieldProps,
+  KeyValue,
+  PropTypes,
+  basePropTypes
+} from '@react-ui-generator/core';
+
 import { FieldWrapper } from './FieldWrapper';
 
 const { Option } = Select;
 
-export interface SelectProps extends FieldProps {
-  title: string;
-  caret?: boolean;
-  isOpen?: boolean;
-}
+export interface SelectProps extends FieldProps {}
 
 export interface SelectState {
   valueTypes: KeyValue;
 }
 
-interface SelectItemProps {
-  id: any;
+export interface SelectItemProps {
+  id: string | number;
   title: string;
 }
 
+const value: string = '';
+const options: SelectItemProps[] = [];
+
 export class _Select extends React.PureComponent<SelectProps, SelectState> {
+  static propTypes = {
+    ...basePropTypes(),
+    config: PropTypes.shape({
+      label: PropTypes.string,
+      title: PropTypes.string,
+      options: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        title: PropTypes.string
+      }))
+    }),
+  }
+
+  static defaultProps = {
+    className: '',
+    disabled: false,
+    config: {
+      label: '',
+      title: '',
+      options
+    },
+    data: {
+      value,
+      isDirty: false
+    },
+  }
+
   constructor(props: SelectProps) {
     super(props);
     this.state = { valueTypes: this.getValueTypes(props) };

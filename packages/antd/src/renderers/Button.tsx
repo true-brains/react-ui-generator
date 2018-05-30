@@ -1,22 +1,38 @@
 import React from 'react';
 import Button, { ButtonType, ButtonSize } from 'antd/lib/button';
 import makeClass from 'classnames';
+
+import {
+  FieldProps,
+  PropTypes,
+  basePropTypes
+} from '@react-ui-generator/core';
+
 import { FieldWrapper } from './FieldWrapper';
 
-export interface ButtonProps {
-  className?: string;
-  actions: { [key: string]: any };
-  config: {
-    title: string;
-    active?: boolean;
-    outline?: boolean;
-    color?: string;
-    size?: string;
-  };
-  disabled: boolean;
-}
+export interface ButtonProps extends FieldProps {}
 
 export class _Button extends React.PureComponent<ButtonProps, {}> {
+  static propTypes = {
+    ...basePropTypes(),
+    config: PropTypes.shape({
+      title: PropTypes.string,
+      outline: PropTypes.bool,
+      color: PropTypes.oneOf(['default', 'primary', 'ghost', 'dashed', 'danger']),
+      size: PropTypes.oneOf(['small', 'default', 'large']),
+    }),
+  }
+
+  static defaultProps = {
+    className: '',
+    disabled: false,
+    config: {
+      color: 'default',
+      size: 'default',
+      outline: false
+    }
+  }
+
   render() {
     const {
       actions: { onClick },

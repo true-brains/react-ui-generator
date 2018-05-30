@@ -1,8 +1,13 @@
 import * as React from 'react';
-import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
 import Radio from 'antd/lib/radio';
-import { FieldProps } from '@react-ui-generator/core';
+
+import {
+  FieldProps,
+  PropTypes,
+  basePropTypes
+} from '@react-ui-generator/core';
+
 import { FieldWrapper } from './FieldWrapper';
 
 const RadioGroup = Radio.Group;
@@ -10,11 +15,38 @@ const RadioGroup = Radio.Group;
 export interface RadiogroupProps extends FieldProps {}
 
 export interface RadiogroupItem {
-  id: string;
+  id: string | number;
   title: string;
 }
 
+const value: string | number = null;
+const options: RadiogroupItem[] = [];
+
 export class _RadioGroup extends React.PureComponent<RadiogroupProps, {}> {
+  static propTypes = {
+    ...basePropTypes(),
+    config: PropTypes.shape({
+      label: PropTypes.string,
+      options: PropTypes.arrayOf(PropTypes.shape({
+        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+        title: PropTypes.string
+      }))
+    }),
+  }
+
+  static defaultProps = {
+    className: '',
+    disabled: false,
+    config: {
+      label: '',
+      options
+    },
+    data: {
+      value,
+      isDirty: false
+    },
+  }
+
   handleChange(value: string): void {
     this.props.onChange(value);
   }

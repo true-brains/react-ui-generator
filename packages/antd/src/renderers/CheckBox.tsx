@@ -1,13 +1,41 @@
 import React from 'react';
 import { ChangeEvent } from 'react';
-import makeClass from 'classnames';
 import Checkbox, { CheckboxChangeEvent } from 'antd/lib/checkbox';
-import { FieldProps } from '@react-ui-generator/core';
+
+import {
+  FieldProps,
+  PropTypes,
+  basePropTypes
+} from '@react-ui-generator/core';
+
 import { FieldWrapper } from './FieldWrapper';
 
 export interface CheckboxProps extends FieldProps {}
 
+const value: boolean = null;
+
 export class _Checkbox extends React.PureComponent<CheckboxProps, {}> {
+  static propTypes = {
+    ...basePropTypes(),
+    config: PropTypes.shape({
+      label: PropTypes.string,
+      title: PropTypes.string,
+    }),
+  }
+
+  static defaultProps = {
+    className: '',
+    disabled: false,
+    config: {
+      label: '',
+      title: '',
+    },
+    data: {
+      value,
+      isDirty: false
+    }
+  }
+
   handleChange = (event: CheckboxChangeEvent): void => {
     this.props.onChange(event.target.checked);
   };
@@ -24,9 +52,7 @@ export class _Checkbox extends React.PureComponent<CheckboxProps, {}> {
       ...rest
     } = this.props;
 
-    const value: boolean =
-      typeof data.value === 'string' ? data.value !== '' : data.value;
-
+    const value: boolean = Boolean(data.value);
     const _label = label || (id.length ? id.charAt(0).toUpperCase() + id.slice(1) : '');
 
     return (

@@ -1,4 +1,5 @@
 import * as React from 'react';
+import PropTypes from 'prop-types';
 
 export interface FormMetaDescription {
   fields: FieldMetaDescription[];
@@ -47,7 +48,7 @@ export interface FieldProps {
   id: string;
   className?: string;
   data: {
-    value: string | boolean;
+    value: string | boolean | number;
     isDirty: boolean;
   };
   errors?: any[];
@@ -55,4 +56,21 @@ export interface FieldProps {
   config: KeyValue;
   disabled: boolean;
   onChange(value: any): void;
+}
+
+export function basePropTypes() {
+  return {
+    id: PropTypes.string.isRequired,
+    className: PropTypes.string,
+    data: PropTypes.shape({
+      value: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
+      isDirty: PropTypes.bool,
+    }),
+    errors: PropTypes.arrayOf(PropTypes.string),
+    actions: PropTypes.objectOf(PropTypes.func),
+    config: PropTypes.shape({
+      type: PropTypes.string,
+    }),
+    disabled: PropTypes.bool,
+  };
 }

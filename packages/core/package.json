@@ -13,11 +13,13 @@
   "license": "MIT",
   "dependencies": {
     "lodash.get": "^4.4.2",
-    "lodash.set": "^4.3.2"
+    "lodash.set": "^4.3.2",
+    "prop-types": "^15.6.1"
   },
   "devDependencies": {
     "@types/lodash.get": "^4.4.3",
     "@types/lodash.set": "^4.3.3",
+    "@types/prop-types": "^15.5.3",
     "@types/react": "^16.0.29",
     "awesome-typescript-loader": "^3.4.1",
     "babel-core": "^6.26.0",

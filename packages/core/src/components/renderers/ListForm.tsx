@@ -33,7 +33,16 @@ export interface ListFormProps extends FieldProps {
   validator(formData: KeyValue): KeyValue;
 }
 
+const value: ItemData[] = [];
+
 export class ListForm extends React.PureComponent<ListFormProps, {}> {
+  static defaultProps = {
+    formData: {
+      value,
+      isDirty: false,
+    }
+  };
+
   handleOnChange(idx: number, itemData: any) {
     const newValue = [...this.props.formData.value];
 

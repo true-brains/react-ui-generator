@@ -6,3 +6,4 @@ export { withDefaults, getMetaById, extractFieldActions, get, set } from './util
 export { Validator, buildValidator } from './validator';
 export { serializeToObject, buildJSONSerializer } from './serializer';
 export * from './interfaces';
+export { default as PropTypes } from 'prop-types';

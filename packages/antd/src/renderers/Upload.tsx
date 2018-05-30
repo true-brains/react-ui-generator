@@ -1,15 +1,46 @@
 import * as React from 'react';
-import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
 import Upload, { UploadChangeParam } from 'antd/lib/upload';
 import Button from 'antd/lib/button';
 import Icon  from 'antd/lib/icon';
-import { FieldProps, get } from '@react-ui-generator/core';
+
+import {
+  FieldProps,
+  PropTypes,
+  basePropTypes,
+  get
+} from '@react-ui-generator/core';
+
 import { FieldWrapper } from './FieldWrapper';
 
 export interface TextProps extends FieldProps {}
 
+const value: string = null;
+
 export class _Upload extends React.PureComponent<TextProps, {}> {
+  static propTypes = {
+    ...basePropTypes(),
+    config: PropTypes.shape({
+      label: PropTypes.string,
+      url: PropTypes.string,
+      responsePath: PropTypes.string,
+    }),
+  }
+
+  static defaultProps = {
+    className: '',
+    disabled: false,
+    config: {
+      label: '',
+      url: '',
+      responsePath: '',
+    },
+    data: {
+      value,
+      isDirty: false
+    },
+  }
+
   handleChange = (info: UploadChangeParam): void => {
     const { config, onChange } = this.props;
     const uploaded = info.fileList
