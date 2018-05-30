@@ -16,10 +16,15 @@ Roadmap:
   ✔ Consider moving `errors` into `data`. @done(18-03-01 09:15)  -- rejected. Simple props are easy to undestand and manipulate.
   ✔ Make `errors` and `validator` optional. @done(18-03-06 09:27)
   ✔ Minimize bundle size @done(18-05-15 15:01)
+  ✔ Implement AntD renderers. @done(18-05-27 17:44)
+  ✔ Add checking for `null` in serializer's `if (typeof value === 'object')`. @done(18-05-29 16:43)
+  ✔ Add `propTypes` and `defaultProps` for `@react-ui-generator/core` @done(18-05-30 16:33)
+  ✔ Add `propTypes` and `defaultProps` for `@react-ui-generator/antd` @done(18-05-30 16:34)
+  ☐ Add unit-test for `@react-ui-generator/core` !!!
+  ☐ Add `propTypes` and `defaultProps` for `@react-ui-generator/bootstrap`
   ☐ Implement dirtify helper.
   ☐ Add basic russian documentation.
   ☐ Add basic english documentation.
-  ✔ Implement AntD renderers. @done(18-05-27 17:44)
   ☐ Implement AntD validator.
   ☐ Implement LIVR validator.
   ☐ Implement async, non-blocking validation.

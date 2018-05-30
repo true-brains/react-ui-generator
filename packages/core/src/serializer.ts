@@ -10,7 +10,7 @@ export function serializeToObject(formData: KeyValue): KeyValue {
 
     if (Array.isArray(value)) {
       serialized[fieldId] = value.map(serializeToObject);
-    } else if (typeof value === 'object') {
+    } else if (value && (typeof value === 'object')) {
       serialized[fieldId] = serializeToObject(value);
     } else {
       serialized[fieldId] = value;

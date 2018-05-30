@@ -14,7 +14,7 @@ export class Checkbox extends React.PureComponent<CheckboxProps, {}> {
 
   render() {
     const { id, data, className, onChange, config, disabled, errors } = this.props;
-    const value: boolean = (typeof data.value === "string") ? data.value !== '' : data.value;
+    const value: boolean = Boolean(data.value);
     const label =
       config.label || (id.length ? id.charAt(0).toUpperCase() + id.slice(1) : '');
 

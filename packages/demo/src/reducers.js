@@ -20,6 +20,7 @@ const meta = require('@meta/complete');
 const initialState = {
   meta,
   data: withDefaults({}, meta.fields),
+  // data: {},
   errors: {},
   isValid: false,
 };

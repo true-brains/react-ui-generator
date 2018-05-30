@@ -38,7 +38,12 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
     nextData[fieldId] = { value: newValue, isDirty: true };
 
     const { validator, isSubForm } = this.props;
-    const isValidated = validator && !isSubForm; // subforms are self-validated
+
+    /**
+     * Skip validation if current form is subform,
+     * because validation is processed on the top level.
+     */
+    const isValidated = validator && !isSubForm;
     const nextErrors = isValidated ? validator(nextData) : { isValid: true, errors: {} };
 
     this.props.onChange(nextData, nextErrors.errors, nextErrors.isValid);

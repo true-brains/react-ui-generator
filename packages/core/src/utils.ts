@@ -1,6 +1,6 @@
 import React, { ReactNode, ReactInstance, ReactElement } from 'react';
 import get from 'lodash.get';
-import set from 'lodash.get';
+import set from 'lodash.set';
 
 export {
   get,

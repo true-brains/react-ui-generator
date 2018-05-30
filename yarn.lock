@@ -9,14 +9,6 @@
     call-me-maybe "^1.0.1"
     glob-to-regexp "^0.3.0"
 
-"@react-ui-generator/antd@^0.4.1":
-  version "0.4.1"
-  resolved "https://registry.yarnpkg.com/@react-ui-generator/antd/-/antd-0.4.1.tgz#2c6b49ad74dc5c201c2d3e81d0ef4e86eb99f815"
-  dependencies:
-    "@react-ui-generator/core" "^0.4.0"
-    classnames "^2.2.5"
-    lodash.get "^4.4.2"
-
 "@sindresorhus/is@^0.7.0":
   version "0.7.0"
   resolved "https://registry.yarnpkg.com/@sindresorhus/is/-/is-0.7.0.tgz#9a06f4f137ee84d7df0460c1fdb1135ffa6c50fd"
@@ -40,6 +32,10 @@
 "@types/lodash@*":
   version "4.14.108"
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.108.tgz#02656af3add2e5b3174f830862c47421c00ef817"
+
+"@types/prop-types@^15.5.3":
+  version "15.5.3"
+  resolved "https://registry.yarnpkg.com/@types/prop-types/-/prop-types-15.5.3.tgz#bef071852dca2a2dbb65fecdb7bfb30cedae2de2"
 
 "@types/react@*", "@types/react@^16.0.29":
   version "16.3.14"
