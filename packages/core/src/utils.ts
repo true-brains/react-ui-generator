@@ -23,10 +23,6 @@ interface NodeWithIdProps {
 }
 type NodeWithId = React.ReactElement<NodeWithIdProps>;
 
-export function findFieldIdx(fields: JSX.Element[], id: string) {
-  return fields.findIndex(({ props }) => props.id === id);
-}
-
 export function enhanceFormMeta(meta: RawMetaDescription): FormMetaDescription {
   const result: FormMetaDescription = {
     fields: []
@@ -124,7 +120,11 @@ export function withDefaults(
   return data;
 }
 
-export function getMetaById(
+export function findFieldIdx(fieldId: string, fields: JSX.Element[]) {
+  return fields.findIndex(({ props }) => props.id === fieldId);
+}
+
+export function findFieldMetaById(
   fieldId: string,
   fieldsMeta: FieldMetaDescription[] = []
 ): FieldMetaDescription {

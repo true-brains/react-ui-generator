@@ -12,11 +12,11 @@ export interface FieldProps {
 
 class _Field extends React.Component<FieldProps, {}> {
   render(): JSX.Element {
-    const { id, fields, ...rest } = this.props;
-    const fieldIdx = findFieldIdx(fields, id);
+    const { id: fieldId, fields, ...rest } = this.props;
+    const fieldIdx = findFieldIdx(fieldId, fields);
 
     if (fieldIdx === -1) {
-      console.warn(`Property "id" of "<Field />" contains unknown id "${id}". Check metadata, please.`);
+      console.warn(`Property "id" of "<Field />" contains unknown id "${fieldId}". Check metadata, please.`);
       return null;
     }
 

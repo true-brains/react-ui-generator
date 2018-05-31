@@ -17,7 +17,7 @@ class _Fields extends React.Component<FieldsProps, {}> {
     let idx;
 
     if (fieldId) {
-      const maybeIdx = findFieldIdx(fields, fieldId);
+      const maybeIdx = findFieldIdx(fieldId, fields);
 
       if (maybeIdx === -1) {
         console.warn(`Property "until" of "<Fields />" contains unknown id "${fieldId}". Check metadata, please.`);

@@ -14,7 +14,7 @@ describe('findFieldIdx()', () => {
   const testId = 'testId';
 
   test('should return `-1` for empty `fields` array', () => {
-    expect(findFieldIdx([], testId)).toBe(-1);
+    expect(findFieldIdx(testId, [])).toBe(-1);
   });
 
   test('should return `-1` if `fields` array does not contain field with test id', () => {
@@ -23,7 +23,7 @@ describe('findFieldIdx()', () => {
       <div id="bar" />
     ];
 
-    expect(findFieldIdx(fields, testId)).toBe(-1);
+    expect(findFieldIdx(testId, fields)).toBe(-1);
   });
 
   test('should return index if `fields` array contains field with test id', () => {
@@ -33,7 +33,7 @@ describe('findFieldIdx()', () => {
       <div id={testId} />
     ];
 
-    expect(findFieldIdx(fields, testId)).toBe(2);
+    expect(findFieldIdx(testId, fields)).toBe(2);
   });
 });
 

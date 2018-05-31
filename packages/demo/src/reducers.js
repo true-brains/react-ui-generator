@@ -3,7 +3,7 @@ import deepmerge from 'deepmerge';
 
 import {
   withDefaults,
-  getMetaById,
+  findFieldMetaById,
   buildJSONSerializer
 } from '@react-ui-generator/core';
 
@@ -44,7 +44,7 @@ function reducer(state = initialState, { type: actionType, payload }) {
     }
     
     case ADD_RELATIVE: {
-      const subFormMeta = getMetaById('relatives', state.meta.fields);
+      const subFormMeta = findFieldMetaById('relatives', state.meta.fields);
 
       const newState = merge(state, {
         data: {
@@ -62,7 +62,7 @@ function reducer(state = initialState, { type: actionType, payload }) {
 
     case REMOVE_RELATIVE: {
       const idx = payload;
-      const subFormMeta = getMetaById('relatives', state.meta.fields);
+      const subFormMeta = findFieldMetaById('relatives', state.meta.fields);
       const newValue = [ ...state.data.relatives.value ];
 
       newValue.splice(idx, 1);
