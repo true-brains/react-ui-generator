@@ -11,6 +11,7 @@ import { Field } from './components/Field';
 import { Fields } from './components/Fields';
 
 import {
+  RawMetaDescription,
   FormMetaDescription,
   RawFieldMetaDescription,
   FieldMetaDescription,
@@ -29,7 +30,7 @@ export function findFieldIdx(fields: JSX.Element[], id: string) {
   return fields.findIndex(({ props }) => props.id === id);
 }
 
-export function enhanceFormMeta(meta: any): FormMetaDescription {
+export function enhanceFormMeta(meta: RawMetaDescription): FormMetaDescription {
   const result: FormMetaDescription = {
     fields: []
   };
@@ -54,7 +55,9 @@ export function enhanceFieldMeta(meta: RawFieldMetaDescription): FieldMetaDescri
     disabled: meta.disabled || false
   };
 
-  if (typeof meta.renderer === 'string') {
+  if (typeof meta.renderer === 'undefined') {
+    _result.renderer.type = 'text';
+  } else if (typeof meta.renderer === 'string') {
     _result.renderer.type = meta.renderer;
   } else {
     _result.renderer = meta.renderer;

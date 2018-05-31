@@ -1,9 +1,5 @@
-import * as React from 'react';
+import React from 'react';
 import PropTypes from 'prop-types';
-
-export interface FormMetaDescription {
-  fields: FieldMetaDescription[];
-}
 
 export interface RawFieldMetaDescription {
   id: string;
@@ -23,6 +19,15 @@ export interface FieldMetaDescription extends RawFieldMetaDescription {
   hidden: boolean;
   disabled: boolean;
 }
+
+export interface RawMetaDescription {
+  fields: RawFieldMetaDescription[];
+}
+
+export interface FormMetaDescription {
+  fields: FieldMetaDescription[];
+}
+
 
 export interface RendererComplex {
   type: string;
