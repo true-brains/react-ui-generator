@@ -2,10 +2,7 @@ import React, { ReactNode, ReactInstance, ReactElement } from 'react';
 import get from 'lodash.get';
 import set from 'lodash.set';
 
-export {
-  get,
-  set
-};
+export { get, set };
 
 import { Field } from './components/Field';
 import { Fields } from './components/Fields';
@@ -66,18 +63,15 @@ export function enhanceFieldMeta(meta: RawFieldMetaDescription): FieldMetaDescri
   return _result;
 }
 
-export function extractFieldActions(
-  formActions: { [key: string]: any },
-  fieldActions: { [key: string]: any }
-) {
-  let actions: { [key: string]: any } = {};
+export function extractFieldActions(formActions: KeyValue, fieldActions: KeyValue) {
+  let actions: KeyValue = {};
 
-  for (let handler in fieldActions) {
-    const action = fieldActions[handler];
-    const fn = formActions[action];
+  for (let callbackName of Object.keys(fieldActions)) {
+    const actionName = fieldActions[callbackName];
+    const fn = formActions[actionName];
 
     if (fn) {
-      actions[handler] = fn;
+      actions[callbackName] = fn;
     }
   }
 
@@ -136,4 +130,3 @@ export function getMetaById(
 ): FieldMetaDescription {
   return fieldsMeta.find(meta => meta.id === fieldId);
 }
-
