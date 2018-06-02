@@ -35,7 +35,7 @@ export function enhanceFormMeta(meta: RawMetaDescription): FormMetaDescription {
   return result;
 }
 
-export function enhanceFieldMeta(meta: RawFieldMetaDescription): FieldMetaDescription {
+function enhanceFieldMeta(meta: RawFieldMetaDescription): FieldMetaDescription {
   const _result: FieldMetaDescription = {
     id: meta.id,
     renderer: {
@@ -98,8 +98,10 @@ export function withDefaults(
     ...defaults
   };
 
+  const resultData = { ...data };
+
   for (let fieldMeta of fieldsMeta) {
-    const { id, renderer: { type } } = enhanceFieldMeta(fieldMeta);
+    const { id, renderer: { type } } = fieldMeta;
     const dataValue = data[id];
     let defaultValue;
 
@@ -109,15 +111,15 @@ export function withDefaults(
       if (defaultValue !== undefined) {
         const value =
           type === 'list'
-            ? [withDefaults({}, fieldMeta.renderer.config.fields)]
+            ? [withDefaults({}, fieldMeta.renderer.config.fields)] // and what about "form"?
             : defaultValue;
 
-        data[id] = { value, isDirty: false };
+        resultData[id] = { value, isDirty: false };
       }
     }
   }
 
-  return data;
+  return resultData;
 }
 
 export function findFieldIdx(fieldId: string, fields: JSX.Element[]) {

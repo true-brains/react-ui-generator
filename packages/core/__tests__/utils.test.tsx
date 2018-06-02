@@ -3,11 +3,13 @@ import React from 'react';
 import {
   findFieldIdx,
   enhanceFormMeta,
-  extractFieldActions
+  extractFieldActions,
+  withDefaults
 } from '../src/utils';
 
 import metaMinimal from '../examples/meta/minimal';
 import metaFieldActions from '../examples/meta/field-action';
+import allRenderers from '../examples/meta/all-renderers';
 
 
 describe('findFieldIdx()', () => {
@@ -110,5 +112,84 @@ describe('extractFieldActions()', () => {
     expect(result['onClick']).toBe(foo);
     expect(result['onDoubleClick']).toBeUndefined();
     expect(Object.keys(result)).toEqual(['onClick']);
+  });
+});
+
+
+describe('withDefaults()', () => {
+  test('should not add fields to `data` for empty `fieldsMeta`', () => {
+    const data = { foo: '42' };
+    const result = withDefaults(data, []);
+
+    expect(Object.keys(result)).toEqual(Object.keys(data));
+  });
+
+  test('should return shallow copy of `data` (not original object)', () => {
+    const data = { foo: '42' };
+    const result = withDefaults(data, []);
+
+    expect(result).not.toBe(data);
+  });
+
+  test('should return default values for known renderers', () => {
+    const data = { foo: '42' };
+    const completedMeta = enhanceFormMeta(allRenderers);
+    const result = withDefaults(data, completedMeta.fields);
+
+    const expectedResult = {
+      foo: '42',
+      'field-text': { isDirty: false, value: '' },
+      'field-textarea': { isDirty: false, value: '' },
+      'field-date': { isDirty: false, value: null },
+      'field-select': { isDirty: false, value: '' },
+      'field-checkbox': { isDirty: false, value: false },
+      'field-radiogroup': { isDirty: false, value: '' },
+      'field-upload': { isDirty: false, value: null },
+      'subform-list': {
+        value: [
+          {
+            field1: { isDirty: false, value: '' },
+            field2: { isDirty: false, value: '' },
+          }
+        ],
+        isDirty: false
+      },
+    }
+
+    expect(result).toEqual(expectedResult);
+  });
+
+  test('should use defaults from function arguments if exits', () => {
+    const data = { foo: '42' };
+    const completedMeta = enhanceFormMeta(allRenderers);
+
+    const customDefaults = {
+      'text': 'this is default text renderer message',
+      'select': null,
+    }
+
+    const result = withDefaults(data, completedMeta.fields, customDefaults);
+
+    const expectedResult = {
+      foo: '42',
+      'field-text': { isDirty: false, value: customDefaults.text },
+      'field-textarea': { isDirty: false, value: '' },
+      'field-date': { isDirty: false, value: null },
+      'field-select': { isDirty: false, value: customDefaults.select },
+      'field-checkbox': { isDirty: false, value: false },
+      'field-radiogroup': { isDirty: false, value: '' },
+      'field-upload': { isDirty: false, value: null },
+      'subform-list': {
+        value: [
+          {
+            field1: { isDirty: false, value: '' },
+            field2: { isDirty: false, value: '' },
+          }
+        ],
+        isDirty: false
+      },
+    }
+
+    expect(result).toEqual(expectedResult);
   });
 });
