@@ -31,7 +31,7 @@ export interface FormMetaDescription {
 
 export interface RendererComplex {
   type: string;
-  config: any;
+  config?: any;
 }
 
 export interface FieldRendererProps {
