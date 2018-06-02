@@ -4,6 +4,6 @@ export { Fields } from './components/Fields';
 export { withFields } from './components/Layout';
 export { withDefaults, findFieldMetaById, get, set } from './utils';
 export { Validator, buildValidator } from './validator';
-export { serializeToObject, buildJSONSerializer } from './serializer';
+export { serializeToObject } from './serializer';
 export * from './interfaces';
 export { default as PropTypes } from 'prop-types';

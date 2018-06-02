@@ -19,9 +19,3 @@ export function serializeToObject(formData: KeyValue): KeyValue {
 
   return serialized;
 }
-
-export function buildJSONSerializer() {
-  return function(formData: KeyValue): string {
-    return JSON.stringify(serializeToObject(formData));
-  }
-}
