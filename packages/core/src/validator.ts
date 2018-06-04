@@ -1,36 +1,49 @@
 import { FormMetaDescription, KeyValue } from './interfaces';
-import { get, set} from './utils';
+import { get } from './utils';
 
-export type Validator = (formValue: KeyValue) => KeyValue;
+export interface ExternalValidator {
+  (schema: KeyValue, data: KeyValue): KeyValue;
+}
 
-export function buildValidator(validatorFn: Function, schema: KeyValue): Validator {
-  return (formValue: KeyValue): KeyValue => {
-    const validationResult = validatorFn(schema, prepareValidatedData(formValue));
-    const allFields: KeyValue = {};
+export interface Validator {
+  (formValue: KeyValue): KeyValue;
+}
+
+interface ValidationResult {
+  errors: { [key: string]: string[] };
+}
+
+export function buildValidator(
+  validatorFn: ExternalValidator,
+  schema: KeyValue
+): Validator {
+  return (formValue: KeyValue): ValidationResult => {
+    const dataToValidate = prepareValidatedData(formValue);
+    const validationResult = validatorFn(schema, dataToValidate);
+    const errorsByFields: KeyValue = {};
 
     for (let fieldId of Object.keys(formValue)) {
-      allFields[fieldId] = validationResult.errors[fieldId] || [];
+      errorsByFields[fieldId] = get(validationResult, ['errors', fieldId]) || [];
     }
 
-    return { ...validationResult, errors: allFields };
+    return { ...validationResult, errors: errorsByFields };
   };
 }
 
 function prepareValidatedData(formValue: KeyValue): KeyValue {
-    let validated: KeyValue = {};
+  let dataToValidate: KeyValue = {};
 
-    for (let fieldId of Object.keys(formValue)) {
-      let value = formValue[fieldId].value;
+  for (let fieldId of Object.keys(formValue)) {
+    let { value } = formValue[fieldId];
 
-      if (Array.isArray(value)) {
-        value = value.map(prepareValidatedData);
-      } else if (value && (typeof value === 'object')) {
-        value = prepareValidatedData(value);
-      }
-
-      validated[fieldId] = value;
+    if (Array.isArray(value)) {
+      value = value.map(prepareValidatedData);
+    } else if (value && typeof value === 'object') {
+      value = prepareValidatedData(value);
     }
 
-    return validated;
-}
+    dataToValidate[fieldId] = value;
+  }
 
+  return dataToValidate;
+}

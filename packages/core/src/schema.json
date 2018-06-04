@@ -1,6 +1,6 @@
 {
 	"$schema": "http://json-schema.org/schema#",
-	"description": "Language Independed UI definition schema",
+	"description": "(!! WORK IN PROGRESS !!) Language Independed UI definition schema",
 	"type": "object",
 	"properties": {
 		"fields": {
