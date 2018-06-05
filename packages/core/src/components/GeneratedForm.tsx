@@ -1,24 +1,29 @@
 import React from 'react';
 import { ChangeEvent } from 'react';
-import { get } from '../utils';
 
 import {
-  FormMetaDescription,
+  RawMetaDescription,
   RawFieldMetaDescription,
+  FormMetaDescription,
   FieldMetaDescription,
   FieldRenderer,
   KeyValue
 } from '../interfaces';
 
-import * as Utils from '../utils';
+import {
+  get,
+  extractFieldActions,
+  enhanceFormMeta
+} from '../utils';
+
 import { Layout } from '../components/Layout';
 import { SubForm } from '../components/renderers/SubForm';
 import { ListForm } from '../components/renderers/ListForm';
 import { Fields } from '../components/Fields';
 
 export interface GeneratedFormProps {
-  className: string;
-  meta: FormMetaDescription;
+  className?: string;
+  meta: RawMetaDescription;
   data: KeyValue;
   errors: KeyValue;
   validator(formData: KeyValue): KeyValue;
@@ -29,10 +34,6 @@ export interface GeneratedFormProps {
 }
 
 export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
-  constructor(props: GeneratedFormProps) {
-    super(props);
-  }
-
   handleChange(fieldId: string, newValue: any): void {
     const nextData = { ...this.props.data };
     nextData[fieldId] = { value: newValue, isDirty: true };
@@ -53,7 +54,7 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
     const fields: JSX.Element[] = [];
 
     const {
-      className,
+      className = '',
       meta,
       data,
       errors,
@@ -63,7 +64,7 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
       children
     } = this.props;
 
-    const _meta = Utils.enhanceFormMeta(meta);
+    const _meta = enhanceFormMeta(meta);
 
     for (let field of _meta.fields) {
       const {
@@ -86,7 +87,7 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
       const Renderer =
         type === 'form' ? SubForm : type === 'list' ? ListForm : renderers[type];
 
-      const actions: { [key: string]: any } = Utils.extractFieldActions(
+      const actions: { [key: string]: any } = extractFieldActions(
         formActions,
         fieldActions
       );
@@ -97,7 +98,7 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
               isSubForm: true,
               formData: data[id],
               actions: formActions,
-              errors: get(errors, id, (type === 'list' ? [] : {})),
+              errors: get(errors, id, type === 'list' ? [] : {}),
               serializer,
               renderers,
               validator
