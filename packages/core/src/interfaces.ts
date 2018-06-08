@@ -2,13 +2,12 @@ import React from 'react';
 import PropTypes from 'prop-types';
 
 export interface RawFieldMetaDescription {
-  id: string;
-  renderer?: string | RendererComplex;
-  serializer?: string;
-  validator?: any;
-  actions?: { [key: string]: any };
-  hidden?: boolean;
-  disabled?: boolean;
+  readonly id: string;
+  readonly renderer?: string | RendererComplex;
+  readonly serializer?: string;
+  readonly actions?: { [key: string]: any };
+  readonly hidden?: boolean;
+  readonly disabled?: boolean;
 }
 
 export interface FieldMetaDescription extends RawFieldMetaDescription {
@@ -21,13 +20,12 @@ export interface FieldMetaDescription extends RawFieldMetaDescription {
 }
 
 export interface RawMetaDescription {
-  fields: RawFieldMetaDescription[];
+  fields: ReadonlyArray<RawFieldMetaDescription>;
 }
 
 export interface FormMetaDescription {
   fields: FieldMetaDescription[];
 }
-
 
 export interface RendererComplex {
   type: string;

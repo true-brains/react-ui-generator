@@ -7,7 +7,12 @@ import {
   KeyValue,
   FieldMetaDescription
 } from '../../interfaces';
-import { withDefaults, extractFieldActions } from '../../utils';
+
+import {
+  withDefaults,
+  extractFieldActions,
+  enhanceFieldMeta
+} from '../../utils';
 
 export interface SubFormProps extends FieldProps {
   formData: {
@@ -26,7 +31,7 @@ export class SubForm extends React.PureComponent<SubFormProps, {}> {
   static defaultProps = {
     formData: {
       value,
-      isDirty: false,
+      isDirty: false
     }
   };
 
@@ -46,15 +51,12 @@ export class SubForm extends React.PureComponent<SubFormProps, {}> {
     } = this.props;
 
     const enhancedFieldsMeta = config.fields.map((meta: FieldMetaDescription) => {
-      const renderer =
-        typeof meta.renderer === 'object'
-          ? meta.renderer
-          : { type: meta.renderer, config: {} };
+      const newMeta = enhanceFieldMeta(meta);
 
-      renderer.config.disabled = disabled;
-      meta.serializer = `${serializer || id}.${meta.serializer || meta.id}`;
+      newMeta.renderer.config.disabled = disabled;
+      newMeta.serializer = `${serializer || id}.${meta.serializer || meta.id}`;
 
-      return meta;
+      return newMeta;
     });
 
     const enhancedFormData = withDefaults(formData.value, enhancedFieldsMeta);

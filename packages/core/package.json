@@ -32,6 +32,8 @@
     "prop-types": "^15.6.1"
   },
   "devDependencies": {
+    "@pisano/enzyme": "^3.3.0-pisano.public.1",
+    "@pisano/enzyme-adapter-react-16": "^1.1.1-pisano.public.1",
     "@types/enzyme": "^3.1.10",
     "@types/enzyme-adapter-react-16": "^1.0.2",
     "@types/jest": "^22.2.3",
@@ -40,6 +42,7 @@
     "@types/lodash.set": "^4.3.3",
     "@types/prop-types": "^15.5.3",
     "@types/react": "^16.0.29",
+    "@types/sinon": "^5.0.1",
     "awesome-typescript-loader": "^5.0.0",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
@@ -50,6 +53,7 @@
     "enzyme-adapter-react-16": "^1.1.1",
     "jest": "^23.1.0",
     "lodash": "^4.17.10",
+    "sinon": "^5.1.0",
     "source-map-loader": "^0.2.3",
     "ts-jest": "^22.4.6",
     "typescript": "^2.6.2",

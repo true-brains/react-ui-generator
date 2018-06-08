@@ -35,28 +35,27 @@ export function enhanceFormMeta(meta: RawMetaDescription): FormMetaDescription {
   return result;
 }
 
-function enhanceFieldMeta(meta: RawFieldMetaDescription): FieldMetaDescription {
-  const _result: FieldMetaDescription = {
+export function enhanceFieldMeta(meta: RawFieldMetaDescription): FieldMetaDescription {
+  return {
     id: meta.id,
-    renderer: {
-      type: '',
-      config: {}
-    },
+    renderer: computeFieldRenderer(meta),
     serializer: meta.serializer || meta.id,
-    actions: meta.actions || {},
+    actions: meta.actions ? { ...meta.actions } : {},
     hidden: meta.hidden || false,
     disabled: meta.disabled || false
   };
+}
 
-  if (typeof meta.renderer === 'undefined') {
-    _result.renderer.type = 'text';
+function computeFieldRenderer(meta: RawFieldMetaDescription) {
+  const _renderer = { type: 'text', config: {} };
+
+  if (meta.renderer && typeof meta.renderer === 'object') {
+    return { ...meta.renderer };
   } else if (typeof meta.renderer === 'string') {
-    _result.renderer.type = meta.renderer;
-  } else {
-    _result.renderer = meta.renderer;
+    _renderer.type = meta.renderer;
   }
 
-  return _result;
+  return _renderer;
 }
 
 export function extractFieldActions(formActions: KeyValue, fieldActions: KeyValue) {

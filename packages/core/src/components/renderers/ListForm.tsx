@@ -13,9 +13,11 @@ import {
   FieldRenderer,
   FieldProps,
   KeyValue,
-  FieldMetaDescription
+  FieldMetaDescription,
+  RawFieldMetaDescription
 } from '../../interfaces';
-import { withDefaults, extractFieldActions } from '../../utils';
+
+import { withDefaults, extractFieldActions, enhanceFieldMeta } from '../../utils';
 
 export interface ItemData {
   value: object;
@@ -39,7 +41,7 @@ export class ListForm extends React.PureComponent<ListFormProps, {}> {
   static defaultProps = {
     formData: {
       value,
-      isDirty: false,
+      isDirty: false
     }
   };
 
@@ -65,25 +67,27 @@ export class ListForm extends React.PureComponent<ListFormProps, {}> {
       actions
     } = this.props;
 
-    const enhancedFieldsMeta = config.fields.map((meta: FieldMetaDescription) => {
-      const renderer =
-        typeof meta.renderer === 'object'
-          ? meta.renderer
-          : { type: meta.renderer, config: {} };
+    const enhancedFieldsMeta: FieldMetaDescription[] = [];
 
-      renderer.config.disabled = disabled;
-      meta.serializer = `${serializer || id}.${meta.serializer || meta.id}`;
+    for (let meta of config.fields) {
+      const newMeta = enhanceFieldMeta(meta);
 
-      return meta;
-    });
+      newMeta.renderer.config.disabled = disabled;
+      newMeta.serializer = `${serializer || id}.${meta.serializer || meta.id}`;
+      enhancedFieldsMeta.push(newMeta);
+    }
 
-    return formData.value.map((itemData: ItemData, idx: number) => {
-      const wrappedActions = Object.keys(actions).reduce((acc: KeyValue, key: string) => {
+    const values = formData.value || [];
+    const result = [];
+
+    for (let idx = 0; idx < values.length; idx++) {
+      const itemData = values[idx];
+      const indexedActions = Object.keys(actions).reduce((acc: KeyValue, key: string) => {
         acc[key] = (...args: any[]) => actions[key](idx, ...args);
         return acc;
       }, {});
 
-      return (
+      result.push(
         <GeneratedForm
           key={`list-form-${id}-${idx}`}
           className={className || ''}
@@ -92,13 +96,15 @@ export class ListForm extends React.PureComponent<ListFormProps, {}> {
           errors={errors[idx] || {}}
           validator={validator}
           renderers={renderers}
-          actions={wrappedActions}
+          actions={indexedActions}
           onChange={data => this.handleOnChange(idx, data)}
           isSubForm
         >
           {this.props.children}
         </GeneratedForm>
       );
-    });
+    }
+
+    return result;
   }
 }
