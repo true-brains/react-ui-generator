@@ -13,6 +13,14 @@ interface ValidationResult {
   errors: { [key: string]: string[] };
 }
 
+export interface FieldValue {
+  value: any;
+}
+
+export interface FormValue {
+  [key: string]: FieldValue;
+}
+
 export function buildValidator(
   validatorFn: ExternalValidator,
   schema: KeyValue
@@ -30,11 +38,14 @@ export function buildValidator(
   };
 }
 
-function prepareValidatedData(formValue: KeyValue): KeyValue {
+function prepareValidatedData(formValue: FormValue): KeyValue {
   let dataToValidate: KeyValue = {};
 
   for (let fieldId of Object.keys(formValue)) {
-    let { value } = formValue[fieldId];
+    const fieldValue: FieldValue = formValue[fieldId];
+    if (!fieldValue) continue;
+
+    let { value } = fieldValue;
 
     if (Array.isArray(value)) {
       value = value.map(prepareValidatedData);
