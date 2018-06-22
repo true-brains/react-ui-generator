@@ -1,6 +1,6 @@
 {
   "name": "@react-ui-generator/validators",
-  "version": "0.5.2",
+  "version": "0.5.3",
   "description": "Collection of bindings for popular validation libraries to react-ui-generator",
   "main": "./out/validators.js",
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/validators",
@@ -11,10 +11,10 @@
   "author": "Alexei Zaviruha <a.zaviruha@gmail.com>",
   "license": "MIT",
   "peerDependencies": {
-    "@react-ui-generator/core": "^0.5.2"
+    "@react-ui-generator/core": "^0.5.3"
   },
   "devDependencies": {
-    "@react-ui-generator/core": "^0.5.2",
+    "@react-ui-generator/core": "^0.5.3",
     "awesome-typescript-loader": "^3.4.1",
     "babel-core": "^6.26.0",
     "babel-loader": "^7.1.2",
