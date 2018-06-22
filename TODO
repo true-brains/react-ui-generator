@@ -20,7 +20,8 @@ Roadmap:
   ✔ Add checking for `null` in serializer's `if (typeof value === 'object')`. @done(18-05-29 16:43)
   ✔ Add `propTypes` and `defaultProps` for `@react-ui-generator/core` @done(18-05-30 16:33)
   ✔ Add `propTypes` and `defaultProps` for `@react-ui-generator/antd` @done(18-05-30 16:34)
-  ☐ Add unit-test for `@react-ui-generator/core` !!!
+  ✔ Add unit-test for `@react-ui-generator/core` @done(18-06-10)
+  ☐ Change default value of radiogroup field to `false` (instead of "")
   ☐ Add `propTypes` and `defaultProps` for `@react-ui-generator/bootstrap`
   ☐ Implement dirtify helper.
   ☐ Add basic russian documentation.
