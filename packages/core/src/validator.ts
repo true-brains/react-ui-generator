@@ -1,4 +1,4 @@
-import { FormMetaDescription, KeyValue } from './interfaces';
+import { KeyValue } from './interfaces';
 import { get } from './utils';
 
 export interface ExternalValidator {
@@ -30,7 +30,7 @@ export function buildValidator(
     const validationResult = validatorFn(schema, dataToValidate);
     const errorsByFields: KeyValue = {};
 
-    for (let fieldId of Object.keys(formValue)) {
+    for (let fieldId of Object.keys(dataToValidate)) {
       errorsByFields[fieldId] = get(validationResult, ['errors', fieldId]) || [];
     }
 
@@ -43,7 +43,7 @@ function prepareValidatedData(formValue: FormValue): KeyValue {
 
   for (let fieldId of Object.keys(formValue)) {
     const fieldValue: FieldValue = formValue[fieldId];
-    if (!fieldValue) continue;
+    if (!fieldValue || !fieldValue.hasOwnProperty('value')) continue;
 
     let { value } = fieldValue;
 
