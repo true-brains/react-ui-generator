@@ -1,6 +1,7 @@
 export { FieldWrapper } from './FieldWrapper';
 import { _Button } from './Button';
 import { Text } from './Text';
+import { Password } from './Password';
 import { _TextArea } from './TextArea';
 import { _Select } from './Select';
 import { _Checkbox } from './CheckBox';
@@ -11,6 +12,7 @@ import { _Upload } from './Upload';
 export default {
   button: _Button,
   text: Text,
+  password: Password,
   textarea: _TextArea,
   select: _Select,
   checkbox: _Checkbox,

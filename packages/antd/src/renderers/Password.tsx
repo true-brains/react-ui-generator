@@ -8,8 +8,8 @@ import {
   basePropTypes
 } from '@react-ui-generator/core';
 
-export class Text extends React.PureComponent<FieldProps, {}> {
+export class Password extends React.PureComponent<FieldProps, {}> {
   render() {
-    return (<_Input type='text' {...this.props} />);
+    return (<_Input type='password' {...this.props} />);
   }
 }

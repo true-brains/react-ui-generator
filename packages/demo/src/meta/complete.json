@@ -16,11 +16,10 @@
     {
       "id": "password",
       "renderer": {
-        "type": "text",
+        "type": "password",
         "config": {
           "label": "Password",
-          "placeholder": "Enter your password",
-          "isPassword": true
+          "placeholder": "Enter your password"
         }
       },
       "serializer": "auth.password"
@@ -29,11 +28,10 @@
     {
       "id": "confirmation",
       "renderer": {
-        "type": "text",
+        "type": "password",
         "config": {
           "label": "Confirmation",
-          "placeholder": "Enter your password again",
-          "isPassword": true
+          "placeholder": "Enter your password again"
         }
       },
       "serializer": null
