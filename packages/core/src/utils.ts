@@ -88,7 +88,8 @@ export function withDefaults(
 
     checkbox: false,
     radiogroup: '',
-    select: '',
+    select: null,
+    multiple: [],
     text: '',
     textarea: '',
     date: null,

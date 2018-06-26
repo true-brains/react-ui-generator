@@ -7,7 +7,11 @@ import { FieldWrapper } from './FieldWrapper';
 
 const { Option } = Select;
 
-export interface SelectProps extends FieldProps {}
+export type MultipleSelectValue = string[] | number[];
+
+export interface MultipleSelectProps extends FieldProps {
+  value: MultipleSelectValue
+}
 
 export interface SelectItemProps {
   id: string | number;
@@ -17,7 +21,7 @@ export interface SelectItemProps {
 const value: SelectValue = undefined;
 const options: SelectItemProps[] = [];
 
-export class _Select extends React.PureComponent<SelectProps> {
+export class MultipleSelect extends React.PureComponent<MultipleSelectProps> {
   static propTypes = {
     ...basePropTypes(),
     config: PropTypes.shape({
@@ -46,7 +50,7 @@ export class _Select extends React.PureComponent<SelectProps> {
     }
   };
 
-  handleChange = (value: SelectValue): void => {
+  handleChange = (value: MultipleSelectValue): void => {
     this.props.onChange(value);
   };
 
@@ -54,7 +58,7 @@ export class _Select extends React.PureComponent<SelectProps> {
     const {
       id,
       actions: { onToggle },
-      config: { placeholder, title, options, label, allowClear },
+      config: { placeholder, options, label, allowClear },
       data,
       disabled,
       className,
@@ -64,25 +68,24 @@ export class _Select extends React.PureComponent<SelectProps> {
     } = this.props;
 
     let value: SelectValue;
-
+    
     if (typeof data.value === 'boolean') {
       value = Number(value);
-    } else if (data.value === null) {
+    } else if (Array.isArray(data.value) && (data.value.length === 0)) {
       value = undefined;
     } else {
       value = data.value;
     }
 
-    console.log('config.placeholder: ', placeholder);
-
     return (
       <FieldWrapper errors={errors} isDirty={data.isDirty} label={label} {...rest}>
         <Select
+          mode='multiple'
           onChange={this.handleChange}
           value={value}
           allowClear={allowClear}
           disabled={disabled}
-          placeholder={placeholder || title || ''}
+          placeholder={placeholder}
         >
           {options.map(({ id, title }: SelectItemProps) => {
             return (

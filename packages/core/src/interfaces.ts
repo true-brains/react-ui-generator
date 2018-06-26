@@ -51,7 +51,7 @@ export interface FieldProps {
   id: string;
   className?: string;
   data: {
-    value: string | boolean | number;
+    value: any;
     isDirty: boolean;
   };
   errors?: any[];

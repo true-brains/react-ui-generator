@@ -29,6 +29,13 @@ export default {
     },
 
     {
+      "id": "field-multiple",
+      "renderer": {
+        "type": "multiple"
+      }
+    },
+
+    {
       "id": "field-checkbox",
       "renderer": {
         "type": "checkbox"

@@ -55,11 +55,32 @@
         "type": "select",
         "config": {
           "label": "Gender",
-          "title": "Choose your gender",
+          "placeholder": "Choose your gender",
+          "allowClear": true,
           "options": [
             { "id": "male", "title": "Female" },
             { "id": "female", "title": "Male" },
             { "id": "dontknow", "title": "I don't know" }
+          ]
+        }
+      }
+    },
+
+    {
+      "id": "pl",
+      "renderer": {
+        "type": "multiple",
+        "config": {
+          "label": "Favorite programming language",
+          "placeholder": "Choose your favorite programming language",
+          "allowClear": true,
+          "options": [
+            { "id": "elm", "title": "Elm" },
+            { "id": "javascript", "title": "JavaScript" },
+            { "id": "purescript", "title": "PureScript" },
+            { "id": "reasonml", "title": "ReasonML" },
+            { "id": "typescript", "title": "TypeScript" },
+            { "id": "other", "title": "other" }
           ]
         }
       }
