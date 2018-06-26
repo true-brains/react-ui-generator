@@ -5,7 +5,7 @@ const FormItem = Form.Item;
 
 export interface FieldWrapperProps {
   errors: string[];
-  isDirty: boolean;
+  dirty: boolean;
   children: JSX.Element | JSX.Element[];
   labelOnly?: boolean;
   hasFeedback?: boolean;
@@ -16,14 +16,14 @@ export interface FieldWrapperProps {
 
 export class FieldWrapper extends React.PureComponent<FieldWrapperProps, {}> {
   render() {
-    const { errors, isDirty, children, labelOnly, hasFeedback, ...rest } = this.props;
-    const isValidated = Boolean(errors) && isDirty;
-    const isValid = !isValidated || !errors.length;
-    const errorComponents = (errors || []).map((err, idx) => (<div key={idx}>{err}</div>))
+    const { errors, dirty = false, children, labelOnly, hasFeedback, ...rest } = this.props;
+    const isValidated = Array.isArray(errors) && dirty;
+    const isValid = !isValidated || (errors.length === 0);
+    const errorComponents = (errors || []).map((err, idx) => (<div className="field-error" key={idx}>{err}</div>))
 
     return(
       <FormItem
-        help={(isValidated && (errors || []).length) ? errorComponents : ''}
+        help={isValidated ? errorComponents : ''}
         validateStatus={isValidated ? (isValid ? 'success' : 'error') : null}
         hasFeedback={(hasFeedback !== undefined) ? hasFeedback : isValidated}
         {...rest}

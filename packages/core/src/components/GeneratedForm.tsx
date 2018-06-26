@@ -1,42 +1,57 @@
 import React from 'react';
-import { ChangeEvent } from 'react';
 
 import {
   RawMetaDescription,
-  RawFieldMetaDescription,
-  FormMetaDescription,
-  FieldMetaDescription,
+  KeyValue,
   FieldRenderer,
-  KeyValue
+  FormMetaDescription,
 } from '../interfaces';
 
-import {
-  get,
-  extractFieldActions,
-  enhanceFormMeta
-} from '../utils';
+import { get, extractFieldActions, enhanceFormMeta } from '../utils';
 
-import { Layout } from '../components/Layout';
-import { SubForm } from '../components/renderers/SubForm';
-import { ListForm } from '../components/renderers/ListForm';
-import { Fields } from '../components/Fields';
+import { Layout } from './Layout';
+import { SubForm } from './renderers/SubForm';
+import { ListForm } from './renderers/ListForm';
+import { Fields } from './Fields';
 
 export interface GeneratedFormProps {
   className?: string;
   meta: RawMetaDescription;
   data: KeyValue;
-  errors: KeyValue;
-  validator(formData: KeyValue): KeyValue;
+  errors: any;
+  dirtiness: KeyValue;
   renderers: { [key: string]: typeof FieldRenderer };
-  actions?: KeyValue;
-  onChange(data: any, errors: any, isValid: boolean): void;
+  actions: KeyValue;
   isSubForm?: boolean;
+  validator(formData: KeyValue): KeyValue;
+  onChange(data: KeyValue, errors: KeyValue, isValid: boolean, dirtiness: KeyValue): void;
 }
 
-export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
-  handleChange(fieldId: string, newValue: any): void {
+export interface GeneratedFormState {
+  meta: FormMetaDescription;
+}
+
+const meta: FormMetaDescription = { fields: [] };
+
+export class GeneratedForm extends React.PureComponent<
+  GeneratedFormProps,
+  GeneratedFormState
+> {
+  state = { meta };
+
+  static getDerivedStateFromProps(props: GeneratedFormProps) {
+    return {
+      meta: enhanceFormMeta(props.meta)
+    };
+  }
+
+  handleChange(fieldId: string, newValue: any, newDirtines: any): void {
+    console.log('handleChange: ', fieldId, newValue, newDirtines);
     const nextData = { ...this.props.data };
-    nextData[fieldId] = { value: newValue, isDirty: true };
+    const nextDirtiness = { ...this.props.dirtiness };
+
+    nextData[fieldId] = newValue;
+    nextDirtiness[fieldId] = newDirtines;
 
     const { validator, isSubForm } = this.props;
 
@@ -45,9 +60,11 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
      * because validation is processed on the top level.
      */
     const isValidatable = validator && !isSubForm;
-    const nextErrors = isValidatable ? validator(nextData) : { isValid: true, errors: {} };
+    const nextErrors = isValidatable
+      ? validator(nextData)
+      : { isValid: true, errors: {} };
 
-    this.props.onChange(nextData, nextErrors.errors, nextErrors.isValid);
+    this.props.onChange(nextData, nextErrors.errors, nextErrors.isValid, nextDirtiness);
   }
 
   render() {
@@ -55,25 +72,22 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
 
     const {
       className = '',
-      meta,
       data,
       errors,
+      dirtiness,
       actions: formActions,
       renderers,
       validator,
       children
     } = this.props;
 
-    const _meta = enhanceFormMeta(meta);
-
-    for (let field of _meta.fields) {
+    for (let field of this.state.meta.fields) {
       const {
         id,
         renderer: { type, config },
         actions: fieldActions,
         hidden,
         disabled,
-        serializer
       } = field;
 
       /**
@@ -85,7 +99,11 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
       }
 
       const Renderer =
-        type === 'form' ? SubForm : type === 'list' ? ListForm : renderers[type];
+        type === 'form' ? SubForm : (type === 'list' ? ListForm : renderers[type]);
+
+      if (!Renderer) {
+        throw new Error(`Could not find renderer of type "${type}" (field "${id}") in form renderers.`)
+      }
 
       const actions: { [key: string]: any } = extractFieldActions(
         formActions,
@@ -96,10 +114,10 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
         type === 'form' || type === 'list'
           ? {
               isSubForm: true,
-              formData: data[id],
+              data: data[id],
               actions: formActions,
               errors: get(errors, id, type === 'list' ? [] : {}),
-              serializer,
+              dirtiness: get(dirtiness, id, type === 'list' ? [] : {}),
               renderers,
               validator
             }
@@ -110,17 +128,16 @@ export class GeneratedForm extends React.PureComponent<GeneratedFormProps, {}> {
           key={id}
           id={id}
           data={data[id]}
-          errors={get(errors, id, null)}
+          errors={errors[id] || null}
           config={config}
           actions={actions}
-          onChange={(newValue: any) => {
-            this.handleChange(id, newValue);
+          onChange={(newValue: any, newDirtines: any = true) => {
+            this.handleChange(id, newValue, newDirtines);
           }}
           disabled={disabled}
+          dirty={dirtiness[id] || false}
           {...subFormAdditionalProps}
-        >
-          {id}
-        </Renderer>
+        />
       );
     }
 

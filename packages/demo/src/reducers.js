@@ -1,10 +1,8 @@
-import { combineReducers } from 'redux';
 import deepmerge from 'deepmerge';
 
 import {
   withDefaults,
   findFieldMetaById,
-  buildJSONSerializer
 } from '@react-ui-generator/core';
 
 import {
@@ -20,14 +18,15 @@ const meta = require('@meta/complete');
 const initialState = {
   meta,
   data: withDefaults({}, meta.fields),
-  // data: {},
   errors: {},
+  dirtiness: {},
   isValid: false,
 };
 
 function reducer(state = initialState, { type: actionType, payload }) {
   switch (actionType) {
     case UPDATE_FORM: {
+      console.log(UPDATE_FORM, payload);
       return merge(state, payload);
     }
 
@@ -48,12 +47,10 @@ function reducer(state = initialState, { type: actionType, payload }) {
 
       const newState = merge(state, {
         data: {
-          relatives: {
-            value: [
-              ...state.data.relatives.value,
-              withDefaults({}, subFormMeta.renderer.config.fields)
-            ]
-          }
+          relatives: [
+            ...state.data.relatives,
+            withDefaults({}, subFormMeta.renderer.config.fields)
+          ]
         }
       });
 
@@ -63,13 +60,13 @@ function reducer(state = initialState, { type: actionType, payload }) {
     case REMOVE_RELATIVE: {
       const idx = payload;
       const subFormMeta = findFieldMetaById('relatives', state.meta.fields);
-      const newValue = [ ...state.data.relatives.value ];
+      const newValue = [ ...state.data.relatives ];
 
       newValue.splice(idx, 1);
 
       const newState = merge(state, {
         data: {
-          relatives: { value: newValue }
+          relatives: newValue
         }
       });
 

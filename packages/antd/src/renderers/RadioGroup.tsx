@@ -3,7 +3,7 @@ import { ChangeEvent } from 'react';
 import Radio from 'antd/lib/radio';
 
 import {
-  FieldProps,
+  FieldRenderer,
   PropTypes,
   basePropTypes
 } from '@react-ui-generator/core';
@@ -12,7 +12,6 @@ import { FieldWrapper } from './FieldWrapper';
 
 const RadioGroup = Radio.Group;
 
-export interface RadiogroupProps extends FieldProps {}
 
 export interface RadiogroupItem {
   id: string | number;
@@ -22,7 +21,7 @@ export interface RadiogroupItem {
 const value: string | number = null;
 const options: RadiogroupItem[] = [];
 
-export class _RadioGroup extends React.PureComponent<RadiogroupProps, {}> {
+export class _RadioGroup extends FieldRenderer {
   static propTypes = {
     ...basePropTypes(),
     config: PropTypes.shape({
@@ -37,14 +36,12 @@ export class _RadioGroup extends React.PureComponent<RadiogroupProps, {}> {
   static defaultProps = {
     className: '',
     disabled: false,
+    dirty: false,
     config: {
       label: '',
       options
     },
-    data: {
-      value,
-      isDirty: false
-    },
+    data: value,
   }
 
   handleChange(value: string): void {
@@ -59,20 +56,17 @@ export class _RadioGroup extends React.PureComponent<RadiogroupProps, {}> {
       onChange,
       config,
       disabled,
-      errors,
       ...rest
     } = this.props;
 
     return (
       <FieldWrapper
-        errors={errors}
-        isDirty={data.isDirty}
         hasFeedback={false}
         label={config.label}
         {...rest}
       >
         <RadioGroup
-          value={data.value}
+          value={data}
           disabled={disabled}
           onChange={event => {
             this.handleChange(event.target.value);

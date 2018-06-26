@@ -3,18 +3,16 @@ import { ChangeEvent } from 'react';
 import Checkbox, { CheckboxChangeEvent } from 'antd/lib/checkbox';
 
 import {
-  FieldProps,
+  FieldRenderer,
   PropTypes,
   basePropTypes
 } from '@react-ui-generator/core';
 
 import { FieldWrapper } from './FieldWrapper';
 
-export interface CheckboxProps extends FieldProps {}
-
 const value: boolean = null;
 
-export class _Checkbox extends React.PureComponent<CheckboxProps, {}> {
+export class _Checkbox extends FieldRenderer {
   static propTypes = {
     ...basePropTypes(),
     config: PropTypes.shape({
@@ -26,14 +24,12 @@ export class _Checkbox extends React.PureComponent<CheckboxProps, {}> {
   static defaultProps = {
     className: '',
     disabled: false,
+    drity: false,
     config: {
       label: '',
       title: '',
     },
-    data: {
-      value,
-      isDirty: false
-    }
+    data: value 
   }
 
   handleChange = (event: CheckboxChangeEvent): void => {
@@ -48,17 +44,14 @@ export class _Checkbox extends React.PureComponent<CheckboxProps, {}> {
       onChange,
       config: { label, title },
       disabled,
-      errors,
       ...rest
     } = this.props;
 
-    const value: boolean = Boolean(data.value);
+    const value: boolean = Boolean(data);
     const _label = label || (id.length ? id.charAt(0).toUpperCase() + id.slice(1) : '');
 
     return (
       <FieldWrapper
-        errors={errors}
-        isDirty={data.isDirty}
         hasFeedback={false}
         label={_label}
         {...rest}

@@ -4,7 +4,6 @@ import PropTypes from 'prop-types';
 export interface RawFieldMetaDescription {
   readonly id: string;
   readonly renderer?: string | RendererComplex;
-  readonly serializer?: string;
   readonly actions?: { [key: string]: any };
   readonly hidden?: boolean;
   readonly disabled?: boolean;
@@ -13,7 +12,6 @@ export interface RawFieldMetaDescription {
 export interface FieldMetaDescription extends RawFieldMetaDescription {
   id: string;
   renderer: RendererComplex;
-  serializer: string;
   actions: { [key: string]: any };
   hidden: boolean;
   disabled: boolean;
@@ -34,46 +32,32 @@ export interface RendererComplex {
 
 export interface FieldRendererProps {
   id: string;
-  data: any;
-  errors: any;
-  actions: any;
-  config: any;
-  type?: any;
-  onChange(data: any, errors: any): void;
-  disabled: boolean;
-}
-
-export class FieldRenderer extends React.Component<FieldRendererProps, {}> {}
-
-export type KeyValue = { [key: string]: any }
-
-export interface FieldProps {
-  id: string;
   className?: string;
-  data: {
-    value: any;
-    isDirty: boolean;
-  };
-  errors?: any[];
+  data: any;
+  errors: string[];
   actions: KeyValue;
   config: KeyValue;
+  type?: any;
   disabled: boolean;
-  onChange(value: any): void;
+  dirty: boolean;
+  onChange(data: any, dirty?: any): void;
 }
+
+export class FieldRenderer<P=FieldRendererProps, S={}> extends React.PureComponent<P, S> {}
+
+export type KeyValue = { [key: string]: any }
 
 export function basePropTypes() {
   return {
     id: PropTypes.string.isRequired,
     className: PropTypes.string,
-    data: PropTypes.shape({
-      value: PropTypes.oneOfType([PropTypes.bool, PropTypes.string, PropTypes.number]),
-      isDirty: PropTypes.bool,
-    }),
+    data: PropTypes.any,
     errors: PropTypes.arrayOf(PropTypes.string),
     actions: PropTypes.objectOf(PropTypes.func),
     config: PropTypes.shape({
       type: PropTypes.string,
     }),
     disabled: PropTypes.bool,
+    dirty: PropTypes.bool,
   };
 }

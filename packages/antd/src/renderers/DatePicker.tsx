@@ -4,20 +4,21 @@ import DatePicker from 'antd/lib/date-picker';
 import moment, { Moment, MomentInput } from 'moment';
 
 import {
-  FieldProps,
+  FieldRenderer,
+  FieldRendererProps,
   PropTypes,
   basePropTypes
 } from '@react-ui-generator/core';
 
 import { FieldWrapper } from './FieldWrapper';
 
-export interface DatePickerProps extends FieldProps {
+export interface DatePickerProps extends FieldRendererProps {
   format: String;
 }
 
 const value: string = null;
 
-export class _DatePicker extends React.PureComponent<DatePickerProps, {}> {
+export class _DatePicker extends FieldRenderer<DatePickerProps> {
   static propTypes = {
     ...basePropTypes(),
     config: PropTypes.shape({
@@ -30,15 +31,13 @@ export class _DatePicker extends React.PureComponent<DatePickerProps, {}> {
   static defaultProps = {
     className: '',
     disabled: false,
+    dirty: false,
     config: {
       label: '',
       placeholder: '',
       format: 'DD.MM.YYYY'
     },
-    data: {
-      value,
-      isDirty: false
-    }
+    data: value,
   }
 
   handleChange = (date: Moment, dateString: String): void => {
@@ -53,15 +52,13 @@ export class _DatePicker extends React.PureComponent<DatePickerProps, {}> {
       onChange,
       config,
       disabled,
-      errors,
       ...rest
     } = this.props;
     const format = config.format || 'YYYY-MM-DD';
-    const { value } = data;
-    const momentValue: Moment = value ? moment(String(value), format) : undefined;
+    const momentValue: Moment = data ? moment(String(data), format) : undefined;
 
     return (
-      <FieldWrapper errors={errors} isDirty={data.isDirty} label={config.label} {...rest}>
+      <FieldWrapper label={config.label} {...rest}>
         <DatePicker
           id={id}
           className={className || ''}

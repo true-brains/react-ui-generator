@@ -1,17 +1,23 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
 import Input from 'antd/lib/input';
-import { FieldProps, PropTypes, basePropTypes } from '@react-ui-generator/core';
+
+import {
+  FieldRendererProps,
+  FieldRenderer,
+  PropTypes,
+  basePropTypes
+} from '@react-ui-generator/core';
 
 import { FieldWrapper } from './FieldWrapper';
 
-export interface InputProps extends FieldProps {
+export interface InputProps extends FieldRendererProps {
   type?: string;
 }
 
 const value: string = '';
 
-export class _Input extends React.PureComponent<InputProps, {}> {
+export class _Input extends FieldRenderer<InputProps> {
   static propTypes = {
     ...basePropTypes(),
     type: PropTypes.string,
@@ -25,14 +31,12 @@ export class _Input extends React.PureComponent<InputProps, {}> {
     type: 'text',
     className: '',
     disabled: false,
+    dirty: false,
     config: {
       label: '',
       placeholder: ''
     },
-    data: {
-      value,
-      isDirty: false
-    }
+    data: value
   };
 
   handleChange(event: ChangeEvent<HTMLInputElement>): void {
@@ -40,21 +44,11 @@ export class _Input extends React.PureComponent<InputProps, {}> {
   }
 
   render() {
-    const {
-      type,
-      id,
-      data,
-      className,
-      onChange,
-      config,
-      disabled,
-      errors,
-      ...rest
-    } = this.props;
-    const value: string = String(data.value);
+    const { type, id, data, className, onChange, config, disabled, ...rest } = this.props;
+    const value: string = String(data);
 
     return (
-      <FieldWrapper errors={errors} isDirty={data.isDirty} label={config.label} {...rest}>
+      <FieldWrapper label={config.label} {...rest}>
         <Input
           type={type}
           id={id}

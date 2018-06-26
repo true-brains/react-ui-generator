@@ -1,20 +1,17 @@
 import * as React from 'react';
-import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
 import { Input, Label } from 'reactstrap';
-import { FieldProps } from '@react-ui-generator/core';
+import { FieldRenderer } from '@react-ui-generator/core';
 import { ValidatableField } from './ValidatableField';
 
-export interface CheckboxProps extends FieldProps {}
-
-export class Checkbox extends React.PureComponent<CheckboxProps, {}> {
+export class Checkbox extends FieldRenderer {
   handleChange(event: ChangeEvent<HTMLInputElement>): void {
     this.props.onChange(event.target.checked);
   }
 
   render() {
     const { id, data, className, onChange, config, disabled, errors } = this.props;
-    const value: boolean = Boolean(data.value);
+    const value: boolean = Boolean(data);
     const label =
       config.label || (id.length ? id.charAt(0).toUpperCase() + id.slice(1) : '');
 

@@ -3,16 +3,14 @@ import Button, { ButtonType, ButtonSize } from 'antd/lib/button';
 import makeClass from 'classnames';
 
 import {
-  FieldProps,
+  FieldRenderer,
   PropTypes,
   basePropTypes
 } from '@react-ui-generator/core';
 
 import { FieldWrapper } from './FieldWrapper';
 
-export interface ButtonProps extends FieldProps {}
-
-export class _Button extends React.PureComponent<ButtonProps, {}> {
+export class _Button extends FieldRenderer {
   static propTypes = {
     ...basePropTypes(),
     config: PropTypes.shape({
@@ -49,7 +47,7 @@ export class _Button extends React.PureComponent<ButtonProps, {}> {
     };
 
     return (
-      <FieldWrapper errors={[]} isDirty={false} {...rest}>
+      <FieldWrapper errors={[]} {...rest}>
         <Button onClick={onClick} {...props} disabled={disabled}>
           {title}
         </Button>

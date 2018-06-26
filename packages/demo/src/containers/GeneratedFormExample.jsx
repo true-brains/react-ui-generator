@@ -36,7 +36,7 @@ const { FormLayout, FieldLayout } = Layouts;
 
 class GeneratedFormExample extends React.PureComponent {
   render() {
-    const { meta, data, errors, updateForm, ...actions } = this.props;
+    const { meta, data, errors, dirtiness, updateForm, ...actions } = this.props;
 
     return (
       <GeneratedForm
@@ -44,9 +44,10 @@ class GeneratedFormExample extends React.PureComponent {
         meta={meta}
         data={data}
         errors={errors}
+        dirtiness={dirtiness}
         renderers={renderers}
         actions={actions}
-        onChange={(data, errors, isValid) => updateForm({ data, errors, isValid })}
+        onChange={(data, errors, isValid, dirtiness) => updateForm({ data, errors, isValid, dirtiness })}
         validator={buildAjvValidator(Ajv, validationSchema)}
       >
         <div className="card border-dark mb-3">

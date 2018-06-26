@@ -2,10 +2,10 @@ import * as React from 'react';
 import { ChangeEvent } from 'react';
 import makeClass from 'classnames';
 import { Input } from 'reactstrap';
-import { FieldProps, KeyValue } from '@react-ui-generator/core';
+import { FieldRendererProps, KeyValue } from '@react-ui-generator/core';
 import { ValidatableField } from './ValidatableField';
 
-export interface SelectProps extends FieldProps {
+export interface SelectProps extends FieldRendererProps {
   title: string;
   caret?: boolean;
   isOpen?: boolean;
@@ -66,7 +66,7 @@ export class Select extends React.PureComponent<SelectProps, SelectState> {
       errors
     } = this.props;
 
-    const value: string = String(data.value);
+    const value: string = String(data);
 
     return (
       <ValidatableField errors={errors} isDirty={data.isDirty}>

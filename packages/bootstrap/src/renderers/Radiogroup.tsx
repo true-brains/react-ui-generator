@@ -2,10 +2,10 @@ import * as React from 'react';
 import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
 import { Input, Label, FormGroup } from 'reactstrap';
-import { FieldProps } from '@react-ui-generator/core';
+import { FieldRendererProps } from '@react-ui-generator/core';
 import { ValidatableField } from './ValidatableField';
 
-export interface RadiogroupProps extends FieldProps {}
+export interface RadiogroupProps extends FieldRendererProps {}
 
 export interface RadiogroupItem {
   id: string;
@@ -19,7 +19,7 @@ export class Radiogroup extends React.PureComponent<RadiogroupProps, {}> {
 
   render() {
     const { id, data, className, onChange, config, disabled, errors } = this.props;
-    const value: string = String(data.value);
+    const value: string = String(data);
 
     return (
       config.options.map((item: RadiogroupItem, idx: number) => (

@@ -2,9 +2,9 @@ import * as React from 'react';
 import { ChangeEvent } from 'react';
 import makeClass from 'classnames';
 import { Dropdown as RDropdown, DropdownToggle, DropdownMenu, DropdownItem } from 'reactstrap';
-import { FieldProps } from '@react-ui-generator/core';
+import { FieldRendererProps } from '@react-ui-generator/core';
 
-export interface DropdownProps extends FieldProps {
+export interface DropdownProps extends FieldRendererProps {
   title: string;
   caret?: boolean;
   isOpen?: boolean;

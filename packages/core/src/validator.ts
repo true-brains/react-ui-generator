@@ -1,24 +1,16 @@
 import { KeyValue } from './interfaces';
-import { get } from './utils';
 
 export interface ExternalValidator {
-  (schema: KeyValue, data: KeyValue): KeyValue;
+  (schema: KeyValue, data: KeyValue): ValidationResult;
 }
 
 export interface Validator {
-  (formValue: KeyValue): KeyValue;
+  (formValue: KeyValue): ValidationResult;
 }
 
 interface ValidationResult {
   errors: { [key: string]: string[] };
-}
-
-export interface FieldValue {
-  value: any;
-}
-
-export interface FormValue {
-  [key: string]: FieldValue;
+  isValid: boolean;
 }
 
 export function buildValidator(
@@ -26,35 +18,14 @@ export function buildValidator(
   schema: KeyValue
 ): Validator {
   return (formValue: KeyValue): ValidationResult => {
-    const dataToValidate = prepareValidatedData(formValue);
-    const validationResult = validatorFn(schema, dataToValidate);
+    const { errors, isValid } = validatorFn(schema, formValue);
     const errorsByFields: KeyValue = {};
 
-    for (let fieldId of Object.keys(dataToValidate)) {
-      errorsByFields[fieldId] = get(validationResult, ['errors', fieldId]) || [];
+    for (let fieldId of Object.keys(formValue)) {
+      errorsByFields[fieldId] = errors[fieldId] || []; // empty array for valid fields
     }
 
-    return { ...validationResult, errors: errorsByFields };
+    return { isValid, errors: errorsByFields };
   };
 }
 
-function prepareValidatedData(formValue: FormValue): KeyValue {
-  let dataToValidate: KeyValue = {};
-
-  for (let fieldId of Object.keys(formValue)) {
-    const fieldValue: FieldValue = formValue[fieldId];
-    if (!fieldValue || !fieldValue.hasOwnProperty('value')) continue;
-
-    let { value } = fieldValue;
-
-    if (Array.isArray(value)) {
-      value = value.map(prepareValidatedData);
-    } else if (value && typeof value === 'object') {
-      value = prepareValidatedData(value);
-    }
-
-    dataToValidate[fieldId] = value;
-  }
-
-  return dataToValidate;
-}

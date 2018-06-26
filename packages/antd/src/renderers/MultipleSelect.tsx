@@ -1,17 +1,16 @@
 import * as React from 'react';
-import { ChangeEvent } from 'react';
 import Select, { SelectValue } from 'antd/lib/select';
-import { FieldProps, KeyValue, PropTypes, basePropTypes } from '@react-ui-generator/core';
+import {
+  FieldRenderer,
+  PropTypes,
+  basePropTypes
+} from '@react-ui-generator/core';
 
 import { FieldWrapper } from './FieldWrapper';
 
 const { Option } = Select;
 
 export type MultipleSelectValue = string[] | number[];
-
-export interface MultipleSelectProps extends FieldProps {
-  value: MultipleSelectValue
-}
 
 export interface SelectItemProps {
   id: string | number;
@@ -21,7 +20,7 @@ export interface SelectItemProps {
 const value: SelectValue = undefined;
 const options: SelectItemProps[] = [];
 
-export class MultipleSelect extends React.PureComponent<MultipleSelectProps> {
+export class MultipleSelect extends FieldRenderer {
   static propTypes = {
     ...basePropTypes(),
     config: PropTypes.shape({
@@ -39,15 +38,13 @@ export class MultipleSelect extends React.PureComponent<MultipleSelectProps> {
   static defaultProps = {
     className: '',
     disabled: false,
+    dirty: false,
     config: {
       label: '',
       placeholder: '',
       options
     },
-    data: {
-      value,
-      isDirty: false
-    }
+    data: value,
   };
 
   handleChange = (value: MultipleSelectValue): void => {
@@ -63,22 +60,21 @@ export class MultipleSelect extends React.PureComponent<MultipleSelectProps> {
       disabled,
       className,
       onChange,
-      errors,
       ...rest
     } = this.props;
 
     let value: SelectValue;
     
-    if (typeof data.value === 'boolean') {
-      value = Number(value);
-    } else if (Array.isArray(data.value) && (data.value.length === 0)) {
+    if (typeof data === 'boolean') {
+      value = Number(data);
+    } else if (Array.isArray(data) && (data.length === 0)) {
       value = undefined;
     } else {
-      value = data.value;
+      value = data;
     }
 
     return (
-      <FieldWrapper errors={errors} isDirty={data.isDirty} label={label} {...rest}>
+      <FieldWrapper label={label} {...rest}>
         <Select
           mode='multiple'
           onChange={this.handleChange}

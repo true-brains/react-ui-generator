@@ -39,7 +39,6 @@ export function enhanceFieldMeta(meta: RawFieldMetaDescription): FieldMetaDescri
   return {
     id: meta.id,
     renderer: computeFieldRenderer(meta),
-    serializer: meta.serializer || meta.id,
     actions: meta.actions ? { ...meta.actions } : {},
     hidden: meta.hidden || false,
     disabled: meta.disabled || false
@@ -114,7 +113,7 @@ export function withDefaults(
             ? [withDefaults({}, fieldMeta.renderer.config.fields)] // and what about "form"?
             : defaultValue;
 
-        resultData[id] = { value, isDirty: false };
+        resultData[id] = value;
       }
     }
   }

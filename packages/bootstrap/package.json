@@ -1,5 +1,6 @@
 {
   "name": "@react-ui-generator/bootstrap",
+  "private": true,
   "version": "0.5.3",
   "description": "Renderers and layouts for react-ui-generator, based on Twitter Bootstrap",
   "main": "./out/bootstrap.js",

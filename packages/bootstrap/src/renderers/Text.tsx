@@ -2,10 +2,10 @@ import * as React from 'react';
 import makeClass from 'classnames';
 import { ChangeEvent } from 'react';
 import { Input } from 'reactstrap';
-import { FieldProps } from '@react-ui-generator/core';
+import { FieldRendererProps } from '@react-ui-generator/core';
 import { ValidatableField } from './ValidatableField';
 
-export interface TextProps extends FieldProps {}
+export interface TextProps extends FieldRendererProps {}
 
 export class Text extends React.PureComponent<TextProps, {}> {
   handleChange(event: ChangeEvent<HTMLInputElement>): void {
@@ -14,7 +14,7 @@ export class Text extends React.PureComponent<TextProps, {}> {
 
   render() {
     const { id, data, className, onChange, config, disabled, errors } = this.props;
-    const value: string = String(data.value);
+    const value: string = String(data);
 
     return (
       <ValidatableField errors={errors} isDirty={data.isDirty}>

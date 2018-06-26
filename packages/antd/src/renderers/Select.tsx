@@ -1,13 +1,10 @@
 import * as React from 'react';
-import { ChangeEvent } from 'react';
 import Select, { SelectValue } from 'antd/lib/select';
-import { FieldProps, KeyValue, PropTypes, basePropTypes } from '@react-ui-generator/core';
+import { FieldRenderer, PropTypes, basePropTypes } from '@react-ui-generator/core';
 
 import { FieldWrapper } from './FieldWrapper';
 
 const { Option } = Select;
-
-export interface SelectProps extends FieldProps {}
 
 export interface SelectItemProps {
   id: string | number;
@@ -17,7 +14,7 @@ export interface SelectItemProps {
 const value: SelectValue = undefined;
 const options: SelectItemProps[] = [];
 
-export class _Select extends React.PureComponent<SelectProps> {
+export class _Select extends FieldRenderer {
   static propTypes = {
     ...basePropTypes(),
     config: PropTypes.shape({
@@ -35,15 +32,13 @@ export class _Select extends React.PureComponent<SelectProps> {
   static defaultProps = {
     className: '',
     disabled: false,
+    dirty: false,
     config: {
       label: '',
       placeholder: '',
       options
     },
-    data: {
-      value,
-      isDirty: false
-    }
+    data: value,
   };
 
   handleChange = (value: SelectValue): void => {
@@ -59,24 +54,21 @@ export class _Select extends React.PureComponent<SelectProps> {
       disabled,
       className,
       onChange,
-      errors,
       ...rest
     } = this.props;
 
     let value: SelectValue;
 
-    if (typeof data.value === 'boolean') {
-      value = Number(value);
-    } else if (data.value === null) {
+    if (typeof data === 'boolean') {
+      value = Number(data);
+    } else if (data === null) {
       value = undefined;
     } else {
-      value = data.value;
+      value = data;
     }
 
-    console.log('config.placeholder: ', placeholder);
-
     return (
-      <FieldWrapper errors={errors} isDirty={data.isDirty} label={label} {...rest}>
+      <FieldWrapper label={label} {...rest}>
         <Select
           onChange={this.handleChange}
           value={value}

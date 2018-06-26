@@ -1,55 +1,41 @@
 /**
- * Renderer "ListForm" allows to render list of nested subforms.
- * It is useful, when you need to build form with list of repated
- * sections, where each section consists of more than one fields
- * (e.g. section "Linked accounts" in user profile form, with
- * "user name", "avatar", "unlink button" fields,).
+ * Renderer "ListForm" allows you to render a list of nested subforms.
+ * It is useful when you need to build a form with a list of the same sections,
+ * where each section consists of more than one fields
+ * (e.g. section "Linked accounts" in user profile form,
+ * with "username", "avatar", "unlink button" fields,).
  */
 
 import * as React from 'react';
-import { ChangeEvent } from 'react';
 import { GeneratedForm } from '../GeneratedForm';
 import {
   FieldRenderer,
-  FieldProps,
+  FieldRendererProps,
   KeyValue,
   FieldMetaDescription,
-  RawFieldMetaDescription
 } from '../../interfaces';
 
 import { withDefaults, extractFieldActions, enhanceFieldMeta } from '../../utils';
 
-export interface ItemData {
-  value: object;
-  isDirty: boolean;
-}
-
-export interface ListFormProps extends FieldProps {
-  formData: {
-    value: ItemData[];
-    isDirty: boolean;
-  };
-
-  serializer?: string;
+export interface ListFormProps extends FieldRendererProps {
+  dirtiness: KeyValue[],
   renderers: { [key: string]: typeof FieldRenderer };
-  validator(formData: KeyValue): KeyValue;
+  validator(data: KeyValue): KeyValue;
 }
 
-const value: ItemData[] = [];
-
-export class ListForm extends React.PureComponent<ListFormProps, {}> {
+export class ListForm extends FieldRenderer<ListFormProps> {
   static defaultProps = {
-    formData: {
-      value,
-      isDirty: false
-    }
+    data: [] as KeyValue[],
+    dirtiness: [] as KeyValue[]
   };
 
-  handleOnChange(idx: number, itemData: any) {
-    const newValue = [...this.props.formData.value];
+  handleOnChange(idx: number, itemData: any, itemDirtiness: any) {
+    const newValue = [...this.props.data];
+    const newDirtines = [...this.props.dirtiness];
 
     newValue[idx] = itemData;
-    this.props.onChange(newValue);
+    newDirtines[idx] = itemDirtiness;
+    this.props.onChange(newValue, newDirtines);
   }
 
   render() {
@@ -59,11 +45,11 @@ export class ListForm extends React.PureComponent<ListFormProps, {}> {
       onChange,
       disabled,
       config,
-      formData,
+      data,
       errors,
+      dirtiness,
       renderers,
       validator,
-      serializer,
       actions
     } = this.props;
 
@@ -73,11 +59,10 @@ export class ListForm extends React.PureComponent<ListFormProps, {}> {
       const newMeta = enhanceFieldMeta(meta);
 
       newMeta.renderer.config.disabled = disabled;
-      newMeta.serializer = `${serializer || id}.${meta.serializer || meta.id}`;
       enhancedFieldsMeta.push(newMeta);
     }
 
-    const values = formData.value || [];
+    const values = data || [];
     const result = [];
 
     for (let idx = 0; idx < values.length; idx++) {
@@ -94,10 +79,11 @@ export class ListForm extends React.PureComponent<ListFormProps, {}> {
           meta={{ fields: enhancedFieldsMeta }}
           data={itemData}
           errors={errors[idx] || {}}
+          dirtiness={dirtiness[idx] || {}}
           validator={validator}
           renderers={renderers}
           actions={indexedActions}
-          onChange={data => this.handleOnChange(idx, data)}
+          onChange={(data, _errors, _isValid, dirtiness) => this.handleOnChange(idx, data, dirtiness)}
           isSubForm
         >
           {this.props.children}

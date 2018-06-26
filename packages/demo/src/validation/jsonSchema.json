@@ -19,6 +19,13 @@
     "sex": {
       "enum": ["male", "female"]
     },
+    "pl": {
+      "type": "array",
+      "items": {
+        "type": "string",
+        "minItems": 1
+      }
+    },
     "isMarried": {
       "_type": "boolean",
       "const": true

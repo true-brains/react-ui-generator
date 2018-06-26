@@ -64,6 +64,10 @@
     raf "^3.4.0"
     rst-selector-parser "^2.2.3"
 
+"@react-ui-generator/serializers@^0.5.3":
+  version "0.5.3"
+  resolved "https://registry.yarnpkg.com/@react-ui-generator/serializers/-/serializers-0.5.3.tgz#b4f824a994123424a4af7a464af67c980d6acd36"
+
 "@samverschueren/stream-to-observable@^0.3.0":
   version "0.3.0"
   resolved "https://registry.yarnpkg.com/@samverschueren/stream-to-observable/-/stream-to-observable-0.3.0.tgz#ecdf48d532c58ea477acfcab80348424f8d0662f"

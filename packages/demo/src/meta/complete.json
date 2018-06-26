@@ -58,8 +58,8 @@
           "placeholder": "Choose your gender",
           "allowClear": true,
           "options": [
-            { "id": "male", "title": "Female" },
-            { "id": "female", "title": "Male" },
+            { "id": "female", "title": "Female" },
+            { "id": "male", "title": "Male" },
             { "id": "dontknow", "title": "I don't know" }
           ]
         }

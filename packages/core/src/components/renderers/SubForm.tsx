@@ -1,38 +1,28 @@
 import * as React from 'react';
-import { ChangeEvent } from 'react';
 import { GeneratedForm } from '../GeneratedForm';
 import {
   FieldRenderer,
-  FieldProps,
+  FieldRendererProps,
+  FieldMetaDescription,
   KeyValue,
-  FieldMetaDescription
 } from '../../interfaces';
 
 import {
   withDefaults,
-  extractFieldActions,
   enhanceFieldMeta
 } from '../../utils';
 
-export interface SubFormProps extends FieldProps {
-  formData: {
-    value: object;
-    isDirty: boolean;
-  };
-
-  serializer?: string;
+export interface SubFormProps extends FieldRendererProps {
+  dirtiness: KeyValue,
   validator(formData: KeyValue): KeyValue;
   renderers: { [key: string]: typeof FieldRenderer };
 }
 
-const value: any = {};
+const value: KeyValue = {};
 
-export class SubForm extends React.PureComponent<SubFormProps, {}> {
+export class SubForm extends FieldRenderer<SubFormProps> {
   static defaultProps = {
-    formData: {
-      value,
-      isDirty: false
-    }
+    data: value
   };
 
   render() {
@@ -42,11 +32,11 @@ export class SubForm extends React.PureComponent<SubFormProps, {}> {
       onChange,
       disabled,
       config,
-      formData,
+      data,
       errors,
+      dirtiness,
       renderers,
       validator,
-      serializer,
       actions
     } = this.props;
 
@@ -54,12 +44,10 @@ export class SubForm extends React.PureComponent<SubFormProps, {}> {
       const newMeta = enhanceFieldMeta(meta);
 
       newMeta.renderer.config.disabled = disabled;
-      newMeta.serializer = `${serializer || id}.${meta.serializer || meta.id}`;
-
       return newMeta;
     });
 
-    const enhancedFormData = withDefaults(formData.value, enhancedFieldsMeta);
+    const enhancedFormData = withDefaults(data, enhancedFieldsMeta);
 
     return (
       <GeneratedForm
@@ -67,6 +55,7 @@ export class SubForm extends React.PureComponent<SubFormProps, {}> {
         meta={{ fields: enhancedFieldsMeta }}
         data={enhancedFormData}
         errors={errors}
+        dirtiness={dirtiness}
         validator={validator}
         renderers={renderers}
         actions={actions}
