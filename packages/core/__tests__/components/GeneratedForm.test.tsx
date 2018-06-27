@@ -6,11 +6,7 @@ import { cloneDeep } from 'lodash';
 import { GeneratedForm } from '../../src/components/GeneratedForm';
 import { Layout } from '../../src/components/Layout';
 import { Fields } from '../../src/components/Fields';
-import {
-  FieldRenderer,
-  FieldRendererProps,
-  RawMetaDescription
-} from '../../src/interfaces';
+import { FieldRenderer } from '../../src/interfaces';
 
 import metaMinimal from '../../examples/meta/minimal';
 
@@ -49,7 +45,7 @@ class CustomOnChange extends FieldRenderer {
   }
 }
 
-const mockRenderers = {
+const mockRenderers: { [key: string]: typeof FieldRenderer } = {
   text: Text,
   customRenderer: CustomRenderer,
   defaultConfig: DefaultConfig,
@@ -64,6 +60,7 @@ describe('<GeneratedForm />', () => {
       meta={meta}
       data={{}}
       errors={{}}
+      dirtiness={{}}
       actions={{}}
       validator={null}
       renderers={mockRenderers}
@@ -162,6 +159,7 @@ describe('<GeneratedForm />', () => {
           meta={meta}
           data={{}}
           errors={{}}
+          dirtiness={{}}
           actions={{}}
           validator={null}
           renderers={mockRenderers}
@@ -190,7 +188,7 @@ describe('<GeneratedForm />', () => {
       expect(onChange.calledOnce).toEqual(true);
     });
 
-    test('should call `props.onChange` with `data`, `errors` and `isValid` arguments', () => {
+    test('should call `props.onChange` with `data`, `errors`, `isValid` and `dirtiness` arguments', () => {
       const meta: any = cloneDeep(metaMinimal);
       meta.fields[1].renderer = 'customOnChange';
 
@@ -198,7 +196,7 @@ describe('<GeneratedForm />', () => {
       const wrapper = mount(getFormInstace({ meta, onChange }));
 
       wrapper.find('.custom-on-change').simulate('click');
-      expect(onChange.args[0].length).toEqual(3);
+      expect(onChange.args[0].length).toEqual(4);
     });
 
     test('should enhance `data` arguments of `props.onChange` with field\'s returned value', () => {
@@ -209,7 +207,7 @@ describe('<GeneratedForm />', () => {
       const wrapper = mount(getFormInstace({ meta, onChange }));
 
       wrapper.find('.custom-on-change').simulate('click');
-      expect(onChange.args[0][0]).toEqual({ 'bar': { value: 'test', isDirty: true }});
+      expect(onChange.args[0][0]).toEqual({ 'bar': 'test' });
     });
   });
 });

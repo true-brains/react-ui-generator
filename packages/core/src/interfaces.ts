@@ -43,7 +43,7 @@ export interface FieldRendererProps {
   onChange(data: any, dirty?: any): void;
 }
 
-export class FieldRenderer<P=FieldRendererProps, S={}> extends React.PureComponent<P, S> {}
+export class FieldRenderer<P = FieldRendererProps, S = {}> extends React.PureComponent<P, S> {}
 
 export type KeyValue = { [key: string]: any }
 

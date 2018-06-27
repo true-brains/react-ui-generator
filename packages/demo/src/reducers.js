@@ -26,7 +26,6 @@ const initialState = {
 function reducer(state = initialState, { type: actionType, payload }) {
   switch (actionType) {
     case UPDATE_FORM: {
-      console.log(UPDATE_FORM, payload);
       return merge(state, payload);
     }
 

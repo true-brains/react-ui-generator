@@ -72,11 +72,6 @@ describe('enhanceFormMeta()', () => {
       expect(fieldMeta.disabled).toBe(false);
     });
 
-    test('should add "serializer" property to field meta with default value equals to field\'s id', () => {
-      expect(minimalFieldMeta['serializer']).toBeUndefined();
-      expect(fieldMeta.serializer).toBe(fieldMeta.id);
-    });
-
     test('should add "actions" object property to field meta', () => {
       expect(minimalFieldMeta['actions']).toBeUndefined();
       expect(fieldMeta.actions).toBeDefined();
@@ -138,23 +133,15 @@ describe('withDefaults()', () => {
 
     const expectedResult = {
       foo: '42',
-      'field-text': { isDirty: false, value: '' },
-      'field-textarea': { isDirty: false, value: '' },
-      'field-date': { isDirty: false, value: null },
-      'field-select': { isDirty: false, value: null },
-      'field-multiple': { isDirty: false, value: [] },
-      'field-checkbox': { isDirty: false, value: false },
-      'field-radiogroup': { isDirty: false, value: '' },
-      'field-upload': { isDirty: false, value: null },
-      'subform-list': {
-        value: [
-          {
-            field1: { isDirty: false, value: '' },
-            field2: { isDirty: false, value: '' },
-          }
-        ],
-        isDirty: false
-      },
+      'field-text': '',
+      'field-textarea': '',
+      'field-date': null,
+      'field-select': null,
+      'field-multiple': [],
+      'field-checkbox': false,
+      'field-radiogroup': '',
+      'field-upload': null,
+      'subform-list': [{ field1: '', field2: '' }],
     }
 
     expect(result).toEqual(expectedResult);
@@ -173,23 +160,15 @@ describe('withDefaults()', () => {
 
     const expectedResult = {
       foo: '42',
-      'field-text': { isDirty: false, value: customDefaults.text },
-      'field-textarea': { isDirty: false, value: '' },
-      'field-date': { isDirty: false, value: null },
-      'field-select': { isDirty: false, value: customDefaults.select },
-      'field-multiple': { isDirty: false, value: [] },
-      'field-checkbox': { isDirty: false, value: false },
-      'field-radiogroup': { isDirty: false, value: '' },
-      'field-upload': { isDirty: false, value: null },
-      'subform-list': {
-        value: [
-          {
-            field1: { isDirty: false, value: '' },
-            field2: { isDirty: false, value: '' },
-          }
-        ],
-        isDirty: false
-      },
+      'field-text': customDefaults.text,
+      'field-textarea': '',
+      'field-date': null,
+      'field-select': customDefaults.select,
+      'field-multiple': [],
+      'field-checkbox': false,
+      'field-radiogroup': '',
+      'field-upload': null,
+      'subform-list': [{ field1: '', field2: '' }],
     }
 
     expect(result).toEqual(expectedResult);

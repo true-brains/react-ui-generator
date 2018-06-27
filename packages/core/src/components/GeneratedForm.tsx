@@ -46,7 +46,6 @@ export class GeneratedForm extends React.PureComponent<
   }
 
   handleChange(fieldId: string, newValue: any, newDirtines: any): void {
-    console.log('handleChange: ', fieldId, newValue, newDirtines);
     const nextData = { ...this.props.data };
     const nextDirtiness = { ...this.props.dirtiness };
 
