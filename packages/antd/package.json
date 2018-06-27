@@ -1,6 +1,6 @@
 {
   "name": "@react-ui-generator/antd",
-  "version": "0.5.3",
+  "version": "0.6.0",
   "description": "Renderers and layouts for Ant Design",
   "main": "./out/antd.js",
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/antd",
@@ -14,7 +14,7 @@
     "prop-types": "^15.6.1"
   },
   "devDependencies": {
-    "@react-ui-generator/core": "^0.5.3",
+    "@react-ui-generator/core": "^0.6.0",
     "@types/lodash.get": "^4.4.3",
     "@types/prop-types": "^15.5.3",
     "@types/react": "^16.0.29",
@@ -35,7 +35,7 @@
     "webpack-merge": "^4.1.2"
   },
   "peerDependencies": {
-    "@react-ui-generator/core": "^0.5.3",
+    "@react-ui-generator/core": "^0.6.0",
     "antd": "^3.4.1",
     "moment": "^2.22.1",
     "react": "^16.3.0"
