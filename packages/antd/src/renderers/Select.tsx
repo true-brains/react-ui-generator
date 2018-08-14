@@ -20,6 +20,7 @@ export class _Select extends FieldRenderer {
     config: PropTypes.shape({
       label: PropTypes.string,
       placeholder: PropTypes.string,
+      showAsterix: PropTypes.bool,
       options: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -36,9 +37,10 @@ export class _Select extends FieldRenderer {
     config: {
       label: '',
       placeholder: '',
+      showAsterix: false,
       options
     },
-    data: value,
+    data: value
   };
 
   handleChange = (value: SelectValue): void => {
@@ -48,8 +50,7 @@ export class _Select extends FieldRenderer {
   render() {
     const {
       id,
-      actions: { onToggle },
-      config: { placeholder, title, options, label, allowClear },
+      config: { label, placeholder, showAsterix, title, options, allowClear },
       data,
       disabled,
       className,
@@ -68,7 +69,7 @@ export class _Select extends FieldRenderer {
     }
 
     return (
-      <FieldWrapper label={label} {...rest}>
+      <FieldWrapper label={label} showAsterix={showAsterix} {...rest}>
         <Select
           onChange={this.handleChange}
           value={value}

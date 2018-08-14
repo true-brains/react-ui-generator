@@ -7,7 +7,6 @@ import { FieldWrapper } from './FieldWrapper';
 
 const { TextArea } = Input;
 
-
 const value: string = '';
 
 export class _TextArea extends FieldRenderer {
@@ -15,7 +14,8 @@ export class _TextArea extends FieldRenderer {
     ...basePropTypes(),
     config: PropTypes.shape({
       label: PropTypes.string,
-      placeholder: PropTypes.string
+      placeholder: PropTypes.string,
+      showAsterix: PropTypes.bool
     })
   };
 
@@ -25,7 +25,8 @@ export class _TextArea extends FieldRenderer {
     dirty: false,
     config: {
       label: '',
-      placeholder: ''
+      placeholder: '',
+      showAsterix: false
     },
     data: value
   };
@@ -35,16 +36,24 @@ export class _TextArea extends FieldRenderer {
   };
 
   render() {
-    const { id, data, className, onChange, config, disabled, ...rest } = this.props;
+    const {
+      id,
+      data,
+      className,
+      onChange,
+      config: { label, placeholder, showAsterix },
+      disabled,
+      ...rest
+    } = this.props;
     const value: string = String(data);
 
     return (
-      <FieldWrapper label={config.label} {...rest}>
+      <FieldWrapper label={label} showAsterix={showAsterix} {...rest}>
         <TextArea
           id={id}
           className={className || ''}
           value={value}
-          placeholder={config.placeholder || ''}
+          placeholder={placeholder || ''}
           onChange={this.handleChange}
           disabled={disabled}
         />

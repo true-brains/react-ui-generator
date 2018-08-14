@@ -1,17 +1,10 @@
 import * as React from 'react';
-import { ChangeEvent } from 'react';
 import Radio from 'antd/lib/radio';
-
-import {
-  FieldRenderer,
-  PropTypes,
-  basePropTypes
-} from '@react-ui-generator/core';
+import { FieldRenderer, PropTypes, basePropTypes } from '@react-ui-generator/core';
 
 import { FieldWrapper } from './FieldWrapper';
 
 const RadioGroup = Radio.Group;
-
 
 export interface RadiogroupItem {
   id: string | number;
@@ -26,12 +19,15 @@ export class _RadioGroup extends FieldRenderer {
     ...basePropTypes(),
     config: PropTypes.shape({
       label: PropTypes.string,
-      options: PropTypes.arrayOf(PropTypes.shape({
-        id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
-        title: PropTypes.string
-      }))
-    }),
-  }
+      showAsterix: PropTypes.bool,
+      options: PropTypes.arrayOf(
+        PropTypes.shape({
+          id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
+          title: PropTypes.string
+        })
+      )
+    })
+  };
 
   static defaultProps = {
     className: '',
@@ -39,10 +35,11 @@ export class _RadioGroup extends FieldRenderer {
     dirty: false,
     config: {
       label: '',
+      showAsterix: false,
       options
     },
-    data: value,
-  }
+    data: value
+  };
 
   handleChange(value: string): void {
     this.props.onChange(value);
@@ -54,17 +51,13 @@ export class _RadioGroup extends FieldRenderer {
       data,
       className,
       onChange,
-      config,
+      config: { label, showAsterix, options },
       disabled,
       ...rest
     } = this.props;
 
     return (
-      <FieldWrapper
-        hasFeedback={false}
-        label={config.label}
-        {...rest}
-      >
+      <FieldWrapper hasFeedback={false} label={label} showAsterix={showAsterix} {...rest}>
         <RadioGroup
           value={data}
           disabled={disabled}
@@ -72,7 +65,7 @@ export class _RadioGroup extends FieldRenderer {
             this.handleChange(event.target.value);
           }}
         >
-          {config.options.map((item: RadiogroupItem, idx: number) => (
+          {options.map((item: RadiogroupItem, idx: number) => (
             <Radio key={`${item.id}-${idx}`} value={item.id} className={className || ''}>
               {item.title}
             </Radio>

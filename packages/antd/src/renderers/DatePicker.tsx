@@ -1,32 +1,24 @@
 import React from 'react';
 import { ChangeEvent } from 'react';
 import DatePicker from 'antd/lib/date-picker';
-import moment, { Moment, MomentInput } from 'moment';
+import moment, { Moment } from 'moment';
 
-import {
-  FieldRenderer,
-  FieldRendererProps,
-  PropTypes,
-  basePropTypes
-} from '@react-ui-generator/core';
+import { FieldRenderer, PropTypes, basePropTypes } from '@react-ui-generator/core';
 
 import { FieldWrapper } from './FieldWrapper';
 
-export interface DatePickerProps extends FieldRendererProps {
-  format: String;
-}
-
 const value: string = null;
 
-export class _DatePicker extends FieldRenderer<DatePickerProps> {
+export class _DatePicker extends FieldRenderer {
   static propTypes = {
     ...basePropTypes(),
     config: PropTypes.shape({
       label: PropTypes.string,
       placeholder: PropTypes.string,
-      format: PropTypes.string,
-    }),
-  }
+      showAsterix: PropTypes.bool,
+      format: PropTypes.string
+    })
+  };
 
   static defaultProps = {
     className: '',
@@ -35,10 +27,11 @@ export class _DatePicker extends FieldRenderer<DatePickerProps> {
     config: {
       label: '',
       placeholder: '',
+      showAsterix: false,
       format: 'DD.MM.YYYY'
     },
-    data: value,
-  }
+    data: value
+  };
 
   handleChange = (date: Moment, dateString: String): void => {
     this.props.onChange(dateString);
@@ -50,21 +43,21 @@ export class _DatePicker extends FieldRenderer<DatePickerProps> {
       data,
       className,
       onChange,
-      config,
+      config: { label, placeholder, showAsterix, format },
       disabled,
       ...rest
     } = this.props;
-    const format = config.format || 'YYYY-MM-DD';
-    const momentValue: Moment = data ? moment(String(data), format) : undefined;
+    const _format = format || 'YYYY-MM-DD';
+    const momentValue: Moment = data ? moment(String(data), _format) : undefined;
 
     return (
-      <FieldWrapper label={config.label} {...rest}>
+      <FieldWrapper label={label} showAsterix={showAsterix} {...rest}>
         <DatePicker
           id={id}
           className={className || ''}
           value={momentValue || undefined}
-          placeholder={config.placeholder || ''}
-          format={format}
+          placeholder={placeholder || ''}
+          format={_format}
           onChange={this.handleChange}
           disabled={disabled}
         />

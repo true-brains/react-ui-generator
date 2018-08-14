@@ -1,6 +1,5 @@
 import { KeyValue, Validator, buildValidator, get, set } from '@react-ui-generator/core';
 
-
 export class Ajv {
   constructor(options: KeyValue) {}
 }
@@ -19,16 +18,17 @@ export function buildAjvValidator(AjvFn: typeof Ajv, schema: KeyValue): Validato
         .map((item: string) => item.replace(']', ''));
 
       const fieldErrors = acc[fieldName] || [];
-      const message = (item.keyword === 'enum' && item.params.allowedValues)
-        ? `${item.message}: [${item.params.allowedValues}]`
-        : item.message;
+      const message =
+        item.keyword === 'enum' && item.params.allowedValues
+          ? `${item.message}: [${item.params.allowedValues}]`
+          : item.message;
 
       if (subFormIndex) {
-        const [ idx, ...path ] = subFormIndex.split('.');
+        const [idx, ...path] = subFormIndex.split('.');
         const subFormErrObj = fieldErrors[idx] || {};
         const subFormErrors = get(subFormErrObj, path, []);
 
-        fieldErrors[idx] = set(subFormErrObj, path, [...subFormErrors, message])
+        fieldErrors[idx] = set(subFormErrObj, path, [...subFormErrors, message]);
         acc[fieldName] = fieldErrors;
       } else {
         acc[fieldName] = [...fieldErrors, message];

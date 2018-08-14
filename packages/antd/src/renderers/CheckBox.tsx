@@ -2,11 +2,7 @@ import React from 'react';
 import { ChangeEvent } from 'react';
 import Checkbox, { CheckboxChangeEvent } from 'antd/lib/checkbox';
 
-import {
-  FieldRenderer,
-  PropTypes,
-  basePropTypes
-} from '@react-ui-generator/core';
+import { FieldRenderer, PropTypes, basePropTypes } from '@react-ui-generator/core';
 
 import { FieldWrapper } from './FieldWrapper';
 
@@ -18,8 +14,9 @@ export class _Checkbox extends FieldRenderer {
     config: PropTypes.shape({
       label: PropTypes.string,
       title: PropTypes.string,
-    }),
-  }
+      showAsterix: PropTypes.bool
+    })
+  };
 
   static defaultProps = {
     className: '',
@@ -28,9 +25,10 @@ export class _Checkbox extends FieldRenderer {
     config: {
       label: '',
       title: '',
+      showAsterix: false
     },
-    data: value 
-  }
+    data: value
+  };
 
   handleChange = (event: CheckboxChangeEvent): void => {
     this.props.onChange(event.target.checked);
@@ -42,7 +40,7 @@ export class _Checkbox extends FieldRenderer {
       data,
       className,
       onChange,
-      config: { label, title },
+      config: { label, title, showAsterix },
       disabled,
       ...rest
     } = this.props;
@@ -51,11 +49,7 @@ export class _Checkbox extends FieldRenderer {
     const _label = label || (id.length ? id.charAt(0).toUpperCase() + id.slice(1) : '');
 
     return (
-      <FieldWrapper
-        hasFeedback={false}
-        label={_label}
-        {...rest}
-      >
+      <FieldWrapper hasFeedback={false} label={_label} showAsterix={showAsterix} {...rest}>
         <Checkbox
           className={className || ''}
           disabled={disabled}
