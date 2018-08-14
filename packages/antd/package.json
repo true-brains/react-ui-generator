@@ -1,6 +1,6 @@
 {
   "name": "@react-ui-generator/antd",
-  "version": "0.6.0",
+  "version": "0.6.2",
   "description": "Renderers and layouts for Ant Design",
   "main": "./out/antd.js",
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/antd",

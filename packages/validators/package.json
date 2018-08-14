@@ -1,6 +1,6 @@
 {
   "name": "@react-ui-generator/validators",
-  "version": "0.6.1",
+  "version": "0.6.2",
   "description": "Collection of bindings for popular validation libraries to react-ui-generator",
   "main": "./out/validators.js",
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/validators",
