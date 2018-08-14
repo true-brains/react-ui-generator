@@ -26,6 +26,7 @@ export class MultipleSelect extends FieldRenderer {
     config: PropTypes.shape({
       label: PropTypes.string,
       placeholder: PropTypes.string,
+      showAsterix: PropTypes.bool,
       options: PropTypes.arrayOf(
         PropTypes.shape({
           id: PropTypes.oneOfType([PropTypes.string, PropTypes.number]),
@@ -42,6 +43,7 @@ export class MultipleSelect extends FieldRenderer {
     config: {
       label: '',
       placeholder: '',
+      showAsterix: false,
       options
     },
     data: value,
@@ -54,8 +56,7 @@ export class MultipleSelect extends FieldRenderer {
   render() {
     const {
       id,
-      actions: { onToggle },
-      config: { placeholder, options, label, allowClear },
+      config: { label, placeholder, showAsterix, options, allowClear },
       data,
       disabled,
       className,
@@ -74,7 +75,7 @@ export class MultipleSelect extends FieldRenderer {
     }
 
     return (
-      <FieldWrapper label={label} {...rest}>
+      <FieldWrapper label={label} showAsterix={showAsterix} {...rest}>
         <Select
           mode='multiple'
           onChange={this.handleChange}

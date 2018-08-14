@@ -6,7 +6,8 @@
         "type": "text",
         "config": {
           "label": "E-mail",
-          "placeholder": "Enter your e-mail"
+          "placeholder": "Enter your e-mail",
+          "showAsterix": true
         }
       },
       "serializer": "auth.email",
@@ -19,7 +20,8 @@
         "type": "password",
         "config": {
           "label": "Password",
-          "placeholder": "Enter your password"
+          "placeholder": "Enter your password",
+          "showAsterix": true
         }
       },
       "serializer": "auth.password"
@@ -31,7 +33,8 @@
         "type": "password",
         "config": {
           "label": "Confirmation",
-          "placeholder": "Enter your password again"
+          "placeholder": "Enter your password again",
+          "showAsterix": true
         }
       },
       "serializer": null
@@ -44,6 +47,7 @@
         "config": {
           "label": "Birthday",
           "placeholder": "Enter your birthday",
+          "showAsterix": true,
           "format": "DD.MM.YYYY"
         }
       }
@@ -57,6 +61,7 @@
           "label": "Gender",
           "placeholder": "Choose your gender",
           "allowClear": true,
+          "showAsterix": true,
           "options": [
             { "id": "female", "title": "Female" },
             { "id": "male", "title": "Male" },
@@ -74,6 +79,7 @@
           "label": "Favorite programming language",
           "placeholder": "Choose your favorite programming language",
           "allowClear": true,
+          "showAsterix": true,
           "options": [
             { "id": "elm", "title": "Elm" },
             { "id": "javascript", "title": "JavaScript" },
@@ -92,7 +98,8 @@
         "type": "checkbox",
         "config": {
           "label": "Are you married?",
-          "title": "Married"
+          "title": "Married",
+          "showAsterix": true
         }
       }
     },
@@ -104,6 +111,7 @@
         "config": {
           "label": "Short bio",
           "placeholder": "Write your short biography here...",
+          "showAsterix": true,
           "rows": 2
         }
       },
@@ -116,6 +124,7 @@
         "type": "radiogroup",
         "config": {
           "label": "What is the only correct answer from this list?",
+          "showAsterix": true,
           "options": [
             { "id": 42, "title": "42" },
             { "id": 43, "title": "43" }
@@ -131,7 +140,8 @@
         "config": {
           "label": "Upload your CV",
           "url": "//jsonplaceholder.typicode.com/posts/",
-          "responsePath": "id"
+          "responsePath": "id",
+          "showAsterix": true
         }
       }
     },
@@ -150,7 +160,8 @@
                 "type": "text",
                 "config": {
                   "label": "First name",
-                  "placeholder": "First name"
+                  "placeholder": "First name",
+                  "showAsterix": true
                 }
               }
             },
@@ -161,7 +172,8 @@
                 "type": "text",
                 "config": {
                   "label": "Last name",
-                  "placeholder": "Last name"
+                  "placeholder": "Last name",
+                  "showAsterix": true
                 }
               }
             },

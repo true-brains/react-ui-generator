@@ -23,7 +23,8 @@ export class _Input extends FieldRenderer<InputProps> {
     type: PropTypes.string,
     config: PropTypes.shape({
       label: PropTypes.string,
-      placeholder: PropTypes.string
+      placeholder: PropTypes.string,
+      showAsterix: PropTypes.bool
     })
   };
 
@@ -34,7 +35,8 @@ export class _Input extends FieldRenderer<InputProps> {
     dirty: false,
     config: {
       label: '',
-      placeholder: ''
+      placeholder: '',
+      showAsterix: false
     },
     data: value
   };
@@ -44,17 +46,26 @@ export class _Input extends FieldRenderer<InputProps> {
   }
 
   render() {
-    const { type, id, data, className, onChange, config, disabled, ...rest } = this.props;
+    const {
+      type,
+      id,
+      data,
+      className,
+      onChange,
+      config: { label, showAsterix, placeholder },
+      disabled,
+      ...rest
+    } = this.props;
     const value: string = String(data);
 
     return (
-      <FieldWrapper label={config.label} {...rest}>
+      <FieldWrapper label={label} showAsterix={showAsterix} {...rest}>
         <Input
           type={type}
           id={id}
           className={className || ''}
           value={value}
-          placeholder={config.placeholder || ''}
+          placeholder={placeholder || ''}
           onChange={event => {
             this.handleChange(event);
           }}

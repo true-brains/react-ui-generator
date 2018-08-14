@@ -12,6 +12,7 @@ export class _Upload extends FieldRenderer {
     ...basePropTypes(),
     config: PropTypes.shape({
       label: PropTypes.string,
+      showAsterix: PropTypes.bool,
       url: PropTypes.string,
       responsePath: PropTypes.string
     })
@@ -23,6 +24,7 @@ export class _Upload extends FieldRenderer {
     dirty: false,
     config: {
       label: '',
+      showAsterix: false,
       url: '',
       responsePath: ''
     },
@@ -40,20 +42,28 @@ export class _Upload extends FieldRenderer {
   };
 
   render() {
-    const { id, data, className, onChange, config, disabled, ...rest } = this.props;
+    const {
+      id,
+      data,
+      className,
+      onChange,
+      config: { label, showAsterix, url, responsePath },
+      disabled,
+      ...rest
+    } = this.props;
     const value: string = String(data);
 
     return (
-      <FieldWrapper label={config.label} {...rest}>
+      <FieldWrapper label={label} showAsterix={showAsterix} {...rest}>
         <Upload
-          action={config.url}
+          action={url}
           className={className || ''}
           onChange={this.handleChange}
           disabled={disabled}
         >
           <Button>
             <Icon type="upload" />
-            {config.label}
+            {label}
           </Button>
         </Upload>
       </FieldWrapper>

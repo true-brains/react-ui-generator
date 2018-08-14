@@ -9,7 +9,8 @@
   "type": "text",
   "config": {
     "label": "...",
-    "placeholder": "..."
+    "placeholder": "...",
+    "showAsterix": true|false,
   }
 }
 ```
@@ -24,7 +25,8 @@
   "config": {
     "label": "...",
     "placeholder": "...",
-    "rows": "количество строк в многострочном поле текстового ввода"
+    "showAsterix": true|false,
+    "rows": number
   }
 }
 ```
@@ -39,6 +41,7 @@
   "config": {
     "label": "...",
     "title": "...",
+    "showAsterix": true|false,
   }
 }
 ```
@@ -52,6 +55,7 @@
   "type": "radiogroup",
   "config": {
     "label": "...",
+    "showAsterix": true|false,
     "options": [
       { "id": ..., "title": "..." },
       ...
@@ -70,6 +74,7 @@
   "config": {
     "label": "...",
     "title": "...",
+    "showAsterix": true|false,
     "options": [
       { "id": ..., "title": "..." },
       ...
@@ -92,4 +97,3 @@
   }
 }
 ```
-
