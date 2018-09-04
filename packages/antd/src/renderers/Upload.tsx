@@ -12,6 +12,7 @@ export class _Upload extends FieldRenderer {
     ...basePropTypes(),
     config: PropTypes.shape({
       label: PropTypes.string,
+      buttonLabel: PropTypes.string,
       showAsterix: PropTypes.bool,
       url: PropTypes.string,
       responsePath: PropTypes.string
@@ -24,6 +25,7 @@ export class _Upload extends FieldRenderer {
     dirty: false,
     config: {
       label: '',
+      buttonLabel: '',
       showAsterix: false,
       url: '',
       responsePath: ''
@@ -47,7 +49,7 @@ export class _Upload extends FieldRenderer {
       data,
       className,
       onChange,
-      config: { label, showAsterix, url, responsePath },
+      config: { label, showAsterix, url, responsePath, buttonLabel },
       disabled,
       ...rest
     } = this.props;
@@ -63,7 +65,7 @@ export class _Upload extends FieldRenderer {
         >
           <Button>
             <Icon type="upload" />
-            {label}
+            {buttonLabel || label}
           </Button>
         </Upload>
       </FieldWrapper>
