@@ -1,11 +1,6 @@
-import React, { ReactNode, ReactInstance, ReactElement } from 'react';
+// import React, { ReactNode, ReactInstance, ReactElement } from 'react';
 import get from 'lodash.get';
 import set from 'lodash.set';
-
-export { get, set };
-
-import { Field } from './components/Field';
-import { Fields } from './components/Fields';
 
 import {
   RawMetaDescription,
@@ -15,15 +10,7 @@ import {
   KeyValue
 } from './interfaces';
 
-interface NodeWithIdProps {
-  children: React.ReactNode;
-  id?: string;
-  until?: string;
-  className: string;
-}
-type NodeWithId = React.ReactElement<NodeWithIdProps>;
-
-export function enhanceFormMeta(meta: RawMetaDescription): FormMetaDescription {
+function enhanceFormMeta(meta: RawMetaDescription): FormMetaDescription {
   const result: FormMetaDescription = {
     fields: []
   };
@@ -35,7 +22,7 @@ export function enhanceFormMeta(meta: RawMetaDescription): FormMetaDescription {
   return result;
 }
 
-export function enhanceFieldMeta(meta: RawFieldMetaDescription): FieldMetaDescription {
+function enhanceFieldMeta(meta: RawFieldMetaDescription): FieldMetaDescription {
   return {
     id: meta.id,
     renderer: computeFieldRenderer(meta),
@@ -57,7 +44,7 @@ function computeFieldRenderer(meta: RawFieldMetaDescription) {
   return _renderer;
 }
 
-export function extractFieldActions(formActions: KeyValue, fieldActions: KeyValue) {
+function extractFieldActions(formActions: KeyValue, fieldActions: KeyValue) {
   let actions: KeyValue = {};
 
   for (let callbackName of Object.keys(fieldActions)) {
@@ -76,7 +63,7 @@ export function extractFieldActions(formActions: KeyValue, fieldActions: KeyValu
  * Completes `data` object with default values for known types of renderers.
  * Default values for custom renderers can be provided with `defaults` argument.
  */
-export function withDefaults(
+function withDefaults(
   data: KeyValue = {},
   fieldsMeta: FieldMetaDescription[] = [],
   defaults: KeyValue = {}
@@ -121,13 +108,24 @@ export function withDefaults(
   return resultData;
 }
 
-export function findFieldIdx(fieldId: string, fields: JSX.Element[]) {
+function findFieldIdx(fieldId: string, fields: JSX.Element[]) {
   return fields.findIndex(({ props }) => props.id === fieldId);
 }
 
-export function findFieldMetaById(
+function findFieldMetaById(
   fieldId: string,
   fieldsMeta: FieldMetaDescription[] = []
 ): FieldMetaDescription {
   return fieldsMeta.find(meta => meta.id === fieldId);
 }
+
+export {
+  get,
+  set,
+  enhanceFormMeta,
+  enhanceFieldMeta,
+  extractFieldActions,
+  withDefaults,
+  findFieldIdx,
+  findFieldMetaById,
+};
