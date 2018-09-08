@@ -1,0 +1,29 @@
+{
+  "name": "@react-ui-generator/metaphor",
+  "version": "0.0.0",
+  "description": "DSL for easing baking of metadata for the react-ui-generator.",
+  "main": "./out/metaphor.js",
+  "types": "./out/index.d.ts",
+  "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/metaphor",
+  "scripts": {
+    "build": "tsc",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "metadata",
+    "dsl",
+    "react-ui-generator"
+  ],
+  "author": "A.Zaviruha <a.zaviruha@gmail.com>",
+  "license": "MIT",
+  "dependencies": {
+    "@react-ui-generator/core": "^0.6.0",
+    "lodash.clonedeep": "^4.5.0",
+    "lodash.merge": "^4.6.1"
+  },
+  "devDependencies": {
+    "@types/lodash.clonedeep": "^4.5.4",
+    "@types/lodash.merge": "^4.6.4",
+    "typescript": "^3.0.3"
+  }
+}
