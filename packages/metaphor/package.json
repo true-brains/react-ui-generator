@@ -7,8 +7,8 @@
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/metaphor",
   "scripts": {
     "build": "tsc",
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "doc:build": "typedoc --out doc/ src/index.ts"
+    "test": "jest",
+    "doc:build": "typedoc --out ./docs/ src/index.ts"
   },
   "keywords": [
     "metadata",
@@ -17,6 +17,18 @@
   ],
   "author": "A.Zaviruha <a.zaviruha@gmail.com>",
   "license": "MIT",
+  "jest": {
+    "transform": {
+      "^.+\\.ts$": "ts-jest"
+    },
+    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
+    "moduleFileExtensions": [
+      "ts",
+      "js",
+      "json",
+      "node"
+    ]
+  },
   "dependencies": {
     "@react-ui-generator/core": "^0.6.0",
     "lodash.clonedeep": "^4.5.0",
@@ -25,6 +37,7 @@
   "devDependencies": {
     "@types/lodash.clonedeep": "^4.5.4",
     "@types/lodash.merge": "^4.6.4",
+    "jest": "^23.5.0",
     "typescript": "^3.0.3"
   }
 }
