@@ -29,10 +29,11 @@ class Metaphor {
     propName: FieldBooleanProps,
     value: boolean,
     reverseIfNotMatch?: boolean,
-    ids?: string[]
+    ids?: string[] | string
   ): Metaphor {
-    const fieldsToProcess: IdsToProcess = ids
-      ? ids.reduce((acc, id) => ({ ...acc, [id]: true }), {})
+    const idsArray = (typeof ids === 'string') ? [ids] : ids;
+    const fieldsToProcess: IdsToProcess = idsArray
+      ? idsArray.reduce((acc, id) => ({ ...acc, [id]: true }), {})
       : {};
 
     for (let fieldMeta of this.meta.fields) {
@@ -66,7 +67,7 @@ class Metaphor {
     return this;
   }
 
-  show(fieldsToShow?: string[], hideNotMatched?: boolean): Metaphor {
+  show(fieldsToShow?: string[] | string, hideNotMatched?: boolean): Metaphor {
     return this.togglePropByFieldIds('hidden', false, hideNotMatched, fieldsToShow);
   }
 
@@ -74,7 +75,7 @@ class Metaphor {
     return this.show();
   }
 
-  hide(fieldsToHide?: string[], showNotMatched?: boolean): Metaphor {
+  hide(fieldsToHide?: string[] | string, showNotMatched?: boolean): Metaphor {
     return this.togglePropByFieldIds('hidden', true, showNotMatched, fieldsToHide);
   }
 
@@ -82,7 +83,7 @@ class Metaphor {
     return this.hide();
   }
 
-  enable(fieldsToEnable?: string[], disableNotMatched?: boolean): Metaphor {
+  enable(fieldsToEnable?: string[] | string, disableNotMatched?: boolean): Metaphor {
     return this.togglePropByFieldIds('disabled', false, disableNotMatched, fieldsToEnable);
   }
 
@@ -90,8 +91,8 @@ class Metaphor {
     return this.enable();
   }
 
-  disable(fieldsToDisable?: string[], enableNotMatched?: boolean): Metaphor {
-    return this.togglePropByFieldIds('disabled', false, enableNotMatched, fieldsToDisable);
+  disable(fieldsToDisable?: string[] | string, enableNotMatched?: boolean): Metaphor {
+    return this.togglePropByFieldIds('disabled', true, enableNotMatched, fieldsToDisable);
   }
 
   disableAll(): Metaphor {
