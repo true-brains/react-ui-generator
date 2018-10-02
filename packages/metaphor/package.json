@@ -1,6 +1,6 @@
 {
   "name": "@react-ui-generator/metaphor",
-  "version": "0.6.5",
+  "version": "0.6.6",
   "description": "DSL for easing baking of metadata for the react-ui-generator.",
   "main": "./out/index.js",
   "types": "./out/index.d.ts",
@@ -30,7 +30,7 @@
     ]
   },
   "dependencies": {
-    "@react-ui-generator/core": "^0.6.5",
+    "@react-ui-generator/core": "^0.6.6",
     "lodash.clonedeep": "^4.5.0",
     "lodash.merge": "^4.6.1"
   },
