@@ -1,7 +1,7 @@
 {
   "name": "@react-ui-generator/bootstrap",
   "private": true,
-  "version": "0.6.0",
+  "version": "0.6.4",
   "description": "Renderers and layouts for react-ui-generator, based on Twitter Bootstrap",
   "main": "./out/bootstrap.js",
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/bootstrap",
@@ -16,7 +16,7 @@
     "reactstrap": "^6.0.1"
   },
   "devDependencies": {
-    "@react-ui-generator/core": "^0.6.0",
+    "@react-ui-generator/core": "^0.6.4",
     "@types/classnames": "^2.2.3",
     "@types/react": "^16.0.29",
     "@types/reactstrap": "^5.0.12",
