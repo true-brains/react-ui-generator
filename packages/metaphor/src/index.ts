@@ -1,10 +1,8 @@
 import Metaphor from './lib/Metaphor';
-import Config from './lib/Config';
-import Actions from './lib/Actions';
+import FieldPart from './lib/FieldPart';
 
 export {
   Metaphor as default,
   Metaphor,
-  Config,
-  Actions,
+  FieldPart,
 };

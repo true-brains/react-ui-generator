@@ -24,7 +24,7 @@ describe('Metaphor', () => {
       const generatedMeta = form.value();
 
       expect(generatedMeta).toEqual(completeMeta);
-      expect(generatedMeta).toEqual(completeMeta);
+      expect(generatedMeta).not.toBe(completeMeta);
     });
   });
 
@@ -175,7 +175,134 @@ describe('Metaphor', () => {
       expect(visible.length).toEqual(3);
     });
   });
+
+  describe('.config', () => {
+    describe('.set()', () => {
+      test('should merge argument into field renderer\'s config', () => {
+        const completeMeta = enhanceFormMeta(metaMinimal);
+
+        const form = new Metaphor(completeMeta);
+        const generatedMeta = form
+          .config
+            .set('foo', { testProperty: 42 })
+            .up()
+          .value();
+        
+        expect(generatedMeta.fields[0].renderer.config.testProperty).toEqual(42);
+      });
+
+      test('should not change original field metadata', () => {
+        const completeMeta = enhanceFormMeta(metaMinimal);
+
+        const form = new Metaphor(completeMeta);
+        const generatedMeta = form
+          .config
+            .set('foo', { testProperty: 42 })
+            .up()
+          .value();
+        
+        expect(completeMeta.fields[0].renderer.config.testProperty).toBeUndefined();
+      });
+
+      test('should set new config properties to all chosen fields', () => {
+        const completeMeta = enhanceFormMeta(metaMinimal);
+
+        const form = new Metaphor(completeMeta);
+        const generatedMeta = form
+          .config
+            .set(['foo', 'baz'], { prop1: 42 })
+            .set(['bar'], { prop2: 43 })
+            .up()
+          .value();
+
+        const prop1Fields = generatedMeta.fields.filter(x => x.renderer.config.prop1);
+        const prop2Fields = generatedMeta.fields.filter(x => x.renderer.config.prop2);
+        
+        expect(prop1Fields.length).toEqual(2);
+        expect(prop2Fields.length).toEqual(1);
+      });
+    });
+
+    describe('.up()', () => {
+      test('should return parent Metaphor object', () => {
+        const completeMeta = enhanceFormMeta(metaMinimal);
+
+        const originalForm = new Metaphor(completeMeta);
+        const uppedForm = originalForm
+          .config
+            .set(['foo', 'baz'], { prop1: 42 })
+            .set(['bar'], { prop2: 43 })
+            .up()
+
+        expect(uppedForm).toBe(originalForm);
+      });
+    });
+  });
+
+  describe('.actions', () => {
+    describe('.set()', () => {
+      test('should merge argument into field\'s actions', () => {
+        const completeMeta = enhanceFormMeta(metaMinimal);
+
+        const form = new Metaphor(completeMeta);
+        const generatedMeta = form
+          .actions
+            .set('foo', { onClick: 'sendForm' })
+            .up()
+          .value();
+        
+        expect(generatedMeta.fields[0].actions.onClick).toEqual('sendForm');
+      });
+
+      test('should not change original field metadata', () => {
+        const completeMeta = enhanceFormMeta(metaMinimal);
+
+        const form = new Metaphor(completeMeta);
+        const generatedMeta = form
+          .actions
+            .set('foo', { onClick: 'sendForm' })
+            .up()
+          .value();
+        
+        expect(completeMeta.fields[0].actions.onClick).toBeUndefined();
+      });
+
+      test('should set new actions to all chosen fields', () => {
+        const completeMeta = enhanceFormMeta(metaMinimal);
+
+        const form = new Metaphor(completeMeta);
+        const generatedMeta = form
+          .actions
+            .set(['foo', 'baz'], { onKeyUp: 'updateField' })
+            .set(['bar'], { onClick: 'toggleField' })
+            .up()
+          .value();
+
+        const action1Fields = generatedMeta.fields.filter(x => x.actions.onKeyUp);
+        const action2Fields = generatedMeta.fields.filter(x => x.actions.onClick);
+        
+        expect(action1Fields.length).toEqual(2);
+        expect(action2Fields.length).toEqual(1);
+      });
+    });
+
+    describe('.up()', () => {
+      test('should return parent Metaphor object', () => {
+        const completeMeta = enhanceFormMeta(metaMinimal);
+
+        const originalForm = new Metaphor(completeMeta);
+        const uppedForm = originalForm
+          .actions
+            .set(['foo', 'baz'], { onClick: 'sendForm' })
+            .up()
+
+        expect(uppedForm).toBe(originalForm);
+      });
+    });
+  });
 });
+
+// ---------------------------------------- //
 
 function prepareMetaForBooleanProps(
   meta: RawMetaDescription,

@@ -9,7 +9,7 @@ import {
   get,
 } from '@react-ui-generator/core';
 
-import { Config, Actions } from '../';
+import { FieldPart } from '../';
 
 
 export interface IdsToProcess {
@@ -99,12 +99,12 @@ class Metaphor {
     return this.disable();
   }
 
-  get config(): Config {
-    return new Config(this);
+  get config(): FieldPart {
+    return new FieldPart(this, 'renderer.config');
   }
 
-  get actions(): Actions {
-    return new Actions(this);
+  get actions(): FieldPart {
+    return new FieldPart(this, 'actions');
   }
 }
 

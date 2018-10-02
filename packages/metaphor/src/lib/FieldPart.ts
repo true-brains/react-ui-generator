@@ -1,4 +1,5 @@
 import merge from 'lodash.merge';
+import cloneDeep from 'lodash.clonedeep';
 import { Metaphor } from '../';
 
 export interface FieldPart {
@@ -20,8 +21,10 @@ class FieldPartGateway {
     for (let fieldId of idsToProcess) {
       const path = `${fieldId}.${this.path}`;
       const fieldPart = this.form.get(path);
+      const newFieldPart = cloneDeep(fieldPart);
 
-      merge(fieldPart, newPart); // mutates`fieldPart`
+      merge(newFieldPart, newPart);
+      this.form.set(path, newFieldPart);
     }
 
     return this;

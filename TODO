@@ -19,9 +19,9 @@ Roadmap:
   ✔ [antd] Implement AntD renderers. @done(18-05-27 17:44)
   ✔ [core] Add checking for `null` in serializer's `if (typeof value === 'object')`. @done(18-05-29 16:43)
   ✔ [core] Add `propTypes` and `defaultProps` for renderers @done(18-05-30 16:33)
-  ✔ [antd] Add `propTypes` and `defaultProps` for renderers @done(18-05-30 16:34)
   ✔ [core] Add unit-test for `@react-ui-generator/core` @done(18-06-10)
-  ☐ [antd] Add support for `config.showAsterix` property for all fields, that can be marked as required.
+  ✔ [antd] Add support for `config.showAsterix` property for all fields, that can be marked as required. @done(18-08-14 14:34)
+  ✔ [metaphor] Add initial test suite. @done(18-10-02 16:26)
   ☐ [core] Change default value of radiogroup field to `false` (instead of "")
   ☐ [antd] Add `config.icon` and `config.iconPosition = right | left` to the Button renderer
   ☐ [core] Consider adding of the children propagation to the `Field` renderer
