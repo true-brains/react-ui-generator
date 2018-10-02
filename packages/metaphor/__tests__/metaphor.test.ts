@@ -6,8 +6,7 @@ import {
 import Metaphor from '../src';
 import { FieldBooleanProps } from '../src/lib/Metaphor';
 
-import metaMinimal from '../../core/examples/meta/minimal';
-import allRenderers from '../../core/examples/meta/all-renderers';
+import metaMinimal from './mocks/minimal';
 
 describe('Metaphor', () => {
   describe('.value()', () => {
