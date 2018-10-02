@@ -1,5 +1,4 @@
 {
-  "private": true,
   "name": "react-ui-generator",
   "version": "0.0.0",
   "description": "Library for generation UI from metadata",
