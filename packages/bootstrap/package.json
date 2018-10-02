@@ -34,5 +34,6 @@
   "peerDependencies": {
     "@react-ui-generator/core": "^0.6.0",
     "react": "^16.3.0"
-  }
+  },
+  "gitHead": "f34904c44b092961eef4fa3e5fc9b62b18628838"
 }

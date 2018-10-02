@@ -49,5 +49,6 @@
     "react-redux": "^5.0.6",
     "redux": "^3.7.2",
     "redux-thunk": "^2.2.0"
-  }
+  },
+  "gitHead": "f34904c44b092961eef4fa3e5fc9b62b18628838"
 }
