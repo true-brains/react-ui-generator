@@ -1,11 +1,11 @@
-import { KeyValue, Validator, buildValidator, get, set } from '@react-ui-generator/core';
+import { KeyValue, Validator, ValidationResult, buildValidator, get, set } from '@react-ui-generator/core';
 
 export class Ajv {
   constructor(options: KeyValue) {}
 }
 
 export function buildAjvValidator(AjvFn: typeof Ajv, schema: KeyValue): Validator {
-  function validateWithAjv(schema: KeyValue, data: KeyValue): KeyValue {
+  function validateWithAjv(schema: KeyValue, data: KeyValue): ValidationResult {
     const ajv: KeyValue = new AjvFn({ allErrors: true, $data: true });
     const validate = ajv.compile(schema);
     const isValid = validate(data);

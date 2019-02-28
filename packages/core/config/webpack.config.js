@@ -29,7 +29,7 @@ module.exports = {
           {
             loader: 'babel-loader',
             options: {
-              presets: ['env', 'stage-3', 'react']
+              presets: ['@babel/preset-env', '@babel/preset-react']
             }
           },
           'awesome-typescript-loader'

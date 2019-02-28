@@ -135,6 +135,10 @@ export class GeneratedForm extends React.PureComponent<
           }}
           disabled={disabled}
           dirty={dirtiness[id] || false}
+          isSubForm={false}
+          dirtiness={undefined}
+          renderers={undefined}
+          validator={undefined}
           {...subFormAdditionalProps}
         />
       );

@@ -37,6 +37,7 @@
   "devDependencies": {
     "@types/lodash.clonedeep": "^4.5.4",
     "@types/lodash.merge": "^4.6.4",
+    "babel-upgrade": "^0.0.24",
     "jest": "^23.5.0",
     "typescript": "^3.0.3"
   },

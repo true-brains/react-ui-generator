@@ -8,7 +8,7 @@ export interface Validator {
   (formValue: KeyValue): ValidationResult;
 }
 
-interface ValidationResult {
+export interface ValidationResult {
   errors: { [key: string]: string[] };
   isValid: boolean;
 }
@@ -28,4 +28,3 @@ export function buildValidator(
     return { isValid, errors: errorsByFields };
   };
 }
-
