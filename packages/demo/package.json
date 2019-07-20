@@ -7,18 +7,16 @@
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1",
     "build": "yarn run webpack-cli --config ./config/webpack.common.js --mode development",
-    "build:prod": "yarn run webpack-cli --config ./config/webpack.prod.js --mode production",
-    "start": "yarn run webpack-dev-server --config ./config/webpack.dev.js --mode development"
+    "build:prod": "yarn run webpack-cli --config ./config/webpack.prod.js",
+    "start": "yarn run webpack-dev-server --config ./config/webpack.dev.js"
   },
   "author": "Alexei Zaviruha <a.zaviruha@gmail.com>",
   "license": "MIT",
   "devDependencies": {
-    "awesome-typescript-loader": "^3.4.1",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-react": "^6.24.1",
-    "babel-preset-stage-3": "^6.24.1",
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.0.0",
+    "@babel/preset-react": "^7.0.0",
+    "babel-loader": "^8.0.6",
     "babel-upgrade": "^0.0.24",
     "html-webpack-plugin": "^3.2.0",
     "progress-bar-webpack-plugin": "^1.11.0",

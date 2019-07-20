@@ -1,5 +1,7 @@
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
+
 const resolve = dir => path.join(__dirname, '..', dir);
 
 module.exports = {
@@ -16,25 +18,23 @@ module.exports = {
   resolve: {
     extensions: ['.ts', '.js', '.json'],
     modules: [resolve('src'), 'node_modules'],
-    plugins: [
-      new TsConfigPathsPlugin({})
-    ]
+    plugins: [new TsConfigPathsPlugin({})]
   },
 
   module: {
     rules: [
-      // All files with a '.ts' extension will be handled by 'awesome-typescript-loader'.
       {
         test: /\.tsx?$/,
         use: [
           {
             loader: 'babel-loader',
             options: {
-              presets: ['env', 'stage-3']
+              presets: ['@babel/preset-env']
             }
           },
           'awesome-typescript-loader'
-        ]
+        ],
+        exclude: /node_modules/
       },
 
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
@@ -45,7 +45,6 @@ module.exports = {
       }
     ]
   },
-  externals: [
-    '@react-ui-generator/core',
-  ]
+  externals: ['@react-ui-generator/core'],
+  plugins: [new CleanWebpackPlugin()]
 };

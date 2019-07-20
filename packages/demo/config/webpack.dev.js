@@ -3,7 +3,6 @@ const webpack = require('webpack');
 const webpackMerge = require('webpack-merge');
 const Visualizer = require('webpack-visualizer-plugin');
 const { BundleAnalyzerPlugin } = require('webpack-bundle-analyzer');
-
 const baseConfig = require('./webpack.common.js')
 
 const resolve = dir => path.join(__dirname, '../', dir);
@@ -23,6 +22,7 @@ module.exports = webpackMerge(baseConfig, {
   },
 
   devtool: 'inline-source-map',
+  mode: 'development',
 
   plugins: [
     new webpack.HotModuleReplacementPlugin(),

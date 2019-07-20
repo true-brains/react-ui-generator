@@ -8,7 +8,7 @@
   "scripts": {
     "build": "tsc",
     "test": "jest",
-    "doc:build": "typedoc --out ./docs/ src/index.ts"
+    "doc:build": "typedoc --out ./docs/ --exclude ./node_modules/ src/index.ts"
   },
   "keywords": [
     "metadata",
@@ -39,6 +39,7 @@
     "@types/lodash.merge": "^4.6.4",
     "babel-upgrade": "^0.0.24",
     "jest": "^23.5.0",
+    "typedock": "^1.0.9",
     "typescript": "^3.5.3"
   },
   "gitHead": "f34904c44b092961eef4fa3e5fc9b62b18628838"

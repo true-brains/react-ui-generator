@@ -14,12 +14,11 @@
     "@react-ui-generator/core": "^0.6.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.0.0",
     "@react-ui-generator/core": "^0.6.6",
-    "awesome-typescript-loader": "^3.4.1",
-    "babel-core": "^6.26.0",
-    "babel-loader": "^7.1.2",
-    "babel-preset-env": "^1.6.1",
-    "babel-preset-stage-3": "^6.24.1",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.6",
     "babel-upgrade": "^0.0.24",
     "source-map-loader": "^0.2.3",
     "typescript": "^3.5.3",
