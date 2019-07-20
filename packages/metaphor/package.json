@@ -2,11 +2,11 @@
   "name": "@react-ui-generator/metaphor",
   "version": "0.6.6",
   "description": "DSL for easing baking of metadata for the react-ui-generator.",
-  "main": "./out/index.js",
+  "main": "./out/metaphor.js",
   "types": "./out/index.d.ts",
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/metaphor",
   "scripts": {
-    "build": "tsc",
+    "build": "webpack --config config/webpack.config.js",
     "test": "jest",
     "doc:build": "typedoc --out ./docs/ --exclude ./node_modules/ src/index.ts"
   },
@@ -21,7 +21,7 @@
     "transform": {
       "^.+\\.ts$": "ts-jest"
     },
-    "testRegex": "(/__tests__/.*|(\\.|/)(test|spec))\\.ts$",
+    "testRegex": "(/__tests__/.*(test|spec))\\.ts$",
     "moduleFileExtensions": [
       "ts",
       "js",
@@ -30,17 +30,28 @@
     ]
   },
   "dependencies": {
-    "@react-ui-generator/core": "^0.6.6",
     "lodash.clonedeep": "^4.5.0",
     "lodash.merge": "^4.6.1"
   },
   "devDependencies": {
+    "@babel/core": "^7.5.5",
+    "@babel/preset-env": "^7.0.0",
     "@types/lodash.clonedeep": "^4.5.4",
     "@types/lodash.merge": "^4.6.4",
+    "@react-ui-generator/core": "^0.6.6",
+    "awesome-typescript-loader": "^5.2.1",
+    "babel-loader": "^8.0.6",
     "babel-upgrade": "^0.0.24",
     "jest": "^23.5.0",
     "typedock": "^1.0.9",
-    "typescript": "^3.5.3"
+    "typescript": "^3.5.3",
+    "webpack": "^4.36.1",
+    "webpack-cleanup-plugin": "^0.5.1",
+    "webpack-cli": "^3.3.6",
+    "webpack-merge": "^4.1.2"
+  },
+  "peerDependencies": {
+    "@react-ui-generator/core": "^0.6.0"
   },
   "gitHead": "f34904c44b092961eef4fa3e5fc9b62b18628838"
 }
