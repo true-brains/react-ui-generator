@@ -30,9 +30,10 @@
     "moment": "^2.22.1",
     "react": "^16.3.0",
     "source-map-loader": "^0.2.3",
-    "typescript": "^2.6.2",
-    "webpack": "^3.10.0",
+    "typescript": "^3.5.3",
+    "webpack": "^4.36.1",
     "webpack-cleanup-plugin": "^0.5.1",
+    "webpack-cli": "^3.3.6",
     "webpack-merge": "^4.1.2"
   },
   "peerDependencies": {

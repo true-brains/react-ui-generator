@@ -31,15 +31,15 @@ export interface RendererComplex {
 }
 
 export interface FieldRendererProps {
-  id: string;
-  className?: string;
-  data: any;
-  errors: string[];
-  actions: KeyValue;
-  config: KeyValue;
-  type?: any;
-  disabled: boolean;
-  dirty: boolean;
+  readonly id: string;
+  readonly className?: string;
+  readonly data: any;
+  readonly errors: Array<string>;
+  readonly actions: KeyValue;
+  readonly config: KeyValue;
+  readonly type?: any;
+  readonly disabled: boolean;
+  readonly dirty: boolean;
   onChange(data: any, dirty?: any): void;
 }
 

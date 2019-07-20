@@ -10,8 +10,8 @@ module.exports = {
     libraryTarget: 'umd'
   },
 
-  // Enable sourcemaps for debugging webpack's output.
   devtool: 'source-map',
+  mode: 'production',
 
   resolve: {
     extensions: ['.ts', '.js', '.json'],

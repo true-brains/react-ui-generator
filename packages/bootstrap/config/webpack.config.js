@@ -13,6 +13,8 @@ module.exports = {
   // Enable sourcemaps for debugging webpack's output.
   devtool: 'source-map',
 
+  mode: 'production',
+
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     modules: [resolve('src'), 'node_modules'],

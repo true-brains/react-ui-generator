@@ -1,5 +1,5 @@
 const { TsConfigPathsPlugin } = require('awesome-typescript-loader');
-// const WebpackCleanupPlugin = require('webpack-cleanup-plugin');
+const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const path = require('path');
 const resolve = dir => path.join(__dirname, '..', dir);
 
@@ -12,13 +12,12 @@ module.exports = {
   },
 
   devtool: 'source-map',
+  mode: 'production',
 
   resolve: {
     extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
     modules: [resolve('src'), 'node_modules'],
-    plugins: [
-      new TsConfigPathsPlugin({})
-    ],
+    plugins: [new TsConfigPathsPlugin({})]
   },
 
   module: {
@@ -51,15 +50,15 @@ module.exports = {
   // This is important because it allows us to avoid bundling all of our
   // dependencies, which allows browsers to cache those libraries between builds.
   externals: {
-    'react': {
-        root: 'React',
-        commonjs2: 'react',
-        commonjs: 'react',
-        amd: 'react'
+    react: {
+      root: 'React',
+      commonjs2: 'react',
+      commonjs: 'react',
+      amd: 'react'
     }
   },
 
   plugins: [
-    // new WebpackCleanupPlugin(),
+    new CleanWebpackPlugin()
   ]
 };
