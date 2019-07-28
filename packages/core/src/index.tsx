@@ -7,8 +7,6 @@ export {
   findFieldMetaById,
   enhanceFieldMeta,
   enhanceFormMeta,
-  get,
-  set,
 } from './utils';
 export { Validator, ValidationResult, buildValidator } from './validator';
 export { serializeToObject } from './serializer';

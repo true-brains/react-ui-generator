@@ -1,19 +1,18 @@
-import cloneDeep from 'lodash.clonedeep';
+import cloneDeep from 'lodash-es/cloneDeep';
+import get from 'lodash-es/get';
+import set from 'lodash-es/set';
 
 import {
   RawMetaDescription,
   FormMetaDescription,
   enhanceFormMeta,
-  findFieldMetaById,
-  set,
-  get,
+  findFieldMetaById
 } from '@react-ui-generator/core';
 
 import { FieldPart } from '../';
 
-
 export interface IdsToProcess {
-  [key: string]: boolean
+  [key: string]: boolean;
 }
 
 export type FieldBooleanProps = 'hidden' | 'disabled';
@@ -31,7 +30,7 @@ class Metaphor {
     reverseIfNotMatch?: boolean,
     ids?: string[] | string
   ): Metaphor {
-    const idsArray = (typeof ids === 'string') ? [ids] : ids;
+    const idsArray = typeof ids === 'string' ? [ids] : ids;
     const fieldsToProcess: IdsToProcess = idsArray
       ? idsArray.reduce((acc, id) => ({ ...acc, [id]: true }), {})
       : {};
@@ -39,7 +38,7 @@ class Metaphor {
     for (let fieldMeta of this.meta.fields) {
       const fieldId = fieldMeta.id;
 
-      if ((ids === undefined) || fieldsToProcess[fieldId]) {
+      if (ids === undefined || fieldsToProcess[fieldId]) {
         fieldMeta[propName] = value;
       } else if (reverseIfNotMatch) {
         fieldMeta[propName] = !value;
@@ -84,7 +83,12 @@ class Metaphor {
   }
 
   enable(fieldsToEnable?: string[] | string, disableNotMatched?: boolean): Metaphor {
-    return this.togglePropByFieldIds('disabled', false, disableNotMatched, fieldsToEnable);
+    return this.togglePropByFieldIds(
+      'disabled',
+      false,
+      disableNotMatched,
+      fieldsToEnable
+    );
   }
 
   enableAll(): Metaphor {

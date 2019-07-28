@@ -1,7 +1,6 @@
 import * as React from 'react';
 import { withFields } from './Layout';
-import { FormMetaDescription } from '../interfaces';
-import { findFieldIdx, get } from '../utils';
+import { findFieldIdx } from '../utils';
 
 export interface FieldProps {
   id: string;

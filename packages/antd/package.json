@@ -18,14 +18,13 @@
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
     "@react-ui-generator/core": "^0.6.6",
-    "@types/lodash.get": "^4.4.3",
+    "@types/lodash-es": "^4.17.3",
     "@types/prop-types": "^15.5.3",
     "@types/react": "^16.0.29",
     "antd": "^3.4.1",
     "awesome-typescript-loader": "^3.4.1",
     "babel-loader": "^8.0.6",
     "babel-upgrade": "^0.0.24",
-    "lodash.get": "^4.4.2",
     "moment": "^2.22.1",
     "react": "^16.3.0",
     "source-map-loader": "^0.2.3",
@@ -39,7 +38,8 @@
     "@react-ui-generator/core": "^0.6.0",
     "antd": "^3.4.1",
     "moment": "^2.22.1",
-    "react": "^16.3.0"
+    "react": "^16.3.0",
+    "lodash-es": "^4.17.15"
   },
   "gitHead": "f34904c44b092961eef4fa3e5fc9b62b18628838"
 }

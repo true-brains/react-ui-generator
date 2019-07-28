@@ -1,4 +1,5 @@
 import React from 'react';
+import get from 'lodash-es/get';
 
 import {
   RawMetaDescription,
@@ -7,7 +8,7 @@ import {
   FormMetaDescription,
 } from '../interfaces';
 
-import { get, extractFieldActions, enhanceFormMeta } from '../utils';
+import { extractFieldActions, enhanceFormMeta } from '../utils';
 
 import { Layout } from './Layout';
 import { SubForm } from './renderers/SubForm';

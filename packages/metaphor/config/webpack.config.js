@@ -46,5 +46,7 @@ module.exports = {
     ]
   },
 
+  externals: [/^lodash-es(\/.+)?$/],
+
   plugins: [new CleanWebpackPlugin()]
 };

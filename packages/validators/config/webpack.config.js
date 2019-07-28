@@ -45,6 +45,6 @@ module.exports = {
       }
     ]
   },
-  externals: ['@react-ui-generator/core'],
+  externals: ['@react-ui-generator/core', /^lodash-es(\/.+)?$/],
   plugins: [new CleanWebpackPlugin()]
 };

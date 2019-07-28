@@ -1,8 +1,9 @@
 import * as React from 'react';
+import get from 'lodash-es/get'
 import Upload, { UploadChangeParam } from 'antd/lib/upload';
 import Button from 'antd/lib/button';
 import Icon from 'antd/lib/icon';
-import { FieldRenderer, PropTypes, basePropTypes, get } from '@react-ui-generator/core';
+import { FieldRenderer, PropTypes, basePropTypes } from '@react-ui-generator/core';
 import { FieldWrapper } from './FieldWrapper';
 
 const value: string = null;

@@ -54,12 +54,12 @@ module.exports = {
         commonjs2: 'react',
         commonjs: 'react',
         amd: 'react'
-      },
-
-      moment: 'moment'
+      }
     },
+    'moment',
     '@react-ui-generator/core',
-    /^antd\/.+$/
+    /^antd\/.+$/,
+    /^lodash-es(\/.+)?$/
   ],
   plugins: [new CleanWebpackPlugin()]
 };

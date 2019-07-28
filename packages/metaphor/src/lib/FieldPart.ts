@@ -1,5 +1,5 @@
-import merge from 'lodash.merge';
-import cloneDeep from 'lodash.clonedeep';
+import merge from 'lodash-es/merge';
+import cloneDeep from 'lodash-es/cloneDeep';
 import { Metaphor } from '../';
 
 export interface FieldPart {
