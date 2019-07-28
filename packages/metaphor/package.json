@@ -7,7 +7,7 @@
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/metaphor",
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
-    "test": "jest",
+    "test": "jest -c config/tests/jest.config.js",
     "doc:build": "typedoc --out ./docs/ --exclude ./node_modules/ src/index.ts"
   },
   "keywords": [
@@ -17,29 +17,18 @@
   ],
   "author": "A.Zaviruha <a.zaviruha@gmail.com>",
   "license": "MIT",
-  "jest": {
-    "transform": {
-      "^.+\\.ts$": "ts-jest"
-    },
-    "testRegex": "(/__tests__/.*(test|spec))\\.ts$",
-    "moduleFileExtensions": [
-      "ts",
-      "js",
-      "json",
-      "node"
-    ]
-  },
-  "dependencies": {
-  },
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.0.0",
     "@react-ui-generator/core": "^0.6.6",
+    "@types/jest": "^24.0.15",
     "@types/lodash-es": "^4.17.3",
     "awesome-typescript-loader": "^5.2.1",
+    "babel-jest": "^24.8.0",
     "babel-loader": "^8.0.6",
     "babel-upgrade": "^0.0.24",
-    "jest": "^23.5.0",
+    "jest": "^24.8.0",
+    "ts-jest": "^24.0.2",
     "typedock": "^1.0.9",
     "typescript": "^3.5.3",
     "webpack": "^4.36.1",
