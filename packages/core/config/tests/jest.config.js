@@ -15,4 +15,9 @@ module.exports = {
     '^.+\\.js$': 'babel-jest'
   },
   transformIgnorePatterns: ['<rootDir>/node_modules/(?!lodash-es)'],
+  globals: {
+    'ts-jest': {
+      diagnostics: false
+    }
+  }
 };
