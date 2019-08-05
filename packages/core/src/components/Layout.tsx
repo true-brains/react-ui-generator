@@ -1,5 +1,4 @@
 import React from 'react';
-import { FormMetaDescription } from '../interfaces';
 
 const { Provider, Consumer } = React.createContext({
   fields: [],
@@ -7,7 +6,7 @@ const { Provider, Consumer } = React.createContext({
 });
 
 export function withFields(Component: React.ComponentClass) {
-  return function ComponentWithMeta(props: any) {
+  return function ComponentWithFields(props: any) {
     return (
       <Consumer>
         {(contextProps) => <Component {...props} {...contextProps} />}
@@ -38,7 +37,7 @@ export class Layout extends React.Component<LayoutProps, LayoutState> {
     return { fields: nextProps.fields };
   }
 
-  render(): JSX.Element {
+  render() {
     const { children } = this.props;
     const value = {
       fields: this.state.fields,
