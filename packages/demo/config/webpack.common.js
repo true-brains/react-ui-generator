@@ -14,20 +14,6 @@ module.exports = {
     filename: '[name].js'
   },
 
-  module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        include: [resolve('src')],
-        loader: 'babel-loader',
-
-        options: {
-          presets: ['@babel/preset-env', '@babel/preset-react']
-        }
-      }
-    ]
-  },
-
   resolve: {
     modules: [resolve('src'), 'node_modules'],
     extensions: ['.js', '.jsx', '.json'],
@@ -40,6 +26,25 @@ module.exports = {
       '@validation': resolve('src/validation'),
       '@actions': resolve('src/actions')
     }
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        include: [resolve('src')],
+        loader: 'babel-loader',
+
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react']
+        }
+      },
+
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      }
+    ]
   },
 
   plugins: [
