@@ -34,7 +34,7 @@
     "typescript": "^3.5.3",
     "uglifyjs-webpack-plugin": "^1.2.5",
     "webpack": "^4.36.1",
-    "webpack-bundle-analyzer": "^2.11.3",
+    "webpack-bundle-analyzer": "^3.6.0",
     "webpack-cleanup-plugin": "^0.5.1",
     "webpack-cli": "^3.3.6",
     "webpack-dev-server": "^3.7.2",
