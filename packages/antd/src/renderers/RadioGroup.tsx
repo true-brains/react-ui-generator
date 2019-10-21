@@ -1,7 +1,7 @@
 import * as React from 'react';
+import PropTypes from 'prop-types'
 import Radio from 'antd/lib/radio';
-import { FieldRenderer, PropTypes, basePropTypes } from '@react-ui-generator/core';
-
+import { FieldRenderer, basePropTypes } from '@react-ui-generator/core';
 import { FieldWrapper } from './FieldWrapper';
 
 const RadioGroup = Radio.Group;

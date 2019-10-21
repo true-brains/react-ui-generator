@@ -1,8 +1,8 @@
 import * as React from 'react';
 import Select, { SelectValue } from 'antd/lib/select';
+import PropTypes from 'prop-types'
 import {
   FieldRenderer,
-  PropTypes,
   basePropTypes
 } from '@react-ui-generator/core';
 

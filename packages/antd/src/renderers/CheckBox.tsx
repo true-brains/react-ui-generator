@@ -1,9 +1,8 @@
 import React from 'react';
-import { ChangeEvent } from 'react';
 import Checkbox, { CheckboxChangeEvent } from 'antd/lib/checkbox';
+import PropTypes from 'prop-types'
 
-import { FieldRenderer, PropTypes, basePropTypes } from '@react-ui-generator/core';
-
+import { FieldRenderer, basePropTypes } from '@react-ui-generator/core';
 import { FieldWrapper } from './FieldWrapper';
 
 const value: boolean = null;

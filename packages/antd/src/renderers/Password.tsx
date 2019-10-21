@@ -1,12 +1,6 @@
 import * as React from 'react';
-import { ChangeEvent } from 'react';
+import { FieldRenderer } from '@react-ui-generator/core';
 import { _Input } from './Input';
-
-import {
-  FieldRenderer,
-  PropTypes,
-  basePropTypes
-} from '@react-ui-generator/core';
 
 export class Password extends FieldRenderer {
   render() {

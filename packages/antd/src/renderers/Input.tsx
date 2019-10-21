@@ -1,11 +1,11 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
 import Input from 'antd/lib/input';
+import PropTypes from 'prop-types'
 
 import {
   FieldRendererProps,
   FieldRenderer,
-  PropTypes,
   basePropTypes
 } from '@react-ui-generator/core';
 

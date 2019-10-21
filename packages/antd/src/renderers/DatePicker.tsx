@@ -1,9 +1,9 @@
 import React from 'react';
-import { ChangeEvent } from 'react';
 import DatePicker from 'antd/lib/date-picker';
 import moment, { Moment } from 'moment';
+import PropTypes from 'prop-types'
 
-import { FieldRenderer, PropTypes, basePropTypes } from '@react-ui-generator/core';
+import { FieldRenderer, basePropTypes } from '@react-ui-generator/core';
 
 import { FieldWrapper } from './FieldWrapper';
 
