@@ -1,6 +1,6 @@
 {
   "name": "@react-ui-generator/antd",
-  "version": "0.6.6",
+  "version": "0.7.0",
   "description": "Renderers and layouts for Ant Design",
   "main": "./out/antd.js",
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/antd",
@@ -17,7 +17,7 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.0.0",
     "@babel/preset-react": "^7.0.0",
-    "@react-ui-generator/core": "^0.6.6",
+    "@react-ui-generator/core": "^0.7.0",
     "@types/jest": "^24.0.15",
     "@types/lodash-es": "^4.17.3",
     "@types/prop-types": "^15.5.3",
