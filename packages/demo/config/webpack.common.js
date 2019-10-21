@@ -1,8 +1,5 @@
-const fs = require('fs');
 const path = require('path');
-const webpack = require('webpack');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
-const UglifyJsPlugin = require('uglifyjs-webpack-plugin');
 const ProgressBarPlugin = require('progress-bar-webpack-plugin');
 
 const resolve = dir => path.join(__dirname, '../', dir);
@@ -14,26 +11,11 @@ module.exports = {
 
   output: {
     path: resolve('out'),
-    filename: '[name].js',
-  },
-
-  module: {
-    rules: [
-      {
-        test: /\.jsx?$/,
-        include: [ resolve('src') ],
-        loader: 'babel-loader',
-
-        options: {
-          presets: ['env', 'stage-3', 'react']
-        }
-      }
-    ]
+    filename: '[name].js'
   },
 
   resolve: {
     modules: [resolve('src'), 'node_modules'],
-
     extensions: ['.js', '.jsx', '.json'],
 
     alias: {
@@ -42,8 +24,27 @@ module.exports = {
       '@containers': resolve('src/containers'),
       '@meta': resolve('src/meta'),
       '@validation': resolve('src/validation'),
-      '@actions': resolve('src/actions'),
+      '@actions': resolve('src/actions')
     }
+  },
+
+  module: {
+    rules: [
+      {
+        test: /\.jsx?$/,
+        include: [resolve('src')],
+        loader: 'babel-loader',
+
+        options: {
+          presets: ['@babel/preset-env', '@babel/preset-react']
+        }
+      },
+
+      {
+        test: /\.css$/i,
+        use: ['style-loader', 'css-loader'],
+      }
+    ]
   },
 
   plugins: [
@@ -53,6 +54,6 @@ module.exports = {
       title: 'react-form-generator demo',
       inject: true,
       template: resolve('src/index.ejs')
-    }),
+    })
   ]
 };

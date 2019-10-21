@@ -5,16 +5,14 @@ const path = require('path');
 const resolve = dir => path.join(__dirname, '..', dir);
 
 module.exports = {
-  entry: resolve('src/index.tsx'),
+  entry: resolve('src/index.ts'),
   output: {
-    filename: 'bootstrap.js',
+    filename: 'metaphor.js',
     path: resolve('out'),
     libraryTarget: 'umd'
   },
 
-  // Enable sourcemaps for debugging webpack's output.
   devtool: 'source-map',
-
   mode: 'production',
 
   resolve: {
@@ -25,18 +23,10 @@ module.exports = {
 
   module: {
     rules: [
-      // All files with a '.ts' or '.tsx' extension will be handled by 'awesome-typescript-loader'.
       {
         test: /\.tsx?$/,
-        use: [
-          {
-            loader: 'babel-loader',
-            options: {
-              presets: ['@babel/preset-env', '@babel/preset-react']
-            }
-          },
-          'awesome-typescript-loader'
-        ]
+        use: ['babel-loader', 'awesome-typescript-loader'],
+        exclude: /node_modules/
       },
 
       // All output '.js' files will have any sourcemaps re-processed by 'source-map-loader'.
@@ -48,18 +38,7 @@ module.exports = {
     ]
   },
 
-  externals: [
-    {
-      react: {
-        root: 'React',
-        commonjs2: 'react',
-        commonjs: 'react',
-        amd: 'react'
-      }
-    },
-
-    /^lodash-es(\/.+)?$/
-  ],
+  externals: [/^lodash-es(\/.+)?$/],
 
   plugins: [new CleanWebpackPlugin()]
 };

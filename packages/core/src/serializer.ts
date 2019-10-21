@@ -1,4 +1,3 @@
-import { get, set } from './utils';
 import { FormMetaDescription, KeyValue } from './interfaces';
 
 export function serializeToObject(formData: KeyValue): KeyValue {

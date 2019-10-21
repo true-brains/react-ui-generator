@@ -1,10 +1,9 @@
 import React from 'react';
 import Button, { ButtonType, ButtonSize } from 'antd/lib/button';
-import makeClass from 'classnames';
+import PropTypes from 'prop-types'
 
 import {
   FieldRenderer,
-  PropTypes,
   basePropTypes
 } from '@react-ui-generator/core';
 

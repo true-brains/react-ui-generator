@@ -1,6 +1,7 @@
 import * as React from 'react';
+import PropTypes from 'prop-types'
 import Select, { SelectValue } from 'antd/lib/select';
-import { FieldRenderer, PropTypes, basePropTypes } from '@react-ui-generator/core';
+import { FieldRenderer, basePropTypes } from '@react-ui-generator/core';
 
 import { FieldWrapper } from './FieldWrapper';
 

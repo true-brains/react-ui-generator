@@ -9,6 +9,9 @@ import {
   Fields,
 } from '@react-ui-generator/core';
 
+import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+
+
 import { buildAjvValidator } from '@react-ui-generator/validators';
 import { Renderers, Layouts } from '@react-ui-generator/antd';
 

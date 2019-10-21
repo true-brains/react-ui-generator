@@ -7,10 +7,7 @@ export {
   findFieldMetaById,
   enhanceFieldMeta,
   enhanceFormMeta,
-  get,
-  set,
 } from './utils';
-export { Validator, buildValidator } from './validator';
+export { Validator, ValidationResult, buildValidator } from './validator';
 export { serializeToObject } from './serializer';
 export * from './interfaces';
-export { default as PropTypes } from 'prop-types';

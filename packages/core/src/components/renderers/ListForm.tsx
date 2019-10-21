@@ -15,7 +15,7 @@ import {
   FieldMetaDescription,
 } from '../../interfaces';
 
-import { withDefaults, extractFieldActions, enhanceFieldMeta } from '../../utils';
+import { enhanceFieldMeta } from '../../utils';
 
 export interface ListFormProps extends FieldRendererProps {
   dirtiness: KeyValue[],

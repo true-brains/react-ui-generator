@@ -1,4 +1,5 @@
 import React from 'react';
+import get from 'lodash-es/get';
 
 import {
   RawMetaDescription,
@@ -7,7 +8,7 @@ import {
   FormMetaDescription,
 } from '../interfaces';
 
-import { get, extractFieldActions, enhanceFormMeta } from '../utils';
+import { extractFieldActions, enhanceFormMeta } from '../utils';
 
 import { Layout } from './Layout';
 import { SubForm } from './renderers/SubForm';
@@ -135,6 +136,10 @@ export class GeneratedForm extends React.PureComponent<
           }}
           disabled={disabled}
           dirty={dirtiness[id] || false}
+          isSubForm={false}
+          dirtiness={undefined}
+          renderers={undefined}
+          validator={undefined}
           {...subFormAdditionalProps}
         />
       );

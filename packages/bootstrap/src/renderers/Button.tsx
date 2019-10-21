@@ -1,6 +1,5 @@
 import * as React from 'react';
 import { Button as RButton } from 'reactstrap';
-import makeClass from 'classnames';
 
 export interface ButtonProps {
   className?: string;
@@ -10,7 +9,7 @@ export interface ButtonProps {
     active?: boolean;
     outline?: boolean;
     color?: string;
-    size?: string;
+    // size?: string;
   };
   disabled: boolean;
 }

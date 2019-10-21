@@ -1,5 +1,6 @@
 {
   "name": "react-ui-generator",
+  "private": true,
   "version": "0.0.0",
   "description": "Library for generation UI from metadata",
   "main": "src/index.js",
@@ -26,7 +27,7 @@
   "homepage": "https://github.com/react-ui-generator/react-ui-generator#readme",
   "devDependencies": {
     "ajv-cli": "^2.1.0",
-    "lerna": "^2.5.1",
+    "lerna": "^3.13.1",
     "prettier": "1.9.2"
   },
   "workspaces": [

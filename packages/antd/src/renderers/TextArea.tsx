@@ -1,8 +1,9 @@
 import * as React from 'react';
 import { ChangeEvent } from 'react';
+import PropTypes from 'prop-types'
 import Input from 'antd/lib/input';
-import { FieldRenderer, PropTypes, basePropTypes } from '@react-ui-generator/core';
 
+import { FieldRenderer, basePropTypes } from '@react-ui-generator/core';
 import { FieldWrapper } from './FieldWrapper';
 
 const { TextArea } = Input;
