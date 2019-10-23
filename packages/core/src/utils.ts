@@ -120,13 +120,9 @@ function makeDirty (data: KeyValue | KeyValue[]): KeyValue {
     return data.map(makeDirty)
   }
 
-  const res: { [key: string]: any } = {}
-  Object.keys(data).forEach(key => {
-    const value = data[key]
-    res[key] = value && typeof value === 'object' ? makeDirty(value) : true
-  })
-
-  return res
+  return Object.entries(data).reduce((acc, [key, value], index) => {
+    return { ...acc, [key]: (value && typeof value === 'object') ? makeDirty(value) : true }
+  }, {})
 }
 
 export {
