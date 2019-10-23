@@ -115,6 +115,16 @@ function findFieldMetaById(
   return fieldsMeta.find(meta => meta.id === fieldId);
 }
 
+function makeDirty (data: KeyValue | KeyValue[]): KeyValue {
+  if (Array.isArray(data)) {
+    return data.map(makeDirty)
+  }
+
+  return Object.entries(data).reduce((acc, [key, value], index) => {
+    return { ...acc, [key]: (value && typeof value === 'object') ? makeDirty(value) : true }
+  }, {})
+}
+
 export {
   enhanceFormMeta,
   enhanceFieldMeta,
@@ -122,4 +132,5 @@ export {
   withDefaults,
   findFieldIdx,
   findFieldMetaById,
+  makeDirty,
 };
