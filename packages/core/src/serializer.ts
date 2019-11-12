@@ -5,7 +5,7 @@ export function serializeToObject(formData: KeyValue): KeyValue {
 
   for (let fieldId of Object.keys(formData)) {
     const fieldData = formData[fieldId]
-    const value = fieldData.value;
+    const value = fieldData ? fieldData.value : null;
 
     if (Array.isArray(value)) {
       serialized[fieldId] = value.map(serializeToObject);
