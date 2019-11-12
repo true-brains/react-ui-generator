@@ -46,6 +46,7 @@ export interface FieldRendererProps {
 export class FieldRenderer<P = FieldRendererProps, S = {}> extends React.PureComponent<P, S> {}
 
 export type KeyValue = { [key: string]: any }
+export type RenderersRepo = { [key: string]: typeof FieldRenderer }
 
 export function basePropTypes() {
   return {

@@ -7,13 +7,15 @@
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/core",
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
+    "dev": "webpack --config config/webpack.config.js --mode=development --watch",
     "test": "jest -c config/tests/jest.config.js"
   },
   "author": "Alexei Zaviruha <a.zaviruha@gmail.com>",
   "license": "MIT",
   "dependencies": {
     "lodash-es": "^4.17.15",
-    "prop-types": "^15.6.1"
+    "prop-types": "^15.6.1",
+    "react-jss": "^10.0.0"
   },
   "devDependencies": {
     "@babel/core": "^7.5.5",
@@ -29,6 +31,7 @@
     "@types/lodash-es": "^4.17.3",
     "@types/prop-types": "^15.5.3",
     "@types/react": "^16.0.29",
+    "@types/react-jss": "^10.0.0",
     "@types/sinon": "^5.0.1",
     "awesome-typescript-loader": "^5.2.1",
     "babel-jest": "^24.8.0",

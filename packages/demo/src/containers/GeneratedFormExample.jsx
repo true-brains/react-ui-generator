@@ -1,19 +1,19 @@
-import React from 'react';
-import { connect } from 'react-redux';
-import Ajv from 'ajv';
-import { Form,  Row, Col } from 'antd';
+import React from "react";
+import { connect } from "react-redux";
+import Ajv from "ajv";
+import { Form, Row, Col } from "antd";
 
 import {
+  FormEditor,
   GeneratedForm,
   Field,
-  Fields,
-} from '@react-ui-generator/core';
+  Fields
+} from "@react-ui-generator/core";
 
-import 'antd/dist/antd.css'; // or 'antd/dist/antd.less'
+import "antd/dist/antd.css"; // or 'antd/dist/antd.less'
 
-
-import { buildAjvValidator } from '@react-ui-generator/validators';
-import { Renderers, Layouts } from '@react-ui-generator/antd';
+import { buildAjvValidator } from "@react-ui-generator/validators";
+import { Renderers, Layouts } from "@react-ui-generator/antd";
 
 import {
   toggleSex,
@@ -22,27 +22,34 @@ import {
   clearForm,
   addRelative,
   removeRelative
-} from '@actions';
+} from "@actions";
 
-import CloseButton from '../components/CloseButton';
-import validationSchema from '../validation/jsonSchema.json';
+import CloseButton from "../components/CloseButton";
+import validationSchema from "../validation/jsonSchema.json";
 
 /**
  * You can add custon renderers here.
  */
 const renderers = {
   ...Renderers,
-  closeButton: CloseButton,
+  closeButton: CloseButton
 };
 
 const { FormLayout, FieldLayout } = Layouts;
 
 class GeneratedFormExample extends React.PureComponent {
   render() {
-    const { meta, data, errors, dirtiness, updateForm, ...actions } = this.props;
+    const {
+      meta,
+      data,
+      errors,
+      dirtiness,
+      updateForm,
+      ...actions
+    } = this.props;
 
     return (
-      <GeneratedForm
+      <FormEditor
         className="form-demo"
         meta={meta}
         data={data}
@@ -50,7 +57,9 @@ class GeneratedFormExample extends React.PureComponent {
         dirtiness={dirtiness}
         renderers={renderers}
         actions={actions}
-        onChange={(data, errors, isValid, dirtiness) => updateForm({ data, errors, isValid, dirtiness })}
+        onChange={(data, errors, isValid, dirtiness) =>
+          updateForm({ data, errors, isValid, dirtiness })
+        }
         validator={buildAjvValidator(Ajv, validationSchema)}
       >
         <div className="card border-dark mb-3">
@@ -87,9 +96,7 @@ class GeneratedFormExample extends React.PureComponent {
             </FormLayout>
           </div>
         </div>
-
         <hr className="example-of-custom-layout" />
-
         <Row>
           <Col span={2}>
             <Field id="btnSend" />
@@ -99,7 +106,7 @@ class GeneratedFormExample extends React.PureComponent {
             <Field id="btnClear" />
           </Col>
         </Row>
-      </GeneratedForm>
+      </FormEditor>
     );
   }
 }

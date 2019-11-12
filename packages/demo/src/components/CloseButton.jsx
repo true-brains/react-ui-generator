@@ -14,6 +14,7 @@ class CloseButton extends React.PureComponent {
         type="button"
         className="close"
         aria-label="Close"
+        disabled={disabled}
         onClick={onClick}
       >
         <span aria-hidden="true">&times;</span>

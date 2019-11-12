@@ -1,4 +1,5 @@
 export { GeneratedForm } from './components/GeneratedForm';
+export { Chrome as FormEditor } from './components/FormEditor';
 export { Field } from './components/Field';
 export { Fields } from './components/Fields';
 export { withFields } from './components/Layout';

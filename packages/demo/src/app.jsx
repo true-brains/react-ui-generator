@@ -1,15 +1,18 @@
-import React from 'react';
-import { Provider } from 'react-redux';
-import { createStore, applyMiddleware, compose } from 'redux';
-import thunkMiddleware from 'redux-thunk';
-import createHistory from 'history/createBrowserHistory';
+import React from "react";
+import { Provider } from "react-redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import thunkMiddleware from "redux-thunk";
+import createHistory from "history/createBrowserHistory";
 
-import reducers from './reducers';
-import GeneratedFormExample from '@containers/GeneratedFormExample';
+import reducers from "./reducers";
+import GeneratedFormExample from "@containers/GeneratedFormExample";
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
-const store = createStore(reducers, composeEnhancers(applyMiddleware(thunkMiddleware)));
+const store = createStore(
+  reducers,
+  composeEnhancers(applyMiddleware(thunkMiddleware))
+);
 
 class App extends React.Component {
   render() {
@@ -40,7 +43,9 @@ class App extends React.Component {
 
           <div className="row">
             <div className="col col-12">
-              <GeneratedFormExample />
+              <div className="form-demo">
+                <GeneratedFormExample />
+              </div>
             </div>
           </div>
         </div>
