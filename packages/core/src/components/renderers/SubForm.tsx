@@ -43,7 +43,7 @@ export class SubForm extends FieldRenderer<SubFormProps> {
     const enhancedFieldsMeta = config.fields.map((meta: FieldMetaDescription) => {
       const newMeta = enhanceFieldMeta(meta);
 
-      newMeta.renderer.config.disabled = disabled;
+      newMeta.disabled = disabled;
       return newMeta;
     });
 

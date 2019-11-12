@@ -58,7 +58,7 @@ export class ListForm extends FieldRenderer<ListFormProps> {
     for (let meta of config.fields) {
       const newMeta = enhanceFieldMeta(meta);
 
-      newMeta.renderer.config.disabled = disabled;
+      newMeta.disabled = disabled;
       enhancedFieldsMeta.push(newMeta);
     }
 
