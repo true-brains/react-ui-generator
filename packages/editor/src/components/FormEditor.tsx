@@ -4,15 +4,17 @@ import { createUseStyles } from "react-jss";
 import {
   GeneratedForm,
   GeneratedFormProps,
-  GeneratedFormState
-} from "./GeneratedForm";
+  GeneratedFormState,
+  FormMetaDescription,
+  RenderersRepo,
+  enhanceFormMeta
+} from "@react-ui-generator/core";
 
-import { FieldEditorHOC } from "./renderers/FieldEditor";
-import { FormMetaDescription, RenderersRepo } from "../interfaces";
-import { enhanceFormMeta } from "../utils";
+import { FieldEditorHOC } from "./FieldEditor";
 
 interface FormEditorProps extends GeneratedFormProps {
   styles: Record<"FormEditorChrome" | "ChromeButtons" | "EditButton", any>;
+  onMetaChanged?(newMeta: FormMetaDescription): void;
 }
 
 interface FormEditorState extends GeneratedFormState {
@@ -101,13 +103,15 @@ export class FormEditor extends React.PureComponent<
   }
 
   getEditableRenderers(): RenderersRepo {
-    return Object.entries(this.props.renderers)
-      .reduce((acc, [type, Renderer]) => {
+    return Object.entries(this.props.renderers).reduce(
+      (acc, [type, Renderer]) => {
         return {
           ...acc,
           [type]: FieldEditorHOC(Renderer)
-        }
-      }, {})
+        };
+      },
+      {}
+    );
   }
 
   handleStartEdit() {
@@ -118,10 +122,18 @@ export class FormEditor extends React.PureComponent<
   }
 
   handleFinishEdit() {
-    this.setState({
-      inEdit: false,
-      metaBeforeUpdate: this.state.meta
-    });
+    const { onMetaChanged } = this.props;
+    const { meta } = this.state;
+
+    this.setState(
+      {
+        inEdit: false,
+        metaBeforeUpdate: meta
+      },
+      () => {
+        onMetaChanged && onMetaChanged(meta);
+      }
+    );
   }
 
   handleCancelEdit() {

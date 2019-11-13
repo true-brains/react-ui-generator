@@ -4,7 +4,7 @@ import {
   FieldRenderer,
   FieldRendererProps,
   basePropTypes
-} from '../../interfaces';
+} from '@react-ui-generator/core';
 
 
 export class FieldEditor extends FieldRenderer {
@@ -27,7 +27,7 @@ export class FieldEditor extends FieldRenderer {
 
     return (
       <div>
-        <span>test</span>
+        <span>Wrapped field renderer</span>
         {children}
       </div>
     );

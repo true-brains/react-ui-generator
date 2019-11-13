@@ -45,6 +45,7 @@
     "@react-ui-generator/antd": "^0.7.2",
     "@react-ui-generator/bootstrap": "^0.7.2",
     "@react-ui-generator/core": "^0.7.2",
+    "@react-ui-generator/editor": "^0.7.2",
     "@react-ui-generator/serializers": "^0.5.3",
     "@react-ui-generator/validators": "^0.7.2",
     "ajv": "^6.0.0",

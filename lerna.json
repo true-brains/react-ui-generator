@@ -3,6 +3,7 @@
   "useWorkspaces": true,
   "packages": [
     "packages/core",
+    "packages/editor",
     "packages/validators",
     "packages/antd",
     "packages/metaphor"

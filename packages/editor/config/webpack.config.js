@@ -7,7 +7,7 @@ const resolve = dir => path.join(__dirname, '..', dir);
 module.exports = {
   entry: resolve('src/index.ts'),
   output: {
-    filename: 'core.js',
+    filename: 'editor.js',
     path: resolve('out'),
     libraryTarget: 'umd'
   },
