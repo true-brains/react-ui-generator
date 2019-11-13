@@ -103,6 +103,32 @@ class Metaphor {
     return this.disable();
   }
 
+  clone(idSrc: string, idTarget: string, appendToSrc: boolean = true): Metaphor {
+    const { fields } = this.meta
+    const idxSrc = fields.findIndex(item => item.id === idSrc)
+
+    if (idxSrc === -1) {
+      throw new Error(`Source field with id "${idSrc}" is not found.`)
+    }
+
+    const isInUse = fields.some(item => item.id === idTarget)
+
+    if (isInUse) {
+      throw new Error(`Id "${idTarget}" is already in use.`)
+    }
+
+    const fieldMeta = cloneDeep(findFieldMetaById(idSrc, fields));
+    fieldMeta.id = idTarget
+
+    if (appendToSrc) {
+      fields.splice(idxSrc + 1, 0, fieldMeta)
+    } else {
+      fields.push(fieldMeta)
+    }
+
+    return this
+  }
+
   get config(): FieldPart {
     return new FieldPart(this, 'renderer.config');
   }

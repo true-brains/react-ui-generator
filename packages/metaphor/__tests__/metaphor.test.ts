@@ -36,7 +36,7 @@ describe('Metaphor', () => {
       expect(disabled.length).toEqual(2);
     });
 
-    test('should set `disabled: true` for specified field', () => {
+    test('should set `disabled: true` for single specified field', () => {
       const sourceMeta = prepareMetaForBooleanProps(metaMinimal, 'disabled', false);
       const form = new Metaphor(sourceMeta).disable('bar');
       const disabled = form.value().fields.filter(x => x.disabled);
@@ -73,7 +73,7 @@ describe('Metaphor', () => {
       expect(enabled.length).toEqual(2);
     });
 
-    test('should set `disabled: false` for specified field', () => {
+    test('should set `disabled: false` for single specified field', () => {
       const sourceMeta = prepareMetaForBooleanProps(metaMinimal, 'disabled', true);
       const form = new Metaphor(sourceMeta).enable('bar');
       const enabled = form.value().fields.filter(x => !x.disabled);
@@ -110,7 +110,7 @@ describe('Metaphor', () => {
       expect(hidden.length).toEqual(2);
     });
 
-    test('should set `hidden: true` for specified field', () => {
+    test('should set `hidden: true` for single specified field', () => {
       const sourceMeta = prepareMetaForBooleanProps(metaMinimal, 'hidden', false);
       const form = new Metaphor(sourceMeta).hide('bar');
       const hidden = form.value().fields.filter(x => x.hidden);
@@ -147,7 +147,7 @@ describe('Metaphor', () => {
       expect(visible.length).toEqual(2);
     });
 
-    test('should set `hidden: false` for specified field', () => {
+    test('should set `hidden: false` for single specified field', () => {
       const sourceMeta = prepareMetaForBooleanProps(metaMinimal, 'hidden', true);
       const form = new Metaphor(sourceMeta).show('bar');
       const visible = form.value().fields.filter(x => !x.hidden);
@@ -175,6 +175,46 @@ describe('Metaphor', () => {
     });
   });
 
+  describe('.clone()', () => {
+    test('should append cloned field after the source field, by default', () => {
+      const form = new Metaphor(metaMinimal);
+      const meta = form.clone('foo', 'xxx').value()
+      const xxxIdx = meta.fields.findIndex(item => item.id === 'xxx')
+
+      expect(xxxIdx).toBe(1)
+      expect(metaMinimal.fields.length).toBe(3)
+      expect(meta.fields.length).toBe(4)
+    })
+
+    test('should append cloned field at the end of "fields" array, if `appendToSrc` is `false`', () => {
+      const form = new Metaphor(metaMinimal);
+      const meta = form.clone('foo', 'xxx', false).value()
+      const xxxIdx = meta.fields.findIndex(item => item.id === 'xxx')
+
+      expect(xxxIdx).toBe(metaMinimal.fields.length)
+      expect(metaMinimal.fields.length).toBe(3)
+      expect(meta.fields.length).toBe(4)
+    })
+
+    test('should throw error, if `idSrc` does not exists in "fields"', () => {
+      const t = () => {
+        const form = new Metaphor(metaMinimal);
+        form.clone('xxx', 'yyy', false).value()
+      }
+
+      expect(t).toThrowError('Source field with id "xxx" is not found.')
+    })
+
+    test('should throw error, if `idTarget` already exists in "fields"', () => {
+      const t = () => {
+        const form = new Metaphor(metaMinimal);
+        form.clone('foo', 'bar', false).value()
+      }
+
+      expect(t).toThrowError('Id "bar" is already in use.')
+    })
+  })
+
   describe('.config', () => {
     describe('.set()', () => {
       test('should merge argument into field renderer\'s config', () => {
@@ -200,6 +240,7 @@ describe('Metaphor', () => {
             .up()
           .value();
         
+        expect(generatedMeta.fields[0].renderer.config.testProperty).toBeDefined();
         expect(completeMeta.fields[0].renderer.config.testProperty).toBeUndefined();
       });
 
