@@ -1,38 +1,38 @@
-import merge from 'lodash-es/merge';
-import cloneDeep from 'lodash-es/cloneDeep';
-import { Metaphor } from '../';
+import merge from 'lodash-es/merge'
+import cloneDeep from 'lodash-es/cloneDeep'
+import { Metaphor } from '../'
 
 export interface FieldPart {
   [key: string]: any
 }
 
 class FieldPartGateway {
-  private form: Metaphor;
-  private path: string;
+  private form: Metaphor
+  private path: string
 
   constructor(form: Metaphor, path: string) {
-    this.form = form;
-    this.path = path;
+    this.form = form
+    this.path = path
   }
 
   set(fieldIds: string[] | string, newPart: FieldPart) {
-    const idsToProcess = Array.isArray(fieldIds) ? fieldIds : [fieldIds];
-    
-    for (let fieldId of idsToProcess) {
-      const path = `${fieldId}.${this.path}`;
-      const fieldPart = this.form.get(path);
-      const newFieldPart = cloneDeep(fieldPart);
+    const idsToProcess = Array.isArray(fieldIds) ? fieldIds : [fieldIds]
 
-      merge(newFieldPart, newPart);
-      this.form.set(path, newFieldPart);
+    for (let fieldId of idsToProcess) {
+      const path = `${fieldId}.${this.path}`
+      const fieldPart = this.form.get(path)
+      const newFieldPart = cloneDeep(fieldPart)
+
+      merge(newFieldPart, newPart)
+      this.form.set(path, newFieldPart)
     }
 
-    return this;
+    return this
   }
 
   up() {
-    return this.form;
+    return this.form
   }
 }
 
-export default FieldPartGateway;
+export default FieldPartGateway

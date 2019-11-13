@@ -28,7 +28,7 @@
   "devDependencies": {
     "ajv-cli": "^2.1.0",
     "lerna": "^3.13.1",
-    "prettier": "1.9.2"
+    "prettier": "^1.19.1"
   },
   "workspaces": [
     "packages/*"
