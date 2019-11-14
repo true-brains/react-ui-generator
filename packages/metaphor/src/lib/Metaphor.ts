@@ -1,6 +1,7 @@
 import cloneDeep from 'lodash-es/cloneDeep'
 import get from 'lodash-es/get'
 import set from 'lodash-es/set'
+import invariant from 'invariant'
 
 import {
   RawMetaDescription,
@@ -132,15 +133,11 @@ class Metaphor {
     const { fields } = this.meta
     const idxSrc = fields.findIndex(item => item.id === idSrc)
 
-    if (idxSrc === -1) {
-      throw new Error(`Source field with id "${idSrc}" is not found.`)
-    }
-
-    const isInUse = fields.some(item => item.id === idTarget)
-
-    if (isInUse) {
-      throw new Error(`Id "${idTarget}" is already in use.`)
-    }
+    invariant(idxSrc !== -1, notFoundMessage(idSrc))
+    invariant(
+      fields.every(item => item.id !== idTarget),
+      `Id "${idTarget}" is already in use.`
+    )
 
     const fieldMeta = cloneDeep(findFieldMetaById(idSrc, fields))
     fieldMeta.id = idTarget
@@ -154,6 +151,16 @@ class Metaphor {
     return this
   }
 
+  remove(fieldId: string): Metaphor {
+    const { fields } = this.meta
+    const idx = fields.findIndex(item => item.id === fieldId)
+
+    invariant(idx !== -1, notFoundMessage(fieldId))
+
+    fields.splice(idx, 1)
+    return this
+  }
+
   get config(): FieldPart {
     return new FieldPart(this, 'renderer.config')
   }
@@ -161,6 +168,10 @@ class Metaphor {
   get actions(): FieldPart {
     return new FieldPart(this, 'actions')
   }
+}
+
+function notFoundMessage (id: string): string {
+  return `Source field with id "${id}" is not found.`
 }
 
 export default Metaphor

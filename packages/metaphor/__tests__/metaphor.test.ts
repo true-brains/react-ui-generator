@@ -215,6 +215,33 @@ describe('Metaphor', () => {
     })
   })
 
+
+  describe('.remove()', () => {
+    test('should remove field with matched id', () => {
+      const form1 = new Metaphor(metaMinimal);
+      const meta1 = form1.remove('foo').value()
+
+      expect(meta1.fields.length).toBe(2)
+      expect(meta1.fields.map(item => item.id).includes('foo')).toBe(false)
+
+      const form2 = new Metaphor(metaMinimal);
+      const meta2 = form2.remove('bar').value()
+
+      expect(meta2.fields.length).toBe(2)
+      expect(meta2.fields.map(item => item.id).includes('bar')).toBe(false)
+      expect(meta2.fields.map(item => item.id).includes('foo')).toBe(true)
+    })
+
+    test('should throw error, if `id` does not exists in "fields"', () => {
+      const t = () => {
+        const form = new Metaphor(metaMinimal);
+        form.remove('foo').remove('foo').value()
+      }
+
+      expect(t).toThrowError('Source field with id "foo" is not found.')
+    })
+  })
+
   describe('.config', () => {
     describe('.set()', () => {
       test('should merge argument into field renderer\'s config', () => {
