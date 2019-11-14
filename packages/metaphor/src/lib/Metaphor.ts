@@ -6,7 +6,9 @@ import invariant from 'invariant'
 import {
   RawMetaDescription,
   FormMetaDescription,
+  FieldMetaDescription,
   enhanceFormMeta,
+  enhanceFieldMeta,
   findFieldMetaById,
 } from '@react-ui-generator/core'
 
@@ -125,19 +127,19 @@ class Metaphor {
     return this.disable()
   }
 
+  /**
+   * Clones an existing field. Allows to append a cloned field
+   * just after the original, or to the end of form.
+   */
   clone(
     idSrc: string,
     idTarget: string,
     appendToSrc: boolean = true
   ): Metaphor {
     const { fields } = this.meta
-    const idxSrc = fields.findIndex(item => item.id === idSrc)
+    const idxSrc = getFieldIdx(idSrc, fields)
 
-    invariant(idxSrc !== -1, notFoundMessage(idSrc))
-    invariant(
-      fields.every(item => item.id !== idTarget),
-      `Id "${idTarget}" is already in use.`
-    )
+    invariantFieldUnique(idTarget, fields)
 
     const fieldMeta = cloneDeep(findFieldMetaById(idSrc, fields))
     fieldMeta.id = idTarget
@@ -151,11 +153,31 @@ class Metaphor {
     return this
   }
 
+  /**
+   * Creates a new field. Allows to append it under one of existing fields
+   * or to the end of form.
+   */
+  add(fieldId: string, type: string, underId?: string): Metaphor {
+    const { fields } = this.meta
+
+    invariantFieldUnique(fieldId, fields)
+
+    const rawMeta = { id: fieldId, renderer: type }
+    const completeMeta = enhanceFieldMeta(rawMeta)
+
+    if (underId) {
+      const idx = getFieldIdx(underId, fields)
+      fields.splice(idx + 1, 0, completeMeta)
+    } else {
+      fields.push(completeMeta)
+    }
+
+    return this
+  }
+
   remove(fieldId: string): Metaphor {
     const { fields } = this.meta
-    const idx = fields.findIndex(item => item.id === fieldId)
-
-    invariant(idx !== -1, notFoundMessage(fieldId))
+    const idx = getFieldIdx(fieldId, fields)
 
     fields.splice(idx, 1)
     return this
@@ -170,8 +192,26 @@ class Metaphor {
   }
 }
 
-function notFoundMessage (id: string): string {
-  return `Source field with id "${id}" is not found.`
+export function notFoundMessage(id: string): string {
+  return `Field with id "${id}" is not found.`
+}
+
+export function inUseMessage(id: string): string {
+  return `Id "${id}" is already in use.`
+}
+
+export function invariantFieldUnique(fieldId: string, fields: FieldMetaDescription[]) {
+  invariant(
+    fields.every(item => item.id !== fieldId),
+    inUseMessage(fieldId)
+  )
+}
+
+export function getFieldIdx(fieldId: string, fields: FieldMetaDescription[]): number {
+  const idx = fields.findIndex(item => item.id === fieldId)
+
+  invariant(idx !== -1, notFoundMessage(fieldId))
+  return idx
 }
 
 export default Metaphor

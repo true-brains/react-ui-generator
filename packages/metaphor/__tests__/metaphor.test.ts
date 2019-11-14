@@ -192,8 +192,7 @@ describe('Metaphor', () => {
       const xxxIdx = meta.fields.findIndex(item => item.id === 'xxx')
 
       expect(xxxIdx).toBe(metaMinimal.fields.length)
-      expect(metaMinimal.fields.length).toBe(3)
-      expect(meta.fields.length).toBe(4)
+      expect(meta.fields.length).toBe(metaMinimal.fields.length + 1)
     })
 
     test('should throw error, if `idSrc` does not exists in "fields"', () => {
@@ -202,7 +201,7 @@ describe('Metaphor', () => {
         form.clone('xxx', 'yyy', false).value()
       }
 
-      expect(t).toThrowError('Source field with id "xxx" is not found.')
+      expect(t).toThrowError('Field with id "xxx" is not found.')
     })
 
     test('should throw error, if `idTarget` already exists in "fields"', () => {
@@ -215,6 +214,44 @@ describe('Metaphor', () => {
     })
   })
 
+
+  describe('.add()', () => {
+    test('should append new field to the end of form, by default', () => {
+      const form = new Metaphor(metaMinimal);
+      const meta = form.add('xxx', 'date').value()
+      const xxxIdx = meta.fields.findIndex(item => item.id === 'xxx')
+
+      expect(xxxIdx).toBe(metaMinimal.fields.length)
+      expect(meta.fields.length).toBe(metaMinimal.fields.length + 1)
+    })
+
+    test('should append new field just under the `underId` field if it exists in form', () => {
+      const form = new Metaphor(metaMinimal);
+      const meta = form.add('xxx', 'date', 'foo').value()
+      const xxxIdx = meta.fields.findIndex(item => item.id === 'xxx')
+
+      expect(xxxIdx).toBe(1)
+      expect(meta.fields.length).toBe(metaMinimal.fields.length + 1)
+    })
+
+    test('should throw error, if `underId` does not exists in "fields"', () => {
+      const t = () => {
+        const form = new Metaphor(metaMinimal);
+        form.add('xxx', 'date', 'yyy').value()
+      }
+
+      expect(t).toThrowError('Field with id "yyy" is not found.')
+    })
+
+    test('should throw error, if `fieldId` already exists in "fields"', () => {
+      const t = () => {
+        const form = new Metaphor(metaMinimal);
+        form.add('foo', 'text').value()
+      }
+
+      expect(t).toThrowError('Id "foo" is already in use.')
+    })
+  })
 
   describe('.remove()', () => {
     test('should remove field with matched id', () => {
@@ -238,7 +275,7 @@ describe('Metaphor', () => {
         form.remove('foo').remove('foo').value()
       }
 
-      expect(t).toThrowError('Source field with id "foo" is not found.')
+      expect(t).toThrowError('Field with id "foo" is not found.')
     })
   })
 
