@@ -1,6 +1,6 @@
 {
   "name": "@react-ui-generator/validators",
-  "version": "0.7.2",
+  "version": "0.7.4",
   "description": "Collection of bindings for popular validation libraries to react-ui-generator",
   "main": "./out/validators.js",
   "types": "./out/index.d.ts",
@@ -18,7 +18,7 @@
   "devDependencies": {
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.0.0",
-    "@react-ui-generator/core": "^0.7.2",
+    "@react-ui-generator/core": "^0.7.4",
     "@types/jest": "^24.0.15",
     "@types/lodash-es": "^4.17.3",
     "awesome-typescript-loader": "^5.2.1",

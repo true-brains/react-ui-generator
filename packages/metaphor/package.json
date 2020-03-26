@@ -1,6 +1,6 @@
 {
   "name": "@react-ui-generator/metaphor",
-  "version": "0.7.3",
+  "version": "0.7.4",
   "description": "DSL for easing baking of metadata for the react-ui-generator.",
   "main": "./out/metaphor.js",
   "types": "./out/index.d.ts",
@@ -21,7 +21,7 @@
     "@babel/core": "^7.5.5",
     "@babel/preset-env": "^7.0.0",
     "@babel/register": "^7.7.0",
-    "@react-ui-generator/core": "^0.7.2",
+    "@react-ui-generator/core": "^0.7.4",
     "@types/invariant": "^2.2.30",
     "@types/jest": "^24.0.15",
     "@types/lodash-es": "^4.17.3",
