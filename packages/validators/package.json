@@ -3,6 +3,7 @@
   "version": "0.7.2",
   "description": "Collection of bindings for popular validation libraries to react-ui-generator",
   "main": "./out/validators.js",
+  "types": "./out/index.d.ts",
   "repository": "https://github.com/react-ui-generator/react-ui-generator/packages/validators",
   "scripts": {
     "build": "webpack --config config/webpack.config.js",
