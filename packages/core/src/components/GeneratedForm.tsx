@@ -4,7 +4,7 @@ import get from 'lodash-es/get';
 import {
   RawMetaDescription,
   KeyValue,
-  FieldRenderer,
+  FieldRendererComponent,
   FormMetaDescription,
 } from '../interfaces';
 
@@ -21,7 +21,7 @@ export interface GeneratedFormProps {
   data: KeyValue;
   errors: any;
   dirtiness: KeyValue;
-  renderers: { [key: string]: typeof FieldRenderer };
+  renderers: { [key: string]: FieldRendererComponent };
   actions: KeyValue;
   isSubForm?: boolean;
   validator(formData: KeyValue): KeyValue;
@@ -98,7 +98,7 @@ export class GeneratedForm extends React.PureComponent<
         continue;
       }
 
-      const Renderer =
+      const Renderer: FieldRendererComponent =
         type === 'form' ? SubForm : (type === 'list' ? ListForm : renderers[type]);
 
       if (!Renderer) {

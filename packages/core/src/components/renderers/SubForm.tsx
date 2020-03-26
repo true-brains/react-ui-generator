@@ -1,6 +1,7 @@
 import * as React from 'react';
 import { GeneratedForm } from '../GeneratedForm';
 import {
+  FieldRendererComponent,
   FieldRenderer,
   FieldRendererProps,
   FieldMetaDescription,
@@ -15,7 +16,7 @@ import {
 export interface SubFormProps extends FieldRendererProps {
   dirtiness: KeyValue,
   validator(formData: KeyValue): KeyValue;
-  renderers: { [key: string]: typeof FieldRenderer };
+  renderers: { [key: string]: FieldRendererComponent };
 }
 
 const value: KeyValue = {};

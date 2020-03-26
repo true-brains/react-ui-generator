@@ -9,8 +9,9 @@
 import * as React from 'react';
 import { GeneratedForm } from '../GeneratedForm';
 import {
-  FieldRenderer,
+  FieldRendererComponent,
   FieldRendererProps,
+  FieldRenderer,
   KeyValue,
   FieldMetaDescription,
 } from '../../interfaces';
@@ -19,7 +20,7 @@ import { enhanceFieldMeta } from '../../utils';
 
 export interface ListFormProps extends FieldRendererProps {
   dirtiness: KeyValue[],
-  renderers: { [key: string]: typeof FieldRenderer };
+  renderers: { [key: string]: FieldRendererComponent };
   validator(data: KeyValue): KeyValue;
 }
 
