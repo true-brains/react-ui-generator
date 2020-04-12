@@ -68,6 +68,7 @@ export class ListForm extends FieldRenderer<ListFormProps> {
 
     for (let idx = 0; idx < values.length; idx++) {
       const itemData = values[idx];
+      const keyId = itemData.id || idx
       const indexedActions = Object.keys(actions).reduce((acc: KeyValue, key: string) => {
         acc[key] = (...args: any[]) => actions[key](idx, ...args);
         return acc;
@@ -75,7 +76,7 @@ export class ListForm extends FieldRenderer<ListFormProps> {
 
       result.push(
         <GeneratedForm
-          key={`list-form-${id}-${idx}`}
+          key={`list-form-${id}-${keyId}`}
           className={className || ''}
           meta={{ fields: enhancedFieldsMeta }}
           data={itemData}
